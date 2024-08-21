@@ -5,7 +5,7 @@
   "lint-staged": {
     "*.{tsx,ts}": [
       "npx prettier --write",
-      "npx eslint"
+      "npx eslint --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
     ]
   },
   "scripts": {
