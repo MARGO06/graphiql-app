@@ -1,0 +1,36 @@
+.language {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100px;
+  padding: 5px;
+  border-radius: 8px;
+}
+
+.languageFlag {
+  width: 24px;
+  height: 24px;
+}
+
+.languageArrow {
+  width: 16px;
+  height: 16px;
+}
+
+.buttonArrow {
+  background: red;
+  border-radius: 50%;
+  cursor: pointer;
+  padding: 1px;
+  display: flex;
+  align-items: center;
+  &:hover {
+    background-color: aquamarine;
+  }
+}
+
+.languageName {
+  margin: 0;
+  font-size: 1.6rem;
+  font-weight: bold;
+}
