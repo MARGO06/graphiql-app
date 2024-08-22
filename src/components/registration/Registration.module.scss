@@ -1,0 +1,36 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  background-color: rgb(99, 187, 171);
+  height: 6vh;
+}
+
+.navigation {
+  width: 80%;
+  display: flex;
+  margin: 5px 0 5px 5px;
+}
+
+.active {
+  color: aquamarine;
+}
+
+.logo,
+.signIn,
+.signUp {
+  align-self: center;
+}
+
+.logo {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.signIn {
+  margin-left: 47%;
+  font-size: 700;
+}
+
+.signUp {
+  margin-left: 3%;
+}
