@@ -12,13 +12,13 @@ export const Registration: React.FC = () => {
         href={'/singIn'}
         className={`${style.signIn} ${pathname === '/singIn' ? style.active : ''} `}
       >
-        Sign In
+        SING IN
       </Link>
       <Link
         href={'/singUp'}
         className={`${style.signUp} ${pathname === '/singUp' ? style.active : ''} `}
       >
-        Sign Up
+        SING UP
       </Link>
     </div>
   );

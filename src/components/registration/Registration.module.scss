@@ -5,32 +5,50 @@
   height: 6vh;
 }
 
-.navigation {
-  width: 80%;
+.registration {
+  width: 17%;
   display: flex;
-  margin: 5px 0 5px 5px;
+  margin-left: 42%;
+  justify-content: space-between;
 }
 
 .active {
   color: aquamarine;
 }
 
-.logo,
 .signIn,
 .signUp {
   align-self: center;
+  font-size: 1.6rem;
 }
 
-.logo {
-  font-size: 20px;
-  font-weight: 700;
+@media (width < 1100px) {
+  .registration {
+    width: 20%;
+    margin-left: 10%;
+  }
 }
 
-.signIn {
-  margin-left: 47%;
-  font-size: 700;
+@media (width < 900px) {
+  .registration {
+    width: 25%;
+  }
 }
 
-.signUp {
-  margin-left: 3%;
+@media (width < 700px) {
+  .registration {
+    width: 33%;
+  }
+}
+
+@media (width < 500px) {
+  .registration {
+    width: 38%;
+  }
+}
+
+@media (width < 480px) {
+  .registration {
+    width: 60%;
+  }
 }
