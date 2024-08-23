@@ -1,0 +1,29 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  background-color: rgb(99, 187, 171);
+  height: 6vh;
+}
+
+.navigation {
+  width: 80%;
+  display: flex;
+  margin: 5px 0 5px 5px;
+}
+
+.active {
+  color: rgb(136, 206, 183);
+}
+
+.logo {
+  align-self: center;
+  font-size: 2.8rem;
+  font-weight: 700;
+}
+
+@media (width < 480px) {
+  .header {
+    flex-direction: column;
+    height: 10vh;
+  }
+}
