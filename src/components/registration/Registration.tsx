@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 import Link from 'next/link';
-import style from './Registration.module.scss';
+import style from '@/components/registration/Registration.module.scss';
 import { usePathname } from 'next/navigation';
 
 export const Registration: React.FC = () => {

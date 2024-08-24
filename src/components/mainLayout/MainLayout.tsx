@@ -1,7 +1,7 @@
-import { Header } from '../header/Header';
-import { Footer } from '../footer/Footer';
+import { Header } from '@/components/header/Header';
+import { Footer } from '@/components/footer/Footer';
 import { LayoutProps } from '@/types/layout';
-import style from './MainLayout.module.scss';
+import style from '@/components/mainLayout/MainLayout.module.scss';
 
 export const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (

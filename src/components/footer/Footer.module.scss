@@ -1,0 +1,20 @@
+.footer {
+  height: auto;
+  background-color: rgb(99, 187, 171);
+}
+.footerContainer {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+}
+
+.gitHub,
+.year,
+.school {
+  align-self: center;
+}
+
+.gitHub,
+.year {
+  font-size: 1.6rem;
+}

@@ -1,9 +1,9 @@
 'use client';
 import React from 'react';
-import style from './Header.module.scss';
+import style from '@/components/header/Header.module.scss';
 import Link from 'next/link';
-import { Languages } from '../language/Languages';
-import { Registration } from '../registration/Registration';
+import { Languages } from '@/components/language/Languages';
+import { Registration } from '@/components/registration/Registration';
 import { usePathname } from 'next/navigation';
 
 export const Header: React.FC = () => {

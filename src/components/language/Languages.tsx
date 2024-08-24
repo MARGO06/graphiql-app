@@ -1,6 +1,6 @@
 'use client';
 import React, { useState } from 'react';
-import style from '../language/Language.module.scss';
+import style from '@/components/language/Language.module.scss';
 import Image from 'next/image';
 
 export const Languages: React.FC = () => {
