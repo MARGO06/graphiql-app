@@ -3,7 +3,7 @@
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  height: 88vh;
+  height: 95vh;
   margin: auto;
   width: 20%;
 }
@@ -33,7 +33,7 @@
 }
 
 .error {
-  min-height: 20px;
+  min-height: 30px;
   margin-top: 4px;
   color: red;
   font-size: 12px;
@@ -53,4 +53,34 @@
 .inputForm {
   height: 2.5em;
   width: 100%;
+}
+
+@media (width < 1200px) {
+  .formRegistration {
+    width: 25%;
+  }
+}
+
+@media (width < 1000px) {
+  .formRegistration {
+    width: 30%;
+  }
+}
+
+@media (width < 800px) {
+  .formRegistration {
+    width: 35%;
+  }
+}
+
+@media (width < 600px) {
+  .formRegistration {
+    width: 52%;
+  }
+}
+
+@media (width < 400px) {
+  .formRegistration {
+    width: 63%;
+  }
 }
