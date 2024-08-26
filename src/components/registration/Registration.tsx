@@ -9,14 +9,14 @@ export const Registration: React.FC = () => {
   return (
     <div className={style.registration}>
       <Link
-        href={'/singIn'}
-        className={`${style.signIn} ${pathname === '/singIn' ? style.active : ''} `}
+        href={'/signIn'}
+        className={`${style.signIn} ${pathname === '/signIn' ? style.active : ''} `}
       >
         SING IN
       </Link>
       <Link
-        href={'/singUp'}
-        className={`${style.signUp} ${pathname === '/singUp' ? style.active : ''} `}
+        href={'/signUp'}
+        className={`${style.signUp} ${pathname === '/signUp' ? style.active : ''} `}
       >
         SING UP
       </Link>
