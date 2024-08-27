@@ -30,4 +30,4 @@
 
 - [ ] ABSENCE or any usage of @ts-ignore (search through GitHub repo)
 
--[ ] ABSENCE of code-smells (God-object, chunks of duplicate code), commented code sections
+- [ ] ABSENCE of code-smells (God-object, chunks of duplicate code), commented code sections
