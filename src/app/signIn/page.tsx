@@ -1,9 +1,9 @@
-import { Form } from '@/components/form/Form';
-//this section will be change
+import { LoginForm } from '@/components/loginForm/LoginForm';
+
 export default function SingIn() {
   return (
     <main>
-      <Form />
+      <LoginForm />
     </main>
   );
 }

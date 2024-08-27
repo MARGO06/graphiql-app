@@ -1,9 +1,11 @@
-import { Form } from '@/components/form/Form';
-//this section will be change
+'use client';
+
+import { RegistrationForm } from '@/components/registrationForm/RegistrationForm';
+
 export default function SingUp() {
   return (
     <main>
-      <Form />
+      <RegistrationForm />
     </main>
   );
 }

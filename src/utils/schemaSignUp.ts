@@ -1,15 +1,18 @@
 import * as yup from 'yup';
 
-export const schema = yup.object().shape({
+export const schemaSignUp = yup.object().shape({
   name: yup
     .string()
     .required()
-    .matches(/^[A-Z]/, 'first letter must be uppercase'),
+    .matches(/^[A-Z]/, 'First letter must be uppercase'),
   email: yup
     .string()
     .required()
     .email('please enter a valid email address')
-    .matches(/^(?:(?!\.{2,})[a-zA-Z0-9.-])+@/, 'email cannot have consecutive dots before @'),
+    .matches(
+      /^(?!\.)(?!.*\.\.)[a-zA-Z0-9._-]+@/,
+      'email should not contain dots at the beginning @',
+    ),
   password: yup
     .string()
     .required()
@@ -19,6 +22,6 @@ export const schema = yup.object().shape({
     .matches(/[!@#$%^&*(),.?":{}|<>]/, 'password must contain at least 1 special character'),
   confirmPassword: yup
     .string()
-    .required()
+    .required('confirm password is required')
     .oneOf([yup.ref('password')], 'Passwords must match'),
 });

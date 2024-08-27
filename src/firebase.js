@@ -11,6 +11,5 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-// eslint-disable-next-line no-console
-console.log(app);
+
 export const auth = getAuth(app);
