@@ -28,6 +28,10 @@ export const Header: React.FC = () => {
     dispatch(tokenDelete());
   };
 
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+  };
+
   return (
     <header className={style.header}>
       <nav className={style.navigation}>
@@ -52,7 +56,7 @@ export const Header: React.FC = () => {
               SING OUT
             </button>
           ) : (
-            <Registration />
+            <Registration closeMenu={closeMenu} />
           )}
           <Languages />
         </div>
