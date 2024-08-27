@@ -23,15 +23,24 @@ export const Header: React.FC = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+
   const logout = () => {
     signOut(auth);
     dispatch(tokenDelete());
+
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+
   };
 
   return (
     <header className={style.header}>
       <nav className={style.navigation}>
-        <Link href={'/'} className={`${style.logo} ${pathname === '/' ? style.active : ''}`}>
+        <Link
+          href={'/'}
+          onClick={closeMenu}
+          className={`${style.logo} ${pathname === '/' ? style.active : ''}`}
+        >
           <Image
             src="/APIQuest-logo.png"
             alt="logo"
@@ -47,12 +56,13 @@ export const Header: React.FC = () => {
           <span className={isMenuOpen ? style.burgerOpen : ''}></span>
         </div>
         <div className={`${style.menu} ${isMenuOpen ? style.menuOpen : ''}`}>
+
           {token ? (
             <button className={style.signOut} onClick={logout}>
               SING OUT
             </button>
           ) : (
-            <Registration />
+            <Registration closeMenu={closeMenu} />
           )}
           <Languages />
         </div>
