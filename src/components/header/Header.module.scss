@@ -1,13 +1,27 @@
 .header {
-  position: fixed;
+  position: sticky;
   display: flex;
-  justify-content: space-between;
-  background-color: rgba(19, 18, 18, 0.664);
-  width: 100%;
 }
 
 .logo {
   padding-left: 5px;
+  animation-play-state: paused;
+}
+
+.logo:hover {
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 .navigation {
@@ -61,6 +75,7 @@
 }
 
 .menuOpen {
+  animation: slideDown 0.5s forwards;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -69,9 +84,19 @@
   top: 100%;
   left: 0;
   width: 100%;
-  background-color: white;
-  z-index: 10;
-  padding: 10px 0;
+  background-color: rgba(235, 235, 235, 0.548);
+  z-index: 2;
+}
+
+@keyframes slideDown {
+  from {
+    max-height: 0;
+    opacity: 0;
+  }
+  to {
+    max-height: 300px;
+    opacity: 1;
+  }
 }
 
 .signOut {
