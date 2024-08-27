@@ -23,14 +23,9 @@ export const Header: React.FC = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-
   const logout = () => {
     signOut(auth);
     dispatch(tokenDelete());
-
-  const closeMenu = () => {
-    setIsMenuOpen(false);
-
   };
 
   const closeMenu = () => {
@@ -60,7 +55,6 @@ export const Header: React.FC = () => {
           <span className={isMenuOpen ? style.burgerOpen : ''}></span>
         </div>
         <div className={`${style.menu} ${isMenuOpen ? style.menuOpen : ''}`}>
-
           {token ? (
             <button className={style.signOut} onClick={logout}>
               SING OUT
