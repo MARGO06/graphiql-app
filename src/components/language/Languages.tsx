@@ -20,16 +20,9 @@ export const Languages: React.FC = () => {
         height={24}
         priority
       />
-      <p className={style.languageName}>{language === 'ENG' ? 'ENG' : 'ESP'}</p>
-      <button type="button" className={style.buttonArrow} onClick={toggleLanguage}>
-        <Image
-          src="/arrow.png"
-          alt="toggle language"
-          className={style.languageArrow}
-          width={32}
-          height={32}
-          priority
-        />
+
+      <button type="button" className={style.buttonWrap} onClick={toggleLanguage}>
+        <p className={style.languageName}>{language === 'ENG' ? 'ENG' : 'ESP'}</p>
       </button>
     </div>
   );

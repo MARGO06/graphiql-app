@@ -1,10 +1,7 @@
 .language {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  width: 100px;
-  padding: 5px;
-  border-radius: 8px;
+  width: 70px;
 }
 
 .languageFlag {
@@ -12,25 +9,25 @@
   height: 24px;
 }
 
-.languageArrow {
-  width: 16px;
-  height: 16px;
-}
-
-.buttonArrow {
-  background: #cf5fd1;
-  border-radius: 50%;
+.buttonWrap {
   cursor: pointer;
   padding: 1px;
-  display: flex;
+  border: none;
+  background-color: transparent;
   align-items: center;
-  &:hover {
-    background-color: aquamarine;
-  }
 }
 
 .languageName {
   margin: 0;
   font-size: 1.6rem;
+  transition: color 0.3s ease;
+  &:hover {
+    color: #64b3ff;
+  }
+}
+
+.buttonWrap p {
+  font-size: 1.6rem;
   font-weight: bold;
+  color: #ffffff93;
 }

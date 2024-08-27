@@ -1,7 +1,7 @@
 .footer {
   height: auto;
-  background-color: rgb(99, 187, 171);
 }
+
 .footerContainer {
   display: flex;
   justify-content: space-between;
@@ -16,5 +16,6 @@
 
 .gitHub,
 .year {
-  font-size: 1.6rem;
+  font-size: 1.4rem;
+  color: rgb(255, 255, 255);
 }

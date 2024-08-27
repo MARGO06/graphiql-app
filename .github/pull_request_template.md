@@ -1,5 +1,6 @@
 1. Acceptance criteria:
-- 
+
+-
 -
 
 2. Screenshot min and max layout (not technical tasks):
@@ -17,7 +18,7 @@
 
 [ ] interactivity of elements users can interact with; element hover effects; usage of different styles for the active and inactive state of the element; smooth animations
 
-[ ] the same fonts, button styles, indents, and the same elements on all pages of the application have the same appearance and layout. 
+[ ] the same fonts, button styles, indents, and the same elements on all pages of the application have the same appearance and layout.
 
 [ ] item colors and background images may vary. In this case, colors should be from the same palette, and background images from the same collection.
 

@@ -8,7 +8,7 @@ export const Footer: React.FC = () => {
     <footer className={style.footer}>
       <div className={style.footerContainer}>
         <Link href="https://github.com/MARGO06" className={style.gitHub} target="_blank">
-          GITHUB
+          <Image src="/GitHub-logo.png" alt="logo" width={32} height={32} quality={100} />
         </Link>
         <p className={style.year}>2024</p>
         <Link href="https://rs.school/react/" className={style.school} target="_blank">
