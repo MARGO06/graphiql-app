@@ -1,23 +1,40 @@
 'use client';
+
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { schema } from '@/utils/schema';
+import { schemaSignIn } from '@/utils/schemaSignIn';
+import { schemaSignUp } from '@/utils/schemaSignUp';
 import { FormDates } from '@/types/formDates';
 import { usePathname } from 'next/navigation';
 import style from '@/components/form/Form.module.scss';
 
-export const Form: React.FC = () => {
+type FormProps = {
+  handleFormSubmit: (email: string, password: string) => void;
+};
+
+export const Form: React.FC<FormProps> = ({ handleFormSubmit }) => {
   const pathname = usePathname();
+
+  const schema = pathname === '/signUp' ? schemaSignUp : schemaSignIn;
+  const defaultValues: FormDates =
+    pathname === '/signUp'
+      ? { name: '', email: '', password: '', confirmPassword: '' }
+      : { name: '', email: '', password: '', confirmPassword: '' };
 
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<FormDates>({ resolver: yupResolver(schema) });
+  } = useForm<FormDates>({
+    resolver: yupResolver(schema),
+    mode: 'onChange',
+    defaultValues,
+  });
 
-  const onSubmitHandler = () => {
+  const onSubmitHandler = (data: FormDates) => {
+    handleFormSubmit(data.email, data.password);
     reset();
   };
 
