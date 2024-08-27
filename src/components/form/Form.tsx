@@ -17,10 +17,12 @@ export const Form: React.FC<FormProps> = ({ handleFormSubmit }) => {
   const pathname = usePathname();
 
   const schema = pathname === '/signUp' ? schemaSignUp : schemaSignIn;
-  const defaultValues: FormDates =
-    pathname === '/signUp'
-      ? { name: '', email: '', password: '', confirmPassword: '' }
-      : { name: '', email: '', password: '', confirmPassword: '' };
+  const defaultValues: FormDates = {
+    name: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+  };
 
   const {
     register,

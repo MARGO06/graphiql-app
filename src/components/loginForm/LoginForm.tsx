@@ -5,7 +5,7 @@ import { Form } from '@/components/form/Form';
 import { useRouter } from 'next/navigation';
 import { useDispatch } from 'react-redux';
 import { authenticate } from '@/utils/authorization';
-import { tokenGet } from '@/lib/fetch/activeToken.slice';
+import { tokenGet } from '@/lib/features/activeToken.slice';
 
 export const LoginForm: React.FC = () => {
   const dispatch = useDispatch();
@@ -16,7 +16,7 @@ export const LoginForm: React.FC = () => {
       const token = await authenticate(email, password, true);
       if (token) {
         dispatch(tokenGet(token));
-        router.push('/');
+        router.replace('/');
       }
     } catch (error) {
       //TODO

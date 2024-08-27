@@ -5,14 +5,27 @@ import Link from 'next/link';
 import { Languages } from '@/components/language/Languages';
 import { Registration } from '@/components/registration/Registration';
 import { usePathname } from 'next/navigation';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState } from '@/lib/store';
+import { signOut } from 'firebase/auth';
+import { auth } from '@/firebase';
 import Image from 'next/image';
+import { tokenDelete } from '@/lib/features/activeToken.slice';
 
 export const Header: React.FC = () => {
   const pathname = usePathname();
+  const dispatch = useDispatch();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const token = useSelector((state: RootState) => state.token.activeToken);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  const logout = () => {
+    signOut(auth);
+    dispatch(tokenDelete());
   };
 
   const closeMenu = () => {
@@ -42,7 +55,13 @@ export const Header: React.FC = () => {
           <span className={isMenuOpen ? style.burgerOpen : ''}></span>
         </div>
         <div className={`${style.menu} ${isMenuOpen ? style.menuOpen : ''}`}>
-          <Registration closeMenu={closeMenu} />
+          {token ? (
+            <button className={style.signOut} onClick={logout}>
+              SING OUT
+            </button>
+          ) : (
+            <Registration closeMenu={closeMenu} />
+          )}
           <Languages />
         </div>
       </nav>
