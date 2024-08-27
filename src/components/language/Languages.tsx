@@ -22,7 +22,7 @@ export const Languages: React.FC = () => {
       />
 
       <button type="button" className={style.buttonWrap} onClick={toggleLanguage}>
-        <p className={style.languageName}>{language === 'ENG' ? 'ENG' : 'ESP'}</p>
+        <span className={style.languageName}>{language === 'ENG' ? 'ENG' : 'ESP'}</span>
       </button>
     </div>
   );
