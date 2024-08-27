@@ -3,8 +3,10 @@ import React from 'react';
 import Link from 'next/link';
 import style from '@/components/registration/Registration.module.scss';
 import { usePathname } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 
 export const Registration: React.FC = () => {
+  const t = useTranslations('Registration');
   const pathname = usePathname();
   return (
     <div className={style.registration}>
@@ -12,13 +14,13 @@ export const Registration: React.FC = () => {
         href={'/signIn'}
         className={`${style.signIn} ${pathname === '/signIn' ? style.active : ''} `}
       >
-        SING IN
+        {t('signin')}
       </Link>
       <Link
         href={'/signUp'}
         className={`${style.signUp} ${pathname === '/signUp' ? style.active : ''} `}
       >
-        SING UP
+        {t('signup')}
       </Link>
     </div>
   );
