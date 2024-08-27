@@ -24,7 +24,7 @@ export const Footer: React.FC = () => {
         </div>
 
         <p className={style.year}>2024</p>
-        <Link href="https://rs.school/react/" className={style.school} target="_blank">
+        <Link href="https://rs.school" className={style.school} target="_blank">
           <Image
             src={'/rss-logo.svg'}
             alt="flag"

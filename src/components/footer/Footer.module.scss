@@ -1,5 +1,6 @@
 .footer {
   height: auto;
+  background-color: rgba(19, 18, 18, 0.664);
 }
 
 .footerContainer {
@@ -38,4 +39,12 @@
 .year {
   font-size: 1.4rem;
   color: rgb(255, 255, 255);
+}
+
+.year {
+  flex-grow: 10;
+}
+
+.gitHub {
+  flex-grow: 9;
 }
