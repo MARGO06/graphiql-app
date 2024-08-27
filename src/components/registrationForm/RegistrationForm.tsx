@@ -13,10 +13,10 @@ export const RegistrationForm: React.FC = () => {
 
   const registration = async (email: string, password: string) => {
     try {
-      const token = await authenticate(email, password, true);
+      const token = await authenticate(email, password, false);
       if (token) {
         dispatch(tokenGet(token));
-        router.push('/');
+        router.replace('/');
       }
     } catch (error) {
       //TODO

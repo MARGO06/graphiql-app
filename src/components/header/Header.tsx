@@ -5,11 +5,17 @@ import Link from 'next/link';
 import { Languages } from '@/components/language/Languages';
 import { Registration } from '@/components/registration/Registration';
 import { usePathname } from 'next/navigation';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/lib/store';
 import Image from 'next/image';
 
 export const Header: React.FC = () => {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const token = useSelector((state: RootState) => state.token.token);
+  // eslint-disable-next-line no-console
+  console.log(token);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -34,7 +40,13 @@ export const Header: React.FC = () => {
           <span className={isMenuOpen ? style.burgerOpen : ''}></span>
         </div>
         <div className={`${style.menu} ${isMenuOpen ? style.menuOpen : ''}`}>
-          <Registration />
+          {token ? (
+            <Link href={'/'} className={style.signOut}>
+              SING OUT
+            </Link>
+          ) : (
+            <Registration />
+          )}
           <Languages />
         </div>
       </nav>

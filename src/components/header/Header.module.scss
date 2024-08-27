@@ -74,6 +74,19 @@
   padding: 10px 0;
 }
 
+.signOut {
+  font-weight: 500;
+  color: #ffffff;
+  text-decoration: inherit;
+  transition: color 0.3s ease;
+  align-self: center;
+  font-size: 1.6rem;
+  padding: 15px;
+  &:hover {
+    color: rgb(233, 150, 26);
+  }
+}
+
 @media (max-width: 500px) {
   .burger {
     display: flex;

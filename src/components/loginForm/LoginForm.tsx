@@ -16,7 +16,7 @@ export const LoginForm: React.FC = () => {
       const token = await authenticate(email, password, true);
       if (token) {
         dispatch(tokenGet(token));
-        router.push('/');
+        router.replace('/');
       }
     } catch (error) {
       //TODO
