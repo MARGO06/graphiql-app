@@ -36,7 +36,7 @@ export const Header: React.FC = () => {
     <header className={style.header}>
       <nav className={style.navigation}>
         <Link
-          href={'/'}
+          href={'/main'}
           onClick={closeMenu}
           className={`${style.logo} ${pathname === '/' ? style.active : ''}`}
         >
