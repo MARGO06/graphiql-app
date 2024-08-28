@@ -1,29 +1,28 @@
-'use client';
-import React, { useState } from 'react';
+import React, { startTransition } from 'react';
 import style from '@/components/language/Language.module.scss';
-import Image from 'next/image';
+import { Locale } from '@/config';
+import { setUserLocale } from '@/services/locale';
+import { useRouter } from 'next/navigation';
 
 export const Languages: React.FC = () => {
-  const [language, setLanguage] = useState<'ENG' | 'ESP'>('ENG');
+  const router = useRouter();
 
-  const toggleLanguage = () => {
-    setLanguage((prevLanguage) => (prevLanguage === 'ENG' ? 'ESP' : 'ENG'));
+  const toggleLanguage = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const locale = e.currentTarget.value as Locale;
+
+    startTransition(() => {
+      setUserLocale(locale);
+      // TODO delete redirect, it's just for test
+      router.push('/main');
+    });
   };
 
   return (
     <div className={style.language}>
-      <Image
-        src={language === 'ENG' ? '/England.png' : '/Spain.png'}
-        alt="flag"
-        className={style.languageFlag}
-        width={24}
-        height={24}
-        priority
-      />
-
-      <button type="button" className={style.buttonWrap} onClick={toggleLanguage}>
-        <span className={style.languageName}>{language === 'ENG' ? 'ENG' : 'ESP'}</span>
-      </button>
+      <select onChange={toggleLanguage} className={style.selectWrap}>
+        <option value="en">English</option>
+        <option value="es">Español</option>
+      </select>
     </div>
   );
 };

@@ -1,33 +1,26 @@
 .language {
   display: flex;
   align-items: center;
-  width: 70px;
+  width: auto;
 }
 
-.languageFlag {
-  width: 24px;
-  height: 24px;
-}
-
-.buttonWrap {
+.selectWrap {
   cursor: pointer;
-  padding: 1px;
-  border: none;
-  background-color: transparent;
+  border: solid 1px white;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 5px;
+  background-color: white;
   align-items: center;
-}
 
-.languageName {
-  margin: 0;
-  font-size: 1.6rem;
-  transition: color 0.3s ease;
-  &:hover {
-    color: #64b3ff;
+  >option {
+    font-size: 1.6rem;
+    transition: color 0.3s ease;
+    font-weight: bold;
+    color: #ffffff93;
+
+    &:hover {
+      color: #64b3ff;
+    }
   }
-}
-
-.buttonWrap p {
-  font-size: 1.6rem;
-  font-weight: bold;
-  color: #ffffff93;
 }
