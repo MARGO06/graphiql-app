@@ -12,12 +12,11 @@
   margin: 5px;
   background-color: white;
   align-items: center;
+  font-size: 1.6rem;
 
-  >option {
+  > option {
     font-size: 1.6rem;
     transition: color 0.3s ease;
-    font-weight: bold;
-    color: #ffffff93;
 
     &:hover {
       color: #64b3ff;
