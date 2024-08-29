@@ -2,5 +2,10 @@
   "Registration": {
     "signin": "INICIAR SESIÓN",
     "signup": "INSCRIBIRSE"
+  },
+  "Error": {
+    "welcome": "¡Algo salió mal!",
+    "tryagain": "Inténtalo de nuevo",
+    "back": "Volver a la página principal"
   }
 }
