@@ -6,3 +6,26 @@
 body {
   margin: 0;
 }
+
+aside {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 10px;
+
+  & button {
+    margin-right: 10px;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: rgb(100, 185, 185);
+
+
+    &:hover {
+      background-color: rgb(228, 126, 216);
+      cursor: pointer;
+      transition-duration: 0.5s;
+    }
+  }
+
+}

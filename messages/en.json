@@ -2,5 +2,10 @@
   "Registration": {
     "signin": "SIGN IN",
     "signup": "SIGN UP"
+  },
+  "Error": {
+    "welcome": "Something went wrong",
+    "tryagain": "Try again",
+    "back": "Back to Main page"
   }
 }
