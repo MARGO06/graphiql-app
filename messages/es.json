@@ -7,5 +7,10 @@
     "welcome": "¡Algo salió mal!",
     "tryagain": "Inténtalo de nuevo",
     "back": "Volver a la página principal"
+  },
+  "NotFound": {
+    "welcome": "No encontrado: ",
+    "info": "No se pudo encontrar el recurso solicitado",
+    "back": "Volver a la página principal"
   }
 }

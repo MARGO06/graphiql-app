@@ -7,5 +7,11 @@
     "welcome": "Something went wrong",
     "tryagain": "Try again",
     "back": "Back to Main page"
+  },
+  "NotFound": {
+    "welcome": "Not Found: ",
+    "info": "Could not find requested resource",
+    "back": "Back to Main page"
   }
+
 }
