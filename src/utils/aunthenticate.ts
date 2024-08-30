@@ -11,6 +11,7 @@ export const authenticate = async (email: string, password: string, isLogin: boo
     }
     const user = userCredential.user;
     const token = await user.getIdToken();
+
     return token;
   } catch (error) {
     // TODO: Handle error
