@@ -11,7 +11,7 @@
   "NotFound": {
     "welcome": "Not Found: ",
     "info": "Could not find requested resource",
-    "back": "Back to Main page"
+    "back": "Back to Welcome page"
   }
 
 }

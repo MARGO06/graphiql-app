@@ -11,6 +11,6 @@
   "NotFound": {
     "welcome": "No encontrado: ",
     "info": "No se pudo encontrar el recurso solicitado",
-    "back": "Volver a la página principal"
+    "back": "Volver a la página de bienvenida"
   }
 }

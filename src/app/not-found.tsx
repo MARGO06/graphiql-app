@@ -13,7 +13,7 @@ export default function NotFound() {
         {t('welcome')} {pathname}
       </h2>
       <p>{t('info')}</p>
-      <button onClick={() => router.push('/main')}> {t('back')}</button>
+      <button onClick={() => router.push('/')}> {t('back')}</button>
     </aside>
   );
 }
