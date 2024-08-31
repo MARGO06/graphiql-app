@@ -11,9 +11,9 @@ export const LoginForm: React.FC = () => {
 
   const login = async (email: string, password: string) => {
     try {
-      const token = await authenticate(email, password, true);
-      if (token) {
-        saveToken(token);
+      const user = await authenticate(email, password, true);
+      if (user?.token) {
+        saveToken(user.token);
         router.replace('/');
       }
     } catch (error) {

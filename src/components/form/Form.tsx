@@ -10,7 +10,7 @@ import { usePathname } from 'next/navigation';
 import style from '@/components/form/Form.module.scss';
 
 type FormProps = {
-  handleFormSubmit: (email: string, password: string) => void;
+  handleFormSubmit: (email: string, password: string, name?: string) => void;
 };
 
 export const Form: React.FC<FormProps> = ({ handleFormSubmit }) => {
@@ -36,7 +36,7 @@ export const Form: React.FC<FormProps> = ({ handleFormSubmit }) => {
   });
 
   const onSubmitHandler = (data: FormDates) => {
-    handleFormSubmit(data.email, data.password);
+    handleFormSubmit(data.email, data.password, data.name);
     reset();
   };
 
