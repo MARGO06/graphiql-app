@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { getTokenFromCookie } from '@/services/token';
 
-export const Home = () => {
+export default function Home() {
   const [hasToken, setHasToken] = useState(false);
   const user = 'User';
 
@@ -59,6 +59,4 @@ export const Home = () => {
       <AboutUs />
     </main>
   );
-};
-
-export default Home;
+}
