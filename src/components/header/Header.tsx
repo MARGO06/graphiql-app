@@ -4,7 +4,7 @@ import style from '@/components/header/Header.module.scss';
 import Link from 'next/link';
 import { Languages } from '@/components/language/Languages';
 import { Registration } from '@/components/registration/Registration';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { removeTokenFromCookie, getTokenFromCookie } from '@/services/token';
 import { signOut } from 'firebase/auth';
 import { auth } from '@/firebase';
@@ -14,6 +14,8 @@ export const Header: React.FC = () => {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [hasToken, setHasToken] = useState(false);
+
+  const router = useRouter();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -34,6 +36,8 @@ export const Header: React.FC = () => {
     signOut(auth).then(() => {
       removeTokenFromCookie();
       setHasToken(false);
+      router.replace('/');
+      window.location.reload(); //TODO: Find a good solution!
     });
   };
 
