@@ -3,11 +3,12 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { schemaSignIn } from '@/utils/schemaSignIn';
-import { schemaSignUp } from '@/utils/schemaSignUp';
 import { FormDates } from '@/types/formDates';
 import { usePathname } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 import style from '@/components/form/Form.module.scss';
+import { useSchemaSignIn } from '@/hooks/useSchemaSignIn';
+import { useSchemaSignUp } from '@/hooks/useSchemaSignUp';
 
 type FormProps = {
   handleFormSubmit: (email: string, password: string, name?: string) => void;
@@ -15,6 +16,9 @@ type FormProps = {
 
 export const Form: React.FC<FormProps> = ({ handleFormSubmit }) => {
   const pathname = usePathname();
+  const schemaSignIn = useSchemaSignIn();
+  const schemaSignUp = useSchemaSignUp();
+  const t = useTranslations('SignIn/SignUp');
 
   const schema = pathname === '/signUp' ? schemaSignUp : schemaSignIn;
   const defaultValues: FormDates = {
@@ -45,11 +49,11 @@ export const Form: React.FC<FormProps> = ({ handleFormSubmit }) => {
       {pathname === '/signUp' && (
         <>
           <label htmlFor="name" className={style.labelName}>
-            Name
+            {t('name')}
           </label>
           <input
             {...register('name')}
-            placeholder="Enter your name"
+            placeholder={t('enter your name')}
             type="text"
             className={style.inputForm}
             id="name"
@@ -60,11 +64,11 @@ export const Form: React.FC<FormProps> = ({ handleFormSubmit }) => {
         </>
       )}
       <label htmlFor="email" className={style.labelEmail}>
-        Email
+        {t('email')}
       </label>
       <input
         {...register('email')}
-        placeholder="Enter your email"
+        placeholder={t('enter your email')}
         type="email"
         className={style.inputForm}
         id="email"
@@ -73,11 +77,11 @@ export const Form: React.FC<FormProps> = ({ handleFormSubmit }) => {
         {errors.email?.message}
       </p>
       <label htmlFor="password" className={style.labelPassword}>
-        Password
+        {t('password')}
       </label>
       <input
         {...register('password')}
-        placeholder="Enter your password"
+        placeholder={t('enter your password')}
         type="password"
         className={style.inputForm}
         id="password"
@@ -88,11 +92,11 @@ export const Form: React.FC<FormProps> = ({ handleFormSubmit }) => {
       {pathname === '/signUp' && (
         <>
           <label htmlFor="confirmPassword" className={style.labelConfirmPassword}>
-            Confirm password
+            {t('confirm password')}
           </label>
           <input
             {...register('confirmPassword')}
-            placeholder="Enter your password"
+            placeholder={t('enter your password')}
             type="password"
             className={style.inputForm}
             id="confirmPassword"
@@ -103,7 +107,7 @@ export const Form: React.FC<FormProps> = ({ handleFormSubmit }) => {
         </>
       )}
       <button type="submit" className={style.submit}>
-        Submit
+        {t('submit')}
       </button>
     </form>
   );

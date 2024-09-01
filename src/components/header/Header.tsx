@@ -7,9 +7,11 @@ import { Registration } from '@/components/registration/Registration';
 import { usePathname } from 'next/navigation';
 import Image from 'next/image';
 import { useAuth } from '@/hooks/useAuth';
+import { useTranslations } from 'next-intl';
 
 export const Header: React.FC = () => {
   const pathname = usePathname();
+  const t = useTranslations('Header');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { token, logout } = useAuth();
 
@@ -46,7 +48,7 @@ export const Header: React.FC = () => {
         <div className={`${style.menu} ${isMenuOpen ? style.menuOpen : ''}`}>
           {token ? (
             <button className={style.signOut} onClick={logout}>
-              SING OUT
+              {t('sign out')}
             </button>
           ) : (
             <Registration closeMenu={closeMenu} />

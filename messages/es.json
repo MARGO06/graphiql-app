@@ -21,5 +21,30 @@
     "part1": "Somos un equipo de tres desarrolladores frontend junior (Curso de React) de RSS School, trabajando en nuestro proyecto final, APIQuest. Puedes encontrar más información sobre nosotros y la escuela en el pie de página del sitio.",
     "part2": "Seguimos la metodología Scrum, utilizando Jira para la gestión del proyecto y Confluence para la documentación. Nuestras reuniones diarias son a las 10:00 UTC+2. Nuestra documentación integral del proyecto incluye descripciones de roles, arquitectura del proyecto, actas de reuniones (MoM) y otra información esencial. El canal de comunicación principal es el servidor de Discord/DreamTeam.",
     "part3": "Estamos comprometidos a crear un producto funcional y de alta calidad, aprovechando la experiencia que hemos adquirido a lo largo de nuestra formación. Colaboramos activamente, compartimos ideas y resolvemos problemas juntos, lo que nos ayuda a mejorar nuestras habilidades y crecer como profesionales."
+  },
+  "SignIn/SignUp": {
+    "name": "Nombre",
+    "enter your name": "Ingresa tu nombre",
+    "email": "Correo electrónico",
+    "enter your email": "Introduce tu correo electrónico",
+    "password": "Contraseña",
+    "enter your password": "Introduce tu contraseña",
+    "confirm password": "Confirmar contraseña",
+    "submit": "Entregar",
+    "email is required": "se requiere correo electrónico",
+    "please enter a valid email address": "por favor, introduce una dirección de correo electrónico válida",
+    "password is required": "se requiere contraseña",
+    "name is required": "el nombre es requerido",
+    "first letter must be uppercase": "la primera letra debe ser mayúscula",
+    "email should not contain dots at the beginning @": "el correo electrónico no debe contener puntos al principio @",
+    "password must be at least 8 characters": "la contraseña debe tener al menos 8 caracteres",
+    "password should contain at least 1 letter": "la contraseña debe contener al menos 1 letra",
+    "password should contain at least 1 digit": "la contraseña debe contener al menos 1 dígito",
+    "password must contain at least 1 special character": "la contraseña debe contener al menos 1 carácter especial",
+    "confirm password is required": "se requiere confirmar la contraseña",
+    "passwords must match": "las contraseñas deben coincidir"
+  },
+  "Header": {
+    "sign out": "desconectar"
   }
 }
