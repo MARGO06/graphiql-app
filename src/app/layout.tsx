@@ -6,6 +6,7 @@ import { ReactNode } from 'react';
 import { getLocale, getMessages } from 'next-intl/server';
 import { NextIntlClientProvider } from 'next-intl';
 import { AuthProvider } from '@/hooks/useAuth';
+import { cookies } from 'next/headers';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -21,11 +22,12 @@ type Props = {
 export default async function LocaleLayout({ children }: Props) {
   const locale = await getLocale();
   const messages = await getMessages();
+  const token = cookies().get('JWT')?.value || null;
 
   return (
     <html lang={locale}>
       <body className={inter.className}>
-        <AuthProvider>
+        <AuthProvider initialToken={token}>
           <NextIntlClientProvider messages={messages}>
             <Layout>{children}</Layout>
           </NextIntlClientProvider>
