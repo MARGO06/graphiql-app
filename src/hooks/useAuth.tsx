@@ -1,8 +1,8 @@
 'use client';
 import React, { createContext, useState, useContext, useEffect, ReactNode } from 'react';
 import { AuthContextType } from '@/types/authContext';
-//import { signOut } from 'firebase/auth';
-// import { auth } from '@/firebase';
+import { signOut } from 'firebase/auth';
+import { auth } from '@/firebase';
 
 type AuthProviderProps = {
   children: ReactNode;
@@ -35,16 +35,16 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   };
 
   const logout = async () => {
-    /* try {
+    try {
       await fetch('/api/deleteToken', {
         method: 'DELETE',
+        credentials: 'include',
       });
-
       setToken(null);
+      signOut(auth);
     } catch (error) {
-      //todo
+      //TODO
     }
-    //signOut(auth); */
   };
 
   return (
