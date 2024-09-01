@@ -2,30 +2,18 @@
 import style from './page.module.css';
 import Link from 'next/link';
 import { AboutUs } from '@/components/aboutUS/AboutUs';
-import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
-import { getTokenFromCookie } from '@/services/token';
+import { useAuth } from '@/hooks/useAuth';
 
 export default function Home() {
-  const [hasToken, setHasToken] = useState(false);
+  const { token } = useAuth();
   const user = 'User';
 
   const t = useTranslations('WelcomePage');
 
-  const token = getTokenFromCookie();
-
-  const updateHasToken = () => {
-    const token = getTokenFromCookie();
-    setHasToken(!!token);
-  };
-
-  useEffect(() => {
-    updateHasToken();
-  }, [token]);
-
   return (
     <main className={style.main}>
-      {hasToken ? (
+      {token ? (
         <>
           <h1>
             {t('welcome')}, {user}!
