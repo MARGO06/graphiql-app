@@ -3,9 +3,11 @@
 import React from 'react';
 import { Form } from '@/components/form/Form';
 import { useRouter } from 'next/navigation';
+import { useAuth } from '@/hooks/useAuth';
 
 export const LoginForm: React.FC = () => {
   const router = useRouter();
+  const { updateToken } = useAuth();
 
   const login = async (email: string, password: string) => {
     try {
@@ -18,7 +20,8 @@ export const LoginForm: React.FC = () => {
       });
 
       if (response.ok) {
-        // const data = await response.json();
+        const user = await response.json();
+        updateToken(user.token);
         router.replace('/');
       } else {
         //TODO

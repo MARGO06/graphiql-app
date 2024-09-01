@@ -5,6 +5,7 @@ import './globals.css';
 import { ReactNode } from 'react';
 import { getLocale, getMessages } from 'next-intl/server';
 import { NextIntlClientProvider } from 'next-intl';
+import { AuthProvider } from '@/hooks/useAuth';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -24,9 +25,11 @@ export default async function LocaleLayout({ children }: Props) {
   return (
     <html lang={locale}>
       <body className={inter.className}>
-        <NextIntlClientProvider messages={messages}>
-          <Layout>{children}</Layout>
-        </NextIntlClientProvider>
+        <AuthProvider>
+          <NextIntlClientProvider messages={messages}>
+            <Layout>{children}</Layout>
+          </NextIntlClientProvider>
+        </AuthProvider>
       </body>
     </html>
   );
