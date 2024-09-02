@@ -6,9 +6,7 @@ export const readUserData = async (userId: string) => {
     const snapshot = await get(child(dbRef, `users/${userId}`));
     if (snapshot.exists()) {
       const userData = snapshot.val();
-      if (userData && userData.username) {
-        localStorage.setItem('name', userData.username);
-      }
+      return userData;
     } else {
       return null;
     }

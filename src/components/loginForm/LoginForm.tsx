@@ -8,7 +8,7 @@ import { readUserData } from '@/utils/getDataInFirebase';
 
 export const LoginForm: React.FC = () => {
   const router = useRouter();
-  const { updateToken } = useAuth();
+  const { updateToken, updateUserName } = useAuth();
 
   const login = async (email: string, password: string) => {
     try {
@@ -24,7 +24,8 @@ export const LoginForm: React.FC = () => {
         const user = await response.json();
         updateToken(user.token);
         router.replace('/');
-        await readUserData(user.uid);
+        const userData = await readUserData(user.uid);
+        updateUserName(userData.username);
       } else {
         //TODO
       }
