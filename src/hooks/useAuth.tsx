@@ -1,34 +1,18 @@
 'use client';
-import React, { createContext, useState, useContext, useEffect, ReactNode } from 'react';
+import React, { createContext, useState, useContext, ReactNode } from 'react';
 import { AuthContextType } from '@/types/authContext';
 import { signOut } from 'firebase/auth';
 import { auth } from '@/firebase';
 
 type AuthProviderProps = {
   children: ReactNode;
+  initialToken: string | null;
 };
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
-  const [token, setToken] = useState<string | null>(null);
-
-  useEffect(() => {
-    const fetchToken = async () => {
-      try {
-        const response = await fetch('/api/getToken', {
-          method: 'GET',
-          credentials: 'include',
-        });
-        const data = await response.json();
-        setToken(data.token);
-      } catch (error) {
-        //TODO
-      }
-    };
-
-    fetchToken();
-  }, []);
+export const AuthProvider: React.FC<AuthProviderProps> = ({ children, initialToken }) => {
+  const [token, setToken] = useState<string | null>(initialToken);
 
   const updateToken = (newToken: string) => {
     setToken(newToken);
