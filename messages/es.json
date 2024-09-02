@@ -13,6 +13,10 @@
     "info": "No se pudo encontrar el recurso solicitado",
     "back": "Volver a la página de bienvenida"
   },
+  "restClient": {
+    "name": "RESTfull cliente",
+    "send": "Enviar"
+  },
   "WelcomePage": {
     "welcome": "Bienvenido/a",
     "history": "Historia",
