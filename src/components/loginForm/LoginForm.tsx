@@ -4,6 +4,7 @@ import React from 'react';
 import { Form } from '@/components/form/Form';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/hooks/useAuth';
+import { readUserData } from '@/utils/getDataInFirebase';
 
 export const LoginForm: React.FC = () => {
   const router = useRouter();
@@ -23,6 +24,7 @@ export const LoginForm: React.FC = () => {
         const user = await response.json();
         updateToken(user.token);
         router.replace('/');
+        await readUserData(user.uid);
       } else {
         //TODO
       }
