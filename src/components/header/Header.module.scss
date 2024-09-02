@@ -2,6 +2,7 @@
   position: sticky;
   display: flex;
   background-color: rgba(19, 18, 18, 0.664);
+  top: 0;
 }
 
 .logo {
@@ -110,6 +111,7 @@
   border: none;
   background: none;
   padding: 15px;
+  cursor: pointer;
   &:hover {
     color: rgb(233, 150, 26);
   }

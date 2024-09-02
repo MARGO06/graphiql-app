@@ -5,11 +5,12 @@
 
 body {
   margin: 0;
-  background-image: linear-gradient(rgb(255, 255, 255), rgba(0, 0, 0, 0.089)),
-    url('/background.png');
+  height: 100vh;
+  background-image: linear-gradient(rgb(255, 255, 255), rgba(0, 0, 0, 0.089)), url('/background-main.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  transition: 0.5s;
 }
 
 aside {
@@ -30,5 +31,17 @@ aside {
       cursor: pointer;
       transition-duration: 0.5s;
     }
+  }
+}
+
+@media (max-width: 1240px) {
+  body {
+    background-image: linear-gradient(rgb(255, 255, 255), rgba(0, 0, 0, 0.089)), url('/background_tablet.png');
+  }
+}
+
+@media (max-width: 780px) {
+  body {
+    background-image: linear-gradient(rgb(255, 255, 255), rgba(0, 0, 0, 0.089)), url('/background_mobile.png');
   }
 }
