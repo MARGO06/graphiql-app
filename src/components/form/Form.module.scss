@@ -3,8 +3,15 @@
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  margin: auto;
-  width: 20%;
+  margin: 0 auto;
+  max-width: 300px;
+  min-width: 200px;
+
+  padding: 20px;
+
+  background-color: #f5f5f5b5;
+  border-radius: 5px;
+  border: 1px solid #cdcdcd;
 }
 
 .labelName,
@@ -17,26 +24,18 @@
   margin-top: 5px;
 }
 
-.submit {
-  width: 30%;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 15px;
-  padding: 5px;
-  background-color: rgb(100, 185, 185);
-  &:hover {
-    background-color: rgb(228, 126, 216);
-    cursor: pointer;
-    transition-duration: 2s;
-  }
+.errorContener {
+  width: 100%;
+  padding-left: 3px;
 }
 
 .error {
-  min-height: 30px;
+  min-height: 20px;
   margin-top: 4px;
   color: red;
   font-size: 12px;
   transition: opacity 0.3s ease;
+  display: flex;
 }
 
 .hidden {
@@ -47,39 +46,4 @@
 .visible {
   opacity: 1;
   visibility: visible;
-}
-
-.inputForm {
-  height: 2.5em;
-  width: 100%;
-}
-
-@media (width < 1200px) {
-  .formRegistration {
-    width: 25%;
-  }
-}
-
-@media (width < 1000px) {
-  .formRegistration {
-    width: 30%;
-  }
-}
-
-@media (width < 800px) {
-  .formRegistration {
-    width: 35%;
-  }
-}
-
-@media (width < 600px) {
-  .formRegistration {
-    width: 52%;
-  }
-}
-
-@media (width < 400px) {
-  .formRegistration {
-    width: 63%;
-  }
 }

@@ -58,9 +58,11 @@ export const Form: React.FC<FormProps> = ({ handleFormSubmit }) => {
             className={style.inputForm}
             id="name"
           />
-          <p className={`${style.error} ${errors.name ? style.visible : style.hidden}`}>
-            {errors.name?.message}
-          </p>
+          <div className={style.errorContener}>
+            <p className={`${style.error} ${errors.name ? style.visible : style.hidden}`}>
+              {errors.name?.message}
+            </p>
+          </div>
         </>
       )}
       <label htmlFor="email" className={style.labelEmail}>
@@ -73,9 +75,11 @@ export const Form: React.FC<FormProps> = ({ handleFormSubmit }) => {
         className={style.inputForm}
         id="email"
       />
-      <p className={`${style.error} ${errors.email ? style.visible : style.hidden}`}>
-        {errors.email?.message}
-      </p>
+      <div className={style.errorContener}>
+        <p className={`${style.error} ${errors.email ? style.visible : style.hidden}`}>
+          {errors.email?.message}
+        </p>
+      </div>
       <label htmlFor="password" className={style.labelPassword}>
         {t('password')}
       </label>
@@ -86,9 +90,11 @@ export const Form: React.FC<FormProps> = ({ handleFormSubmit }) => {
         className={style.inputForm}
         id="password"
       />
-      <p className={`${style.error} ${errors.password ? style.visible : style.hidden}`}>
-        {errors.password?.message}
-      </p>
+      <div className={style.errorContener}>
+        <p className={`${style.error} ${errors.password ? style.visible : style.hidden}`}>
+          {errors.password?.message}
+        </p>
+      </div>
       {pathname === '/signUp' && (
         <>
           <label htmlFor="confirmPassword" className={style.labelConfirmPassword}>
@@ -101,9 +107,13 @@ export const Form: React.FC<FormProps> = ({ handleFormSubmit }) => {
             className={style.inputForm}
             id="confirmPassword"
           />
-          <p className={`${style.error} ${errors.confirmPassword ? style.visible : style.hidden}`}>
-            {errors.confirmPassword?.message}
-          </p>
+          <div className={style.errorContener}>
+            <p
+              className={`${style.error} ${errors.confirmPassword ? style.visible : style.hidden}`}
+            >
+              {errors.confirmPassword?.message}
+            </p>
+          </div>
         </>
       )}
       <button type="submit" className={style.submit}>
