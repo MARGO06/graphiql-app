@@ -7,7 +7,7 @@ import { fetchData } from '../../services/fetchData';
 import { useTranslations } from 'next-intl';
 import { RequestWindow } from '../request/RequestWindow';
 
-interface ResponseInfo {
+export interface ResponseInfo {
   status: number | string;
   statusText: string;
   contentType: string | null;

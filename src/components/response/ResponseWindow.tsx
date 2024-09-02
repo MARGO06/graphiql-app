@@ -1,15 +1,9 @@
 import JSONPretty from 'react-json-pretty';
 import style from './ResponseWindow.module.scss';
+import { ResponseInfo } from '../restClient/RestClient';
 
 export interface IResponse {
   responseInfo: ResponseInfo;
-}
-
-export interface ResponseInfo {
-  status: number | string;
-  statusText: string;
-  contentType: string | null;
-  data: unknown;
 }
 
 export const ResponseWindow: React.FC<IResponse> = ({ responseInfo }) => {

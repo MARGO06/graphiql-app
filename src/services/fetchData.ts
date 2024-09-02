@@ -1,4 +1,4 @@
-import { ResponseInfo } from '../components/response/ResponseWindow';
+import { ResponseInfo } from '@/components/restClient/RestClient';
 
 export const fetchData = async (
   url: string,
