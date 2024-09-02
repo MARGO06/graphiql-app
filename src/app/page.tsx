@@ -15,7 +15,7 @@ export default function Home() {
       {token ? (
         <>
           <h1>
-            {t('welcome')},{userName}!
+            {t('welcome')}, {userName}!
           </h1>
           <div className={style.containerLink}>
             <Link href={'/restfull'} className={style.signIn}>
