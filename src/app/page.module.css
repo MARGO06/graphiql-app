@@ -39,14 +39,14 @@
   margin: 5px;
 }
 
-.signIn,
-.signUp {
-  &:active {
-    background-color: #88cbff;
-  }
-  &:hover {
-    box-shadow: 0px 0px 10px 2px #88cbff inset;
-  }
+.signIn:active,
+.signUp:active {
+  background-color: #88cbff;
+}
+
+.signIn:hover,
+.signUp:hover {
+  box-shadow: 0px 0px 10px 2px #88cbff inset;
 }
 
 @media (max-width: 500px) {
