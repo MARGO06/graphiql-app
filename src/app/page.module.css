@@ -4,11 +4,12 @@
   justify-content: space-between;
   align-items: center;
   border: 1px solid #cdcdcd;
-  background-color: #f5f5f550;
+  background-color: #f5f5f5b5;
   max-width: 800px;
   margin: 0 auto;
   border-radius: 5px;
-  padding: 20px;
+  padding: 6rem;
+  transition: 0.5s;
 }
 
 .main h1 {
@@ -45,5 +46,11 @@
   }
   &:hover {
     box-shadow: 0px 0px 10px 2px #88cbff inset;
+  }
+}
+
+@media (max-width: 500px) {
+  .main {
+    padding: 0rem;
   }
 }
