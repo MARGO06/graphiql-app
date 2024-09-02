@@ -13,6 +13,10 @@
     "info": "Could not find requested resource",
     "back": "Back to Welcome page"
   },
+  "restClient": {
+    "name": "RESTfull client",
+    "send": "Send"
+  },
   "WelcomePage": {
     "welcome": "Welcome",
     "history": "History",

@@ -4,14 +4,20 @@ import style from '@/components/header/Header.module.scss';
 import Link from 'next/link';
 import { Languages } from '@/components/language/Languages';
 import { Registration } from '@/components/registration/Registration';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { useAuth } from '@/hooks/useAuth';
 
 export const Header: React.FC = () => {
   const pathname = usePathname();
+  const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { token, logout } = useAuth();
+
+  const handleLogout = () => {
+    logout();
+    router.replace('/');
+  };
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -45,7 +51,7 @@ export const Header: React.FC = () => {
         </div>
         <div className={`${style.menu} ${isMenuOpen ? style.menuOpen : ''}`}>
           {token ? (
-            <button className={style.signOut} onClick={logout}>
+            <button className={style.signOut} onClick={handleLogout}>
               SING OUT
             </button>
           ) : (
