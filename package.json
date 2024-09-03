@@ -4,9 +4,14 @@
   "private": true,
   "lint-staged": {
     "*.{tsx,ts}": [
-      "npx prettier --write",
-      "npx eslint --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
-    ]
+      "prettier --write",
+      "eslint --report-unused-disable-directives --max-warnings 0"
+    ],
+    "*.css": [
+      "stylelint --fix",
+      "prettier --write"
+    ],
+    "*.scss": "stylelint --syntax=scss --fix"
   },
   "scripts": {
     "dev": "next dev",
@@ -15,7 +20,8 @@
     "lint": "next lint",
     "format:fix": "npx prettier . --cache --write src/**/*.*",
     "ci:format": "prettier . --check",
-    "prepare": "husky"
+    "prepare": "husky",
+    "test": "jest"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
@@ -33,6 +39,10 @@
     "yup": "^1.4.0"
   },
   "devDependencies": {
+    "@testing-library/dom": "^10.4.0",
+    "@testing-library/jest-dom": "^6.5.0",
+    "@testing-library/react": "^16.0.1",
+    "@types/jest": "29.5.11",
     "@types/js-cookie": "^3.0.6",
     "@types/node": "^20",
     "@types/react": "^18",
@@ -45,8 +55,12 @@
     "eslint-plugin-prettier": "^5.2.1",
     "eslint-plugin-react-compiler": "^0.0.0-experimental-0998c1e-20240625",
     "husky": "^9.1.5",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
     "lint-staged": "^15.2.9",
     "prettier": "^3.3.3",
-    "typescript": "^5.5.0"
+    "stylelint": "^16.9.0",
+    "ts-jest": "^29.2.2",
+    "typescript": "5.4.5"
   }
 }
