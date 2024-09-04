@@ -22,7 +22,7 @@ export default function ErrorBoundary({
     if (errorName === 'Error' && !errorCause && !errorDigest) {
       setMessageError(': network error');
     } else {
-      /* c8 ignore next 4 */
+      /* c8 ignore next 2 */
       setMessageError(`: ${errorCause}`);
     }
   }, [error]);
