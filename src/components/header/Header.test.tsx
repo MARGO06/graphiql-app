@@ -5,15 +5,12 @@ import { useRouter } from 'next/navigation';
 import { customRender } from '@/utils/CustomeRenderTest';
 
 describe('Header Component', () => {
-  it('renders the header with the logo and switch language element', () => {
+  it('renders the header with the logo', () => {
     customRender(<Header />);
 
     const logo = screen.getByRole('link', { name: 'site-logo' });
     expect(logo).toBeInTheDocument();
     expect(logo).toHaveAttribute('href', '/');
-
-    const switchLanguage = screen.getByRole('combobox');
-    expect(switchLanguage).toBeInTheDocument();
   });
 
   it('sign-out is presented for logged user and user can click the sign-out button', () => {
@@ -52,5 +49,16 @@ describe('Header Component', () => {
 
     const signUpButton = screen.getByTestId('sign-up');
     expect(signUpButton).toBeInTheDocument();
+  });
+
+  it('user can select another language', () => {
+    customRender(<Header />, { token: null });
+
+    const switchLanguage = screen.getByRole('combobox');
+    expect(switchLanguage).toBeInTheDocument();
+
+    fireEvent.click(switchLanguage);
+    const spainLang = screen.getByTestId('es-option');
+    fireEvent.click(spainLang);
   });
 });
