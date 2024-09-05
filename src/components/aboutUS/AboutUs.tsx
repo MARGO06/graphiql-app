@@ -6,13 +6,13 @@ export const AboutUs = () => {
   return (
     <div className={style.aboutUs}>
       <span>
-        &quot;{t('part1')}
+        &quot;{t('frontend team')}
         <br />
         <br />
-        {t('part2')}
+        {t('scrum process')}
         <br />
         <br />
-        {t('part3')}&quot;
+        {t('team collaboration')}&quot;
       </span>
     </div>
   );
