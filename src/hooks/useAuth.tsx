@@ -13,9 +13,14 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children, initialToken }) => {
   const [token, setToken] = useState<string | null>(initialToken);
+  const [userName, setUserName] = useState<string | null>(null);
 
   const updateToken = (newToken: string) => {
     setToken(newToken);
+  };
+
+  const updateUserName = (newName: string) => {
+    setUserName(newName);
   };
 
   const logout = async () => {
@@ -32,7 +37,9 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children, initialTok
   };
 
   return (
-    <AuthContext.Provider value={{ token, updateToken, logout }}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={{ token, updateToken, logout, updateUserName, userName }}>
+      {children}
+    </AuthContext.Provider>
   );
 };
 

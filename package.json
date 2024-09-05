@@ -11,7 +11,9 @@
       "stylelint --fix",
       "prettier --write"
     ],
-    "*.scss": "stylelint --syntax=scss --fix"
+    "*.scss": [
+      "stylelint --fix"
+    ]
   },
   "scripts": {
     "dev": "next dev",
@@ -60,6 +62,7 @@
     "lint-staged": "^15.2.9",
     "prettier": "^3.3.3",
     "stylelint": "^16.9.0",
+    "stylelint-config-standard-scss": "^13.1.0",
     "ts-jest": "^29.2.2",
     "typescript": "5.4.5"
   }

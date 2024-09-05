@@ -19,7 +19,7 @@ export default function RestClient() {
   const [currentUrl, setCurrentUrl] = useState('https://swapi.dev/api/people/');
   const [responseInfo, setResponseInfo] = useState<ResponseInfo | null>(null);
 
-  const t = useTranslations('restClient');
+  const t = useTranslations('RestClient');
 
   const onChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setMethod(e.target.value);
@@ -33,7 +33,7 @@ export default function RestClient() {
     <div className={style.wrapper}>
       <div className={style.container}>
         <div className={style.headerContainer}>
-          <h1>{t('name')}</h1>
+          <h1>{t('restfull client')}</h1>
         </div>
 
         <div className={style.sendContainer}>
@@ -58,11 +58,9 @@ export default function RestClient() {
               <option value="HEAD">HEAD</option>
             </select>
           </div>
-          <button className={style.button} onClick={handleClick}>
-            {t('send')}
-          </button>
+          <button onClick={handleClick}>{t('send')}</button>
         </div>
-        <button className={style.button}>+ Add Header</button>
+        <button>{t('add header')}</button>
 
         <RequestWindow />
       </div>

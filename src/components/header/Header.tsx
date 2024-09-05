@@ -53,9 +53,9 @@ export const Header: React.FC = () => {
         </div>
         <div className={`${style.menu} ${isMenuOpen ? style.menuOpen : ''}`}>
           {token ? (
-            <button className={style.signOut} onClick={handleLogout}>
+            <Link href={'/'} className={style.signOut} onClick={handleLogout}>
               {t('sign out')}
-            </button>
+            </Link>
           ) : (
             <Registration closeMenu={closeMenu} />
           )}

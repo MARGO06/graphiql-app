@@ -10,7 +10,6 @@ import fs from 'fs';
 type Messages = {
   [key: string]: string | Messages;
 };
-
 interface IExtendedRenderOptions extends Omit<RenderOptions, 'queries'> {
   locale?: string;
   messages?: Messages;
