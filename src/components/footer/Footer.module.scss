@@ -1,6 +1,6 @@
 .footer {
   height: auto;
-  background-color: rgba(19, 18, 18, 0.664);
+  background-color: rgb(19 18 18 / 66.4%);
 }
 
 .footerContainer {
@@ -9,23 +9,44 @@
   padding: 5px;
 }
 
-.gitHubWhite,
-.gitHubOrange,
-.gitHubBlue,
-.gitHub {
+.gitHubWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.gitHubIcon {
   display: flex;
   margin: 2px;
   transition: all 0.3s ease;
 }
 
-.gitHubWhite:hover,
-.gitHubOrange:hover,
-.gitHubBlue:hover,
-.school:hover {
-  background-color: #424242;
-  box-shadow: 0px 0px 5px 2px #424242;
-  border-radius: 100%;
-  transition: all 0.3s ease;
+.gitHubIcons {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  padding: 8px;
+  border-radius: 5px;
+  opacity: 0;
+  transform: translateX(-20px);
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+}
+
+.gitHubWrapper:hover .gitHubIcons {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.gitHubWhite,
+.gitHubOrange,
+.gitHubBlue {
+  display: block;
+  margin: 2px;
 }
 
 .gitHub,
@@ -35,16 +56,18 @@
   transition: all 0.3s ease;
 }
 
+.gitHubWhite:hover,
+.gitHubOrange:hover,
+.gitHubBlue:hover,
+.school:hover {
+  background-color: #424242;
+  box-shadow: 0 0 5px 2px #424242;
+  border-radius: 100%;
+  transition: all 0.3s ease;
+}
+
 .gitHub,
 .year {
   font-size: 1.4rem;
-  color: rgb(255, 255, 255);
-}
-
-.year {
-  flex-grow: 10;
-}
-
-.gitHub {
-  flex-grow: 9;
+  color: rgb(255 255 255);
 }

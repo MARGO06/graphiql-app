@@ -6,8 +6,7 @@ import { useTranslations } from 'next-intl';
 import { useAuth } from '@/hooks/useAuth';
 
 export default function Home() {
-  const { token } = useAuth();
-  const user = 'User';
+  const { token, userName } = useAuth();
 
   const t = useTranslations('WelcomePage');
 
@@ -16,7 +15,7 @@ export default function Home() {
       {token ? (
         <>
           <h1>
-            {t('welcome')}, {user}!
+            {t('welcome')}, {userName}!
           </h1>
           <div className={style.containerLink}>
             <Link href={'/restfull'} className={style.signIn}>

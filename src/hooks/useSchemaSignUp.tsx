@@ -27,6 +27,6 @@ export const useSchemaSignUp = () => {
     confirmPassword: yup
       .string()
       .required(t('confirm password is required'))
-      .oneOf([yup.ref(t('password'))], t('passwords must match')),
+      .oneOf([yup.ref('password')], t('passwords must match')),
   });
 };

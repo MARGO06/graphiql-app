@@ -13,18 +13,24 @@
     "info": "No se pudo encontrar el recurso solicitado",
     "back": "Volver a la página de bienvenida"
   },
-  "restClient": {
-    "name": "RESTfull cliente",
-    "send": "Enviar"
+  "RestClient": {
+    "restfull client": "RESTfull cliente",
+    "send": "Enviar",
+    "add header": "+ Agregar encabezado"
+  },
+  "Response": {
+    "response info": "Información de la respuesta",
+    "status": "Estado",
+    "content-type": "Tipo de contenido"
   },
   "WelcomePage": {
     "welcome": "Bienvenido/a",
     "history": "Historia",
     "signin": "INICIAR SESIÓN",
     "signup": "INSCRIBIRSE",
-    "part1": "Somos un equipo de tres desarrolladores frontend junior (Curso de React) de RSS School, trabajando en nuestro proyecto final, APIQuest. Puedes encontrar más información sobre nosotros y la escuela en el pie de página del sitio.",
-    "part2": "Seguimos la metodología Scrum, utilizando Jira para la gestión del proyecto y Confluence para la documentación. Nuestras reuniones diarias son a las 10:00 UTC+2. Nuestra documentación integral del proyecto incluye descripciones de roles, arquitectura del proyecto, actas de reuniones (MoM) y otra información esencial. El canal de comunicación principal es el servidor de Discord/DreamTeam.",
-    "part3": "Estamos comprometidos a crear un producto funcional y de alta calidad, aprovechando la experiencia que hemos adquirido a lo largo de nuestra formación. Colaboramos activamente, compartimos ideas y resolvemos problemas juntos, lo que nos ayuda a mejorar nuestras habilidades y crecer como profesionales."
+    "frontend team": "Somos un equipo de tres desarrolladores frontend junior (Curso de React) de RSS School, trabajando en nuestro proyecto final, APIQuest. Puedes encontrar más información sobre nosotros y la escuela en el pie de página del sitio.",
+    "scrum process": "Seguimos la metodología Scrum, utilizando Jira para la gestión del proyecto y Confluence para la documentación. Nuestras reuniones diarias son a las 10:00 UTC+2. Nuestra documentación integral del proyecto incluye descripciones de roles, arquitectura del proyecto, actas de reuniones (MoM) y otra información esencial. El canal de comunicación principal es el servidor de Discord/DreamTeam.",
+    "team collaboration": "Estamos comprometidos a crear un producto funcional y de alta calidad, aprovechando la experiencia que hemos adquirido a lo largo de nuestra formación. Colaboramos activamente, compartimos ideas y resolvemos problemas juntos, lo que nos ayuda a mejorar nuestras habilidades y crecer como profesionales."
   },
   "SignIn/SignUp": {
     "name": "Nombre",
@@ -49,6 +55,6 @@
     "passwords must match": "las contraseñas deben coincidir"
   },
   "Header": {
-    "sign out": "desconectar"
+    "sign out": "DESCONECTAR"
   }
 }
