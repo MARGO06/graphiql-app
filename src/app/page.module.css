@@ -32,7 +32,7 @@
   padding: 0 20px;
   background-color: #5496ec;
   border-radius: 5px;
-  color: #ffffff;
+  color: #fff;
   transition: all 0.3s ease;
   display: flex;
   align-items: center;
@@ -46,11 +46,11 @@
 
 .signIn:hover,
 .signUp:hover {
-  box-shadow: 0px 0px 10px 2px #88cbff inset;
+  box-shadow: 0 0 10px 2px #88cbff inset;
 }
 
-@media (max-width: 500px) {
+@media (width <= 500px) {
   .main {
-    padding: 0rem;
+    padding: 0;
   }
 }
