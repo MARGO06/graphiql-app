@@ -40,7 +40,7 @@ export default function ErrorBoundary({
         >
           {t('tryagain')}
         </button>
-        <button onClick={() => router.push('/main')}> {t('back')}</button>
+        <button onClick={() => router.push('/')}> {t('back')}</button>
       </div>
     </aside>
   );

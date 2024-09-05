@@ -17,7 +17,7 @@ describe('ErrorBoundary Page', () => {
     });
     fireEvent.click(backButton);
     expect(useRouter().push).toHaveBeenCalledTimes(1);
-    expect(useRouter().push).toHaveBeenCalledWith('/main');
+    expect(useRouter().push).toHaveBeenCalledWith('/');
     const tryButton = screen.getByRole('button', {
       name: 'Try again',
     });
