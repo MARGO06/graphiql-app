@@ -13,7 +13,7 @@ export const RequestWindow = () => {
 
       <div className={style.editorContainer}>
         <label htmlFor="requestBody"></label>
-        <textarea rows={10} />
+        <textarea id="requestBody" rows={10} />
       </div>
     </>
   );

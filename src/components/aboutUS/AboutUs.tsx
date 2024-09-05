@@ -5,15 +5,9 @@ export const AboutUs = () => {
   const t = useTranslations('WelcomePage');
   return (
     <div className={style.aboutUs}>
-      <span>
-        &quot;{t('part1')}
-        <br />
-        <br />
-        {t('part2')}
-        <br />
-        <br />
-        {t('part3')}&quot;
-      </span>
+      <span> &quot;{t('frontend team')}</span>
+      <span>{t('scrum process')}</span>
+      <span>{t('team collaboration')}&quot;</span>
     </div>
   );
 };

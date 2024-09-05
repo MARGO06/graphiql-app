@@ -6,7 +6,7 @@
 body {
   margin: 0;
   height: 100vh;
-  background-image: linear-gradient(rgb(255, 255, 255), rgba(0, 0, 0, 0.089)), url('/background-main.png');
+  background-image: url('/background-main.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -17,31 +17,64 @@ aside {
   display: flex;
   flex-direction: column;
   align-items: center;
-
   gap: 10px;
+  color: #6f6f6f;
+  font-size: 14px;
+}
 
-  & button {
-    margin-right: 10px;
-    border-radius: 5px;
-    padding: 5px;
-    background-color: rgb(100, 185, 185);
+button {
+  height: 40px;
+  padding: 0 20px;
+  background-color: #5496ec;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 16px;
+  margin: 5px 0;
+}
 
-    &:hover {
-      background-color: rgb(228, 126, 216);
-      cursor: pointer;
-      transition-duration: 0.5s;
-    }
+button:active {
+  background-color: #88cbff;
+}
+
+button:hover {
+  box-shadow: 0 0 10px 2px #88cbff inset;
+}
+
+input {
+  width: 100%;
+  max-width: 100%;
+  height: 40px;
+  padding: 8px;
+  border: 1px solid #cdcdcd;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+input::placeholder {
+  color: #cfcfcf;
+}
+
+input:focus {
+  outline: none;
+  border: 1px solid #ffab67;
+}
+
+label {
+  color: #6f6f6f;
+}
+
+@media (width <= 1240px) {
+  body {
+    background-image: url('/background_tablet.png');
   }
 }
 
-@media (max-width: 1240px) {
+@media (width <= 780px) {
   body {
-    background-image: linear-gradient(rgb(255, 255, 255), rgba(0, 0, 0, 0.089)), url('/background_tablet.png');
-  }
-}
-
-@media (max-width: 780px) {
-  body {
-    background-image: linear-gradient(rgb(255, 255, 255), rgba(0, 0, 0, 0.089)), url('/background_mobile.png');
+    background-image: url('/background_mobile.png');
   }
 }

@@ -1,6 +1,7 @@
 import JSONPretty from 'react-json-pretty';
 import style from './ResponseWindow.module.scss';
 import { ResponseInfo } from '../restClient/RestClient';
+import { useTranslations } from 'next-intl';
 
 export interface IResponse {
   responseInfo: ResponseInfo;
@@ -8,6 +9,7 @@ export interface IResponse {
 
 export const ResponseWindow: React.FC<IResponse> = ({ responseInfo }) => {
   const statusClass = responseInfo.status === 200 ? style.statusSuccess : style.statusError;
+  const t = useTranslations('Response');
 
   const renderData = () => {
     if (responseInfo.contentType && responseInfo.contentType.includes('application/json')) {
@@ -22,15 +24,15 @@ export const ResponseWindow: React.FC<IResponse> = ({ responseInfo }) => {
 
   return (
     <div className={style.responseContainer}>
-      <h2>Response Info</h2>
+      <h2>{t('response info')}</h2>
       <p>
-        <strong>Status:</strong>{' '}
+        <strong>{t('status')}:</strong>{' '}
         <span className={statusClass}>
           {responseInfo.status} {responseInfo.statusText}
         </span>
       </p>
       <p>
-        <strong>Content-Type:</strong> {responseInfo.contentType}
+        <strong>{t('content-type')}:</strong> {responseInfo.contentType}
       </p>
       <pre className={style.pre}>
         <strong>Data:</strong>
