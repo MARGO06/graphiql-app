@@ -16,7 +16,7 @@ describe('Header Component', () => {
   it('sign-out is presented for logged user and user can click the sign-out button', () => {
     customRender(<Header />);
 
-    const signOutButton = screen.getByRole('button');
+    const signOutButton = screen.getByText('SIGN OUT');
     expect(signOutButton).toBeInTheDocument();
     fireEvent.click(signOutButton);
     expect(useRouter().replace).toHaveBeenCalledTimes(1);
