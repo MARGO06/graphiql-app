@@ -23,6 +23,6 @@ describe('ErrorBoundary Page', () => {
     });
     fireEvent.click(tryButton);
     expect(useRouter().push).toHaveBeenCalledTimes(1);
-    expect(useRouter().push).toHaveBeenCalledWith('/main');
+    expect(useRouter().push).toHaveBeenCalledWith('/');
   });
 });
