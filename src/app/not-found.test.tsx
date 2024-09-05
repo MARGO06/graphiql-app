@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { customRender } from '@/utils/CustomeRenderTest';
 
 describe('NotFound Page', () => {
-  it('renders a heading', () => {
+  it('renders page', () => {
     customRender(<NotFound />);
 
     const heading = screen.getByRole('heading', { level: 2, name: /Not Found/i });

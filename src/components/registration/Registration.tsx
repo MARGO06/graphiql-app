@@ -15,6 +15,7 @@ export const Registration: React.FC<{ closeMenu: () => void }> = ({ closeMenu })
         href={'/signIn'}
         onClick={closeMenu}
         className={`${style.signIn} ${pathname === '/signIn' ? style.active : ''} `}
+        data-testid="sign-in"
       >
         {t('signin')}
       </Link>
@@ -22,6 +23,7 @@ export const Registration: React.FC<{ closeMenu: () => void }> = ({ closeMenu })
         href={'/signUp'}
         onClick={closeMenu}
         className={`${style.signUp} ${pathname === '/signUp' ? style.active : ''} `}
+        data-testid="sign-up"
       >
         {t('signup')}
       </Link>
