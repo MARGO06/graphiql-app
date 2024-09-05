@@ -13,9 +13,11 @@ type Messages = {
 interface IExtendedRenderOptions extends Omit<RenderOptions, 'queries'> {
   locale?: string;
   messages?: Messages;
+  token?: string | null;
 }
 (useRouter as jest.Mock).mockReturnValue({
   push: jest.fn(),
+  replace: jest.fn(),
 });
 (usePathname as jest.Mock).mockReturnValue('/');
 
@@ -24,9 +26,13 @@ export const customRender = (ui: ReactNode, options?: IExtendedRenderOptions): R
     const defaultLocale = 'en';
     const messagesPath = path.join(process.cwd(), 'messages/en.json');
     const messagesFromFile: Messages = JSON.parse(fs.readFileSync(messagesPath, 'utf-8'));
+    let defaultToken: string | null = 'mock-token';
+    if (options?.token === null) {
+      defaultToken = null;
+    }
 
     return (
-      <AuthProvider initialToken="mock-token">
+      <AuthProvider initialToken={defaultToken}>
         <NextIntlClientProvider
           locale={options?.locale ?? defaultLocale}
           messages={options?.messages ?? messagesFromFile}

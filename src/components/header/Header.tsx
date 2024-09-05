@@ -36,22 +36,26 @@ export const Header: React.FC = () => {
           href={'/'}
           onClick={closeMenu}
           className={`${style.logo} ${pathname === '/' ? style.active : ''}`}
+          data-testid="burger-close"
         >
           <Image
             src="/APIQuest-logo.png"
-            alt="logo"
+            alt="site-logo"
             width={60}
             height={60}
             quality={100}
             priority
           />
         </Link>
-        <div className={style.burger} onClick={toggleMenu}>
+        <div className={style.burger} onClick={toggleMenu} data-testid="burger-icon">
           <span className={isMenuOpen ? style.burgerOpen : ''}></span>
           <span className={isMenuOpen ? style.burgerOpen : ''}></span>
           <span className={isMenuOpen ? style.burgerOpen : ''}></span>
         </div>
-        <div className={`${style.menu} ${isMenuOpen ? style.menuOpen : ''}`}>
+        <div
+          className={`${style.menu} ${isMenuOpen ? style.menuOpen : ''}`}
+          data-testid="burger-menu"
+        >
           {token ? (
             <Link href={'/'} className={style.signOut} onClick={handleLogout}>
               {t('sign out')}
