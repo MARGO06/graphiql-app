@@ -1,11 +1,13 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Form } from '@/components/form/Form';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/hooks/useAuth';
+import { ErrorMessage } from '@/components/errorMessage/ErrorMessage';
 
 export const LoginForm: React.FC = () => {
+  const [error, setError] = useState<string | null>(null);
   const router = useRouter();
   const { updateToken } = useAuth();
 
@@ -18,18 +20,21 @@ export const LoginForm: React.FC = () => {
         },
         body: JSON.stringify({ email, password, isLogin: true }),
       });
-
-      if (response.ok) {
-        const user = await response.json();
+      const user = await response.json();
+      if (user.token) {
         updateToken(user.token);
         router.replace('/');
       } else {
-        //TODO
+        setError(user.error);
       }
-    } catch (error) {
-      //TODO
+    } catch (e) {
+      setError('An unexpected error occurred. Please try again later.');
     }
   };
-
-  return <Form handleFormSubmit={login} />;
+  return (
+    <>
+      {error && <ErrorMessage message={error} />}
+      <Form handleFormSubmit={login} />
+    </>
+  );
 };

@@ -1,12 +1,14 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Form } from '@/components/form/Form';
 import { useRouter } from 'next/navigation';
 import { writeUserData } from '@/utils/saveDataInFirebase';
 import { useAuth } from '@/hooks/useAuth';
+import { ErrorMessage } from '@/components/errorMessage/ErrorMessage';
 
 export const RegistrationForm: React.FC = () => {
+  const [error, setError] = useState<string | null>(null);
   const { updateToken } = useAuth();
   const router = useRouter();
 
@@ -19,16 +21,25 @@ export const RegistrationForm: React.FC = () => {
         },
         body: JSON.stringify({ email, password, isLogin: false }),
       });
-      if (response.ok) {
-        const user = await response.json();
+
+      const user = await response.json();
+
+      if (user.token) {
         updateToken(user.token);
         if (name) writeUserData(user.uid, name, email);
         router.replace('/');
+      } else {
+        setError(user.error);
       }
-    } catch (error) {
-      //TODO
+    } catch (e) {
+      setError('An unexpected error occurred. Please try again later.');
     }
   };
 
-  return <Form handleFormSubmit={registration} />;
+  return (
+    <>
+      {error && <ErrorMessage message={error} />}
+      <Form handleFormSubmit={registration} />
+    </>
+  );
 };

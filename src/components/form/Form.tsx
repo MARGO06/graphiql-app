@@ -113,7 +113,7 @@ export const Form: React.FC<FormProps> = ({ handleFormSubmit }) => {
           onChange={() => togglePasswordVisibility('password')}
           title="show"
         />
-        <label htmlFor="showConfirmPassword"></label>
+        <label htmlFor="showPassword"></label>
       </div>
 
       <div className={style.errorContener}>
