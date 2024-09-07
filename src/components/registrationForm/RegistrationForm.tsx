@@ -6,11 +6,14 @@ import { useRouter } from 'next/navigation';
 import { writeUserData } from '@/utils/saveDataInFirebase';
 import { useAuth } from '@/hooks/useAuth';
 import { ErrorMessage } from '@/components/errorMessage/ErrorMessage';
+import { getUserLocale } from '@/services/locale';
+import { useTranslations } from 'next-intl';
 
 export const RegistrationForm: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const { updateToken } = useAuth();
   const router = useRouter();
+  const t = useTranslations('errors');
 
   const handleErrorReset = () => {
     setError(null);
@@ -18,12 +21,13 @@ export const RegistrationForm: React.FC = () => {
 
   const registration = async (email: string, password: string, name?: string) => {
     try {
+      const locale = await getUserLocale();
       const response = await fetch('/api/saveToken', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email, password, isLogin: false }),
+        body: JSON.stringify({ email, password, isLogin: false, locale }),
       });
 
       const user = await response.json();
@@ -36,7 +40,7 @@ export const RegistrationForm: React.FC = () => {
         setError(user.error);
       }
     } catch (e) {
-      setError('An unexpected error occurred. Please try again later.');
+      setError(t('an unexpected error'));
     }
   };
 

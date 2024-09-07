@@ -1,8 +1,15 @@
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '@/firebase';
 import { FirebaseError } from 'firebase/app';
+import { Translations } from '@/types/translationErrors';
+import { handleFirebaseError } from '@/utils/firebaseError';
 
-export const authenticate = async (email: string, password: string, isLogin: boolean) => {
+export const authenticate = async (
+  email: string,
+  password: string,
+  isLogin: boolean,
+  translations: Translations,
+) => {
   try {
     let userCredential;
     if (isLogin) {
@@ -17,23 +24,8 @@ export const authenticate = async (email: string, password: string, isLogin: boo
     return { token, uid };
   } catch (error) {
     if (error instanceof FirebaseError) {
-      if (error.code === 'auth/wrong-password' || error.code === 'auth/user-not-found') {
-        throw { status: 401, message: 'Authentication failed' };
-      }
-      if (error.code === 'auth/too-many-requests') {
-        throw { status: 429, message: 'Too many requests. Please try again later.' };
-      }
-      if (error.code === 'auth/invalid-credential') {
-        throw { status: 400, message: 'Invalid credentials provided.' };
-      }
-      if (error.code === 'auth/email-already-in-use') {
-        throw {
-          status: 400,
-          message: 'Email already in use. Please use a different email address.',
-        };
-      }
+      handleFirebaseError(error, translations);
     }
-
-    throw { status: 500, message: 'Internal server error' };
+    throw { status: 500, message: translations.errors['internal-server-error'] };
   }
 };
