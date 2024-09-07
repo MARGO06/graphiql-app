@@ -11,6 +11,10 @@ export const LoginForm: React.FC = () => {
   const router = useRouter();
   const { updateToken } = useAuth();
 
+  const handleErrorReset = () => {
+    setError(null);
+  };
+
   const login = async (email: string, password: string) => {
     try {
       const response = await fetch('/api/saveToken', {
@@ -25,7 +29,7 @@ export const LoginForm: React.FC = () => {
         updateToken(user.token);
         router.replace('/');
       } else {
-        setError(user.error);
+        setError(user.error || 'An unexpected error occurred. Please try again later.');
       }
     } catch (e) {
       setError('An unexpected error occurred. Please try again later.');
@@ -33,7 +37,7 @@ export const LoginForm: React.FC = () => {
   };
   return (
     <>
-      {error && <ErrorMessage message={error} />}
+      {error && <ErrorMessage message={error} errorReset={handleErrorReset} />}
       <Form handleFormSubmit={login} />
     </>
   );

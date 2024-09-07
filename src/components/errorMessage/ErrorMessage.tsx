@@ -2,7 +2,11 @@ import React, { useEffect, useState } from 'react';
 import style from '@/components/errorMessage/ErrorMessage.module.scss';
 import { ErrorMessageProps } from '@/types/errorMessage';
 
-export const ErrorMessage: React.FC<ErrorMessageProps> = ({ message, duration = 3000 }) => {
+export const ErrorMessage: React.FC<ErrorMessageProps> = ({
+  message,
+  duration = 3000,
+  errorReset,
+}) => {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -10,17 +14,22 @@ export const ErrorMessage: React.FC<ErrorMessageProps> = ({ message, duration = 
       setVisible(true);
       const timer = setTimeout(() => {
         setVisible(false);
+        if (errorReset) {
+          errorReset();
+        }
       }, duration);
 
-      return () => clearTimeout(timer);
+      return () => {
+        clearTimeout(timer);
+      };
+    } else {
+      setVisible(false);
     }
-  }, [message, duration]);
+  }, [message, duration, errorReset]);
 
-  if (!visible) return null;
-
-  return (
+  return visible ? (
     <div className={style.error}>
       <div className={style.message}>{message}</div>
     </div>
-  );
+  ) : null;
 };

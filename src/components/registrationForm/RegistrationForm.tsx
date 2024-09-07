@@ -12,6 +12,10 @@ export const RegistrationForm: React.FC = () => {
   const { updateToken } = useAuth();
   const router = useRouter();
 
+  const handleErrorReset = () => {
+    setError(null);
+  };
+
   const registration = async (email: string, password: string, name?: string) => {
     try {
       const response = await fetch('/api/saveToken', {
@@ -38,7 +42,7 @@ export const RegistrationForm: React.FC = () => {
 
   return (
     <>
-      {error && <ErrorMessage message={error} />}
+      {error && <ErrorMessage message={error} errorReset={handleErrorReset} />}
       <Form handleFormSubmit={registration} />
     </>
   );
