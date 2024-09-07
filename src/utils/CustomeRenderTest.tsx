@@ -24,8 +24,10 @@ interface IExtendedRenderOptions extends Omit<RenderOptions, 'queries'> {
 export const customRender = (ui: ReactNode, options?: IExtendedRenderOptions): RenderResult => {
   const Wrapper = ({ children }: { children: ReactNode }) => {
     const defaultLocale = 'en';
+
     const messagesPath = path.join(process.cwd(), 'messages/en.json');
     const messagesFromFile: Messages = JSON.parse(fs.readFileSync(messagesPath, 'utf-8'));
+
     let defaultToken: string | null = 'mock-token';
     if (options?.token === null) {
       defaultToken = null;

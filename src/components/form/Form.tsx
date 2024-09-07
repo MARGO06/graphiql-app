@@ -104,6 +104,7 @@ export const Form: React.FC<FormProps> = ({ handleFormSubmit }) => {
         type={isPasswordVisible.password ? 'text' : 'password'}
         className={style.inputForm}
         id="password"
+        data-testid="password"
       />
 
       <div className={style.showPassword}>
@@ -133,6 +134,7 @@ export const Form: React.FC<FormProps> = ({ handleFormSubmit }) => {
             type={isPasswordVisible.confirmPassword ? 'text' : 'password'}
             className={style.inputForm}
             id="confirmPassword"
+            data-testid="password-confirm"
           />
 
           <div className={style.showPassword}>
