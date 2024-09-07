@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { Form } from '@/components/form/Form';
 import { useRouter } from 'next/navigation';
 import { writeUserData } from '@/utils/saveDataInFirebase';
+import { readUserData } from '@/utils/getDataInFirebase';
 import { useAuth } from '@/hooks/useAuth';
 import { ErrorMessage } from '@/components/errorMessage/ErrorMessage';
 import { getUserLocale } from '@/services/locale';
@@ -11,7 +12,7 @@ import { useTranslations } from 'next-intl';
 
 export const RegistrationForm: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
-  const { updateToken } = useAuth();
+  const { updateToken, updateUserName } = useAuth();
   const router = useRouter();
   const t = useTranslations('errors');
 
@@ -35,6 +36,8 @@ export const RegistrationForm: React.FC = () => {
       if (user.token) {
         updateToken(user.token);
         if (name) writeUserData(user.uid, name, email);
+        const userData = await readUserData(user.uid);
+        updateUserName(userData.username);
         router.replace('/');
       } else {
         setError(user.error);

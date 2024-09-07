@@ -7,11 +7,12 @@ import { useAuth } from '@/hooks/useAuth';
 import { ErrorMessage } from '@/components/errorMessage/ErrorMessage';
 import { getUserLocale } from '@/services/locale';
 import { useTranslations } from 'next-intl';
+import { readUserData } from '@/utils/getDataInFirebase';
 
 export const LoginForm: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
-  const { updateToken } = useAuth();
+  const { updateToken, updateUserName } = useAuth();
   const t = useTranslations('errors');
 
   const handleErrorReset = () => {
@@ -32,6 +33,8 @@ export const LoginForm: React.FC = () => {
       if (user.token) {
         updateToken(user.token);
         router.replace('/');
+        const userData = await readUserData(user.uid);
+        updateUserName(userData.username);
       } else {
         setError(user.error);
       }

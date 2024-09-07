@@ -4,7 +4,7 @@ import { useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
-export default function Error({
+export default function ErrorBoundary({
   error,
   reset,
 }: {
@@ -19,8 +19,11 @@ export default function Error({
     const errorName = error.name;
     const errorCause = error.cause;
     const errorDigest = error.digest;
-    if (errorName === 'Error' && errorCause === undefined && errorDigest === undefined) {
+    if (errorName === 'Error' && !errorCause && !errorDigest) {
       setMessageError(': network error');
+    } else {
+      /* c8 ignore next 2 */
+      setMessageError(`: ${errorCause}`);
     }
   }, [error]);
 
@@ -37,7 +40,7 @@ export default function Error({
         >
           {t('tryagain')}
         </button>
-        <button onClick={() => router.push('/main')}> {t('back')}</button>
+        <button onClick={() => router.push('/')}> {t('back')}</button>
       </div>
     </aside>
   );
