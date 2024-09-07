@@ -26,8 +26,6 @@ export const LoginForm: React.FC = () => {
         router.replace('/');
         const userData = await readUserData(user.uid);
         updateUserName(userData.username);
-      } else {
-        //TODO
       }
     } catch (error) {
       //TODO
