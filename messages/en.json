@@ -21,7 +21,8 @@
   "Response": {
     "response info": "Response Info",
     "status": "Status",
-    "content-type": "Content-Type"
+    "content-type": "Content-Type",
+    "enter endpoint URL": "Enter endpoint URL"
   },
   "WelcomePage": {
     "welcome": "Welcome",
