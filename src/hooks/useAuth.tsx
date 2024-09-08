@@ -24,16 +24,12 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children, initialTok
   };
 
   const logout = async () => {
-    try {
-      await fetch('/api/deleteToken', {
-        method: 'DELETE',
-        credentials: 'include',
-      });
-      setToken(null);
-      signOut(auth);
-    } catch (error) {
-      //TODO
-    }
+    await fetch('/api/deleteToken', {
+      method: 'DELETE',
+      credentials: 'include',
+    });
+    setToken(null);
+    signOut(auth);
   };
 
   return (
