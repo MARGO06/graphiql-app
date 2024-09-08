@@ -58,9 +58,9 @@
     "auth/wrong-password": "Authentication failed",
     "auth/user-not-found": "Authentication failed",
     "auth/too-many-requests": "Too many requests. Please try again later",
-    "auth/invalid-credential": "Invalid credentials provided.",
+    "auth/invalid-credential": "Invalid email or password",
     "auth/email-already-in-use": "Email already in use. Please use a different email address.",
-    "internal server error": "Internal server error",
+    "internal server error": "An internal server error has occurred. Please try again later",
     "an unexpected error": "An unexpected error occurred. Please try again later."
   },
   "Header": {
