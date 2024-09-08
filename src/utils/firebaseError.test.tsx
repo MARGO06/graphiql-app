@@ -27,7 +27,7 @@ describe('handleFirebaseError', () => {
     },
   };
 
-  it('should throw 401 error for wrong password or user not found', () => {
+  test('should throw 401 error for wrong password or user not found', () => {
     const error = {
       code: 'auth/wrong-password',
       status: 401,
@@ -37,7 +37,7 @@ describe('handleFirebaseError', () => {
     expect(() => handleFirebaseError(error, translations)).toThrow(error);
   });
 
-  it('should throw 429 error for too many requests', () => {
+  test('should throw 429 error for too many requests', () => {
     const error = {
       code: 'auth/too-many-requests',
       status: 429,
@@ -47,7 +47,7 @@ describe('handleFirebaseError', () => {
     expect(() => handleFirebaseError(error, translations)).toThrow(error);
   });
 
-  it('should throw 400 error for email already in use', () => {
+  test('should throw 400 error for email already in use', () => {
     const error = {
       code: 'auth/invalid-credential',
       status: 400,
@@ -57,7 +57,7 @@ describe('handleFirebaseError', () => {
     expect(() => handleFirebaseError(error, translations)).toThrow(error);
   });
 
-  it('should throw 400 error for invalid credential', () => {
+  test('should throw 400 error for invalid credential', () => {
     const error = {
       code: 'auth/email-already-in-use',
       status: 400,
@@ -67,7 +67,7 @@ describe('handleFirebaseError', () => {
     expect(() => handleFirebaseError(error, translations)).toThrow(error);
   });
 
-  it('should throw 500 error for unknown errors', () => {
+  test('should throw 500 error for unknown errors', () => {
     const error = {
       code: 'internal-server-error',
       status: 500,
