@@ -22,17 +22,12 @@ const config = {
     '<rootDir>//node_modules',
     '<rootDir>/src/lib/',
     '<rootDir>/.next/',
-    '<rootDir>/__mocks__/',
     '<rootDir>/src/services/',
     '<rootDir>/src/types/',
   ],
 
   collectCoverage: true,
   clearMocks: true,
-  moduleNameMapper: {
-    '^firebase/(.*)': '<rootDir>/__mocks__/firebase.ts',
-    '^@firebase/(.*)': '<rootDir>/__mocks__/firebase.ts',
-  },
 };
 
 export default createJestConfig(config);
