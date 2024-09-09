@@ -3,19 +3,46 @@ import type { NextRequest } from 'next/server';
 
 export function middleware(req: NextRequest) {
   const token = req.cookies.get('JWT');
+  const { pathname } = req.nextUrl;
 
-  const url = req.nextUrl.clone();
+  if (!token) {
+    const allowedMethodsRegex =
+      /^\/(GET|POST|PUT|DELETE|PATCH|OPTIONS|HEAD|graphiql|history)(\/[\S]+)?$/;
+    const isAllowed = allowedMethodsRegex.test(pathname);
 
-  if (token) {
-    if (url.pathname === '/signIn' || url.pathname === '/signUp') {
-      url.pathname = '/';
-      return NextResponse.redirect(url);
+    if (isAllowed) {
+      return NextResponse.redirect(new URL('/signIn', req.url));
     }
   }
 
+  if (token && (pathname === '/signIn' || pathname === '/signUp')) {
+    return NextResponse.redirect(new URL('/', req.url));
+  }
+
+  if (token) {
+    const allowedMethodsRegex =
+      /^\/(GET|POST|PUT|DELETE|PATCH|OPTIONS|HEAD|graphiql|history)(\/[\w-]+)?$/;
+    const isAllowed = allowedMethodsRegex.test(pathname);
+
+    if (isAllowed) {
+      return NextResponse.next();
+    }
+  }
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: ['/signIn', '/signUp'],
+  matcher: [
+    '/signIn',
+    '/signUp',
+    '/GET/:path*',
+    '/POST/:path*',
+    '/PUT/:path*',
+    '/DELETE/:path*',
+    '/PATCH/:path*',
+    '/OPTIONS/:path*',
+    '/HEAD/:path*',
+    '/history/:path*',
+    '/graphiql/:path*',
+  ],
 };

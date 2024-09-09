@@ -6,3 +6,9 @@ jest.mock('next/navigation', () => ({
   usePathname: jest.fn(),
   push: jest.fn(),
 }));
+
+jest.mock('next/headers', () => ({
+  cookies: jest.fn(() => ({
+    get: jest.fn(() => ({ value: 'mockedJWTToken' })),
+  })),
+}));

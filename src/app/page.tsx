@@ -4,9 +4,14 @@ import Link from 'next/link';
 import { AboutUs } from '@/components/aboutUS/AboutUs';
 import { useTranslations } from 'next-intl';
 import { useAuth } from '@/hooks/useAuth';
+import { saveCurrentUrlToLocalStorage } from '@/services/baseURL';
+import { useEffect } from 'react';
 
 export default function Home() {
   const { token, userName } = useAuth();
+  useEffect(() => {
+    saveCurrentUrlToLocalStorage();
+  }, []);
 
   const t = useTranslations('WelcomePage');
 
@@ -18,7 +23,7 @@ export default function Home() {
             {t('welcome')}, {userName}!
           </h1>
           <div className={style.containerLink}>
-            <Link href={'/restfull'} className={style.signIn}>
+            <Link href={'/GET'} className={style.signIn}>
               RESTfull
             </Link>
             <Link href={'/graphiql'} className={style.signIn}>
