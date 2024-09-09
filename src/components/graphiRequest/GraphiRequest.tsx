@@ -1,24 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
+import { GraphRequestProps } from '@/types/graphRequest';
 import style from '@/components/graphiRequest/GraphiRequest.module.scss';
 import { useTranslations } from 'next-intl';
 
-/* type GraphRequestProps = {
-  handleClick: (url: string) => void;
-};
-*/
-export const GraphRequest: React.FC = () => {
-  const [currentUrl, setCurrentUrl] = useState<string>('');
-  const [currentSDL, setCurrentSDL] = useState<string>('');
+export const GraphRequest: React.FC<GraphRequestProps> = ({
+  currentSdl,
+  currentUrl,
+  setCurrentSdl,
+  setCurrentUrl,
+}) => {
   const t = useTranslations('Clients');
 
   useEffect(() => {
     if (currentUrl) {
-      setCurrentSDL(`${currentUrl}?sdl`);
+      setCurrentSdl(`${currentUrl}?sdl`);
     }
-  }, [currentUrl]);
+  }, [currentUrl, setCurrentSdl]);
 
   const handleSdlChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setCurrentSDL(e.target.value);
+    setCurrentSdl(e.target.value);
   };
 
   return (
@@ -41,7 +41,7 @@ export const GraphRequest: React.FC = () => {
               type="text"
               id="sdl-endpoint"
               placeholder={t('enter SDL endpoint URL')}
-              value={currentSDL}
+              value={currentSdl}
               onChange={() => handleSdlChange}
             />
           </div>
