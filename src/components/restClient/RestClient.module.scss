@@ -17,10 +17,39 @@
 .headerContainer {
   border-bottom: 1px solid #cdcdcd;
   margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .headerContainer h1 {
   color: #6f6f6f;
+}
+
+.apiContainer {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid #cdcdcd;
+  border-left: 1px solid #cdcdcd;
+  border-right: 1px solid #cdcdcd;
+  padding: 5px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.apiContainer span {
+  font-weight: bold;
+  color: #6f6f6f;
+}
+
+.apiContainer a {
+  text-decoration: none;
+  color: #6f6f6f;
+  transition: color 0.3s ease;
+}
+
+.apiContainer a:hover {
+  color: #ffab67;
+  transition: color 0.3s ease;
 }
 
 .sendContainer {
