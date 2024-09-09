@@ -2,12 +2,19 @@ import React, { useState } from 'react';
 import style from '@/components/graphiRequest/GraphiRequest.module.scss';
 import { useTranslations } from 'next-intl';
 
-export const GraphRequest: React.FC = () => {
-  const [currentUrl, setCurrentUrl] = useState<string | undefined>(undefined);
+type GraphRequestProps = {
+  handleClick: (url: string) => void;
+};
+
+export const GraphRequest: React.FC<GraphRequestProps> = ({ handleClick }) => {
+  const [currentUrl, setCurrentUrl] = useState<string>('');
   const t = useTranslations('RestClient');
+
   return (
     <div className={style.wrapper}>
-      <button className={style.button_send}>{t('send')}</button>
+      <button className={style.button_send} onClick={() => handleClick(currentUrl)}>
+        {t('send')}
+      </button>
       <div className={style.sendContainer}>
         <div className={style.inputContainer}>
           <label htmlFor="endpoint"></label>

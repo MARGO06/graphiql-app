@@ -16,7 +16,8 @@
   "RestClient": {
     "restfull client": "RESTfull client",
     "send": "Send",
-    "add header": "+ Add Header"
+    "add header": "+ Add Header",
+    "enter endpoint URL": "Enter endpoint URL"
   },
   "Response": {
     "response info": "Response Info",
