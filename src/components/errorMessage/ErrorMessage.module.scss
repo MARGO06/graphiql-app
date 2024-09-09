@@ -1,0 +1,18 @@
+.error {
+  display: flex;
+  background-color: rgb(245 245 245 / 71%);
+  width: 25%;
+  color: red;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 100px;
+  right: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgb(0 0 0 / 10%);
+}
+
+.message {
+  text-align: center;
+}

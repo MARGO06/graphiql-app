@@ -1,7 +1,15 @@
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '@/firebase';
+import { FirebaseError } from 'firebase/app';
+import { Translations } from '@/types/translationErrors';
+import { handleFirebaseError } from '@/utils/firebaseError';
 
-export const authenticate = async (email: string, password: string, isLogin: boolean) => {
+export const authenticate = async (
+  email: string,
+  password: string,
+  isLogin: boolean,
+  translations: Translations,
+) => {
   try {
     let userCredential;
     if (isLogin) {
@@ -15,6 +23,9 @@ export const authenticate = async (email: string, password: string, isLogin: boo
 
     return { token, uid };
   } catch (error) {
-    // TODO: Handle error
+    if (error instanceof FirebaseError) {
+      handleFirebaseError(error, translations);
+    }
+    throw { status: 500, message: translations.errors['internal-server-error'] };
   }
 };

@@ -54,6 +54,15 @@
     "confirm password is required": "se requiere confirmar la contraseña",
     "passwords must match": "las contraseñas deben coincidir"
   },
+  "errors": {
+    "auth/wrong-password": "Autenticación fallida",
+    "auth/user-not-found": "Autenticación fallida",
+    "auth/too-many-requests": "Demasiadas solicitudes. Por favor, inténtelo de nuevo más tarde.",
+    "auth/invalid-credential": "Correo electrónico o contraseña no válidos",
+    "auth/email-already-in-use": "El correo electrónico ya está en uso. Por favor, use una dirección de correo electrónico diferente.",
+    "internal server error": "Se ha producido un error interno del servidor. Por favor inténtalo de nuevo más tarde",
+    "an unexpected error": "Se produjo un error inesperado. Inténtelo de nuevo más tarde."
+  },
   "Header": {
     "sign out": "DESCONECTAR"
   }
