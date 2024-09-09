@@ -18,7 +18,7 @@ export default function Home() {
             {t('welcome')}, {userName}!
           </h1>
           <div className={style.containerLink}>
-            <Link href={'/restfull'} className={style.signIn}>
+            <Link href={'/GET'} className={style.signIn}>
               RESTfull
             </Link>
             <Link href={'/graphiql'} className={style.signIn}>
