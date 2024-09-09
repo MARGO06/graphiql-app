@@ -8,7 +8,12 @@ export interface IResponse {
 }
 
 export const ResponseWindow: React.FC<IResponse> = ({ responseInfo }) => {
-  const statusClass = responseInfo.status === 200 ? style.statusSuccess : style.statusError;
+  const statusClass =
+    typeof responseInfo.status === 'number' &&
+    responseInfo.status >= 200 &&
+    responseInfo.status < 300
+      ? style.statusSuccess
+      : style.statusError;
   const t = useTranslations('Response');
 
   const renderData = () => {
