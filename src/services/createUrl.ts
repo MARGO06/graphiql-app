@@ -1,3 +1,5 @@
+import { getCurrentUrlFromLocalStorage } from './baseURL';
+
 function encodeBase64(data: string) {
   return btoa(unescape(encodeURIComponent(data))); // TODO: change to non deprecated!!!
 }
@@ -19,7 +21,8 @@ export function decodeBase64(encoded: string): string {
 }
 
 export function getUrl(method: string, currentUrl: string, body = null, headers = {}) {
-  const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+  const baseUrl = getCurrentUrlFromLocalStorage();
+
   const encodedUrl = encodeBase64(currentUrl);
   let url = `${baseUrl}/${method}/${encodedUrl}`;
 
