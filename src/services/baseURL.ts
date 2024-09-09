@@ -2,7 +2,11 @@
 
 export function saveCurrentUrlToLocalStorage() {
   if (typeof window !== 'undefined') {
-    const currentUrl = window.location.href;
+    let currentUrl = window.location.href;
+    if (currentUrl.endsWith('/')) {
+      currentUrl = currentUrl.slice(0, -1);
+    }
+
     localStorage.setItem('currentUrl', currentUrl);
   }
 }
