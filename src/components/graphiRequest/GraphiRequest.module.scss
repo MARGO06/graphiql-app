@@ -4,4 +4,15 @@
 
 .inputContainer {
   width: 90%;
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+}
+
+.urlInput,
+.sdlInput {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 1.6rem;
 }

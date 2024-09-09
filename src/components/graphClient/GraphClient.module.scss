@@ -16,9 +16,15 @@
 
 .graphContainer {
   display: flex;
+  margin-top: 20px;
 }
 
 .response {
   border: 1px solid red;
   width: 50%;
+}
+
+.buttons {
+  display: flex;
+  gap: 20px;
 }
