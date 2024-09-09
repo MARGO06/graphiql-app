@@ -22,11 +22,7 @@ export function decodeBase64(encoded: string): string {
 
 export function getUrl(method: string, currentUrl: string, body = null, headers = {}) {
   const baseUrl = getCurrentUrlFromLocalStorage();
-
   const encodedUrl = encodeBase64(currentUrl);
-
-  // eslint-disable-next-line no-console
-  console.log(`${baseUrl}/${method}/${encodedUrl}`);
   let url = `${baseUrl}/${method}/${encodedUrl}`;
 
   if (body) {

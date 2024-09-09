@@ -5,10 +5,13 @@ import { AboutUs } from '@/components/aboutUS/AboutUs';
 import { useTranslations } from 'next-intl';
 import { useAuth } from '@/hooks/useAuth';
 import { saveCurrentUrlToLocalStorage } from '@/services/baseURL';
+import { useEffect } from 'react';
 
 export default function Home() {
   const { token, userName } = useAuth();
-  saveCurrentUrlToLocalStorage();
+  useEffect(() => {
+    saveCurrentUrlToLocalStorage();
+  }, []);
 
   const t = useTranslations('WelcomePage');
 
