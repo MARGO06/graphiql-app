@@ -4,9 +4,21 @@ import RestClient from '@/components/restClient/RestClient';
 import { decodeBase64 } from '@/services/createUrl';
 import { useParams } from 'next/navigation';
 
+const clientsMethods = [
+  'GET',
+  'POST',
+  'PUT',
+  'DELETE',
+  'PATCH',
+  'OPTIONS',
+  'HEAD',
+  'graphiql',
+  'history',
+];
+
 export default function RESTfull() {
   const params = useParams();
-  const method = params.method;
+  const method = String(params.method);
 
   let url = '';
   if (Array.isArray(params.optionalCatchAllSegment)) {
@@ -15,19 +27,9 @@ export default function RESTfull() {
     url = decodeBase64(params.optionalCatchAllSegment);
   }
 
-  if (
-    method !== 'GET' &&
-    method !== 'POST' &&
-    method !== 'PUT' &&
-    method !== 'DELETE' &&
-    method !== 'PATCH' &&
-    method !== 'OPTIONS' &&
-    method !== 'HEAD' &&
-    method !== 'graphiql' &&
-    method !== 'history'
-  ) {
-    return NotFound();
-  } else {
+  if (clientsMethods.includes(method)) {
     return <RestClient method={method} currentURL={url} />;
+  } else {
+    return NotFound();
   }
 }
