@@ -18,7 +18,7 @@ export const ResponseWindow: React.FC<IResponse> = ({ responseInfo }) => {
 
   const renderData = () => {
     if (responseInfo.contentType && responseInfo.contentType.includes('application/json')) {
-      return <JSONPretty data={responseInfo.data} />;
+      return <JSONPretty data={responseInfo.data} data-testid="json-pretty" />;
     } else if (responseInfo.contentType && responseInfo.contentType.includes('text/plain')) {
       const textData = String(responseInfo.data);
       return <pre>{textData}</pre>;
