@@ -65,5 +65,8 @@
   },
   "Header": {
     "sign out": "DESCONECTAR"
-  }
+  },
+  "History": {
+  "title": "Historia"
+}
 }
