@@ -4,7 +4,6 @@ import { usePathname } from 'next/navigation';
 import { AuthProvider } from '@/hooks/useAuth';
 import { NextIntlClientProvider } from 'next-intl';
 import { defaultLocale } from '@/config';
-import { Layout } from '@/components/mainLayout/MainLayout';
 import { cookies } from 'next/headers';
 
 describe('Integration: Main Page', () => {
@@ -15,9 +14,7 @@ describe('Integration: Main Page', () => {
     render(
       <AuthProvider initialToken={cookies().get('JWT')?.value || null}>
         <NextIntlClientProvider locale={defaultLocale} messages={messages}>
-          <Layout>
-            <Home />
-          </Layout>
+          <Home />
         </NextIntlClientProvider>
       </AuthProvider>,
     );

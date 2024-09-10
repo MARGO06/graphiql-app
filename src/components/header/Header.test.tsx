@@ -1,8 +1,9 @@
 import '@testing-library/jest-dom';
-import { screen, fireEvent } from '@testing-library/react';
+import { screen, fireEvent, act } from '@testing-library/react';
 import { Header } from '@/components/header/Header';
-//import { useRouter } from 'next/navigation';
 import { customRender } from '@/utils/CustomeRenderTest';
+
+global.fetch = jest.fn();
 
 describe('Header Component', () => {
   it('renders the header with the logo', () => {
@@ -13,15 +14,16 @@ describe('Header Component', () => {
     expect(logo).toHaveAttribute('href', '/');
   });
 
-  /* it('sign-out is presented for logged user and user can click the sign-out button', () => {
+  it('sign-out is presented for logged user and user can click the sign-out button', async () => {
     customRender(<Header />);
 
     const signOutButton = screen.getByText('SIGN OUT');
     expect(signOutButton).toBeInTheDocument();
-    fireEvent.click(signOutButton);
-    expect(useRouter().replace).toHaveBeenCalledTimes(1);
-    expect(useRouter().replace).toHaveBeenCalledWith('/');
-  }); */
+
+    await act(async () => {
+      fireEvent.submit(signOutButton);
+    });
+  });
 
   it('toggles the menu on burger icon click', () => {
     window.innerWidth = 500;
