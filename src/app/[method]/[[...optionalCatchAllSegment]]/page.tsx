@@ -18,7 +18,7 @@ const clientsMethods = [
 
 export default function RESTfull() {
   const params = useParams();
-  const method = params.method as string;
+  const method = String(params.method);
 
   let url = '';
   if (Array.isArray(params.optionalCatchAllSegment)) {
