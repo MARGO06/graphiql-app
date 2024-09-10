@@ -5,43 +5,29 @@ import { ResponseInfo } from '@/components/restClient/RestClient';
 import { GraphRequest } from '@/components/graphiRequest/GraphiRequest';
 import { useTranslations } from 'next-intl';
 import style from '@/components/graphClient/GraphClient.module.scss';
-import { Documentation } from '../documentation/Documentation';
+import { Documentation } from '@/components/documentation/Documentation';
+import { Schema } from '@/types/graphQLSchema';
+import { handleGetDocumentation } from '@/utils/getDocumentation';
 
 export const GraphClient: React.FC = () => {
   const [responseInfo /*, setResponseInfo*/] = useState<ResponseInfo | null>(null);
   const [currentUrl, setCurrentUrl] = useState<string>('');
   const [currentSdl, setCurrentSdl] = useState<string>('');
-  const [showDocumentation, setShowDocumentation] = useState(false);
-  const [documentation, setDocumentation] = useState(false);
+  const [showSchemaButton, setShowSchemaButton] = useState(false);
+  const [documentation, setDocumentation] = useState<Schema | null>(null);
+  const [visible, setVisible] = useState(false);
   const t = useTranslations('Clients');
 
-  const handleGetDocumentation = async (url: string, schema: string) => {
-    try {
-      const response = await fetch('/api/fetchDocumentation', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ url, schema }),
-      });
-      const documentation = await response.json();
-      if (documentation.success === true) {
-        setShowDocumentation(true);
-      }
-      //console.log(documentation);
-      return documentation;
-    } catch (error) {
-      //TODO
+  const fetchSchema = async () => {
+    const types = await handleGetDocumentation(currentUrl, currentSdl.slice(currentUrl.length));
+    if (types) {
+      setShowSchemaButton(true);
+      setDocumentation(types);
     }
   };
 
-  const fetchSchema = () => {
-    const currentSdlLength = currentUrl.length;
-    handleGetDocumentation(currentUrl, currentSdl.slice(currentSdlLength));
-  };
-
   const handleShowDocumentation = () => {
-    setDocumentation(true);
+    setVisible((prev) => !prev);
   };
 
   return (
@@ -55,9 +41,9 @@ export const GraphClient: React.FC = () => {
             {t('get documentation')}
           </button>
           <button className={style.button_send}>{t('get data')}</button>
-          {showDocumentation && (
+          {showSchemaButton && (
             <button className={style.button_send} onClick={handleShowDocumentation}>
-              ShowDocumentation
+              {visible ? t('hidden documentation') : t('show documentation')}
             </button>
           )}
         </div>
@@ -71,9 +57,9 @@ export const GraphClient: React.FC = () => {
           <div className={style.response}>
             {responseInfo && <ResponseWindow responseInfo={responseInfo} />}
           </div>
+          {documentation && visible && <Documentation data={documentation} />}
         </div>
       </div>
-      {documentation && <Documentation />}
     </div>
   );
 };

@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { SCHEMA_QUERY } from '@/schemaQuery';
 
 export async function POST(req: NextRequest) {
   try {
@@ -12,27 +13,14 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'SDL is required', status: 400 });
     }
 
-    const query = `
-     query {
-      __schema {
-        types {
-          name
-           fields {
-             name
-           }
-        }
-      }
-    }
-`;
+    const query = SCHEMA_QUERY;
 
-    const response = await fetch(url, {
+    const response = await fetch(url + schema, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({
-        query,
-      }),
+      body: JSON.stringify({ query }),
     });
 
     const data = await response.json();

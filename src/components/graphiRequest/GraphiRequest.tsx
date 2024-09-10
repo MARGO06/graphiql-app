@@ -42,7 +42,7 @@ export const GraphRequest: React.FC<GraphRequestProps> = ({
               id="sdl-endpoint"
               placeholder={t('enter SDL endpoint URL')}
               value={currentSdl}
-              onChange={() => handleSdlChange}
+              onChange={handleSdlChange}
             />
           </div>
         </div>
