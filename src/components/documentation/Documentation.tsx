@@ -10,7 +10,7 @@ export const Documentation: React.FC<DocumentationProps> = ({ data }) => {
   return (
     <div className={style.wrapper}>
       {data.map((schema, index) => (
-        <div key={index}>
+        <div key={index} className={style.container}>
           <h2>{schema.name}</h2>
           <ul>
             {schema.fields.map((field, fieldIndex) => (

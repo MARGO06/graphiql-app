@@ -16,3 +16,18 @@
   gap: 5px;
   font-size: 1.6rem;
 }
+
+@media (width < 1100px) {
+  .wrapper {
+    width: 100%;
+  }
+
+  .inputContainer {
+    align-items: center;
+  }
+
+  .urlInput,
+  .sdlInput {
+    width: 80%;
+  }
+}
