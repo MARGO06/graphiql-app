@@ -6,7 +6,7 @@ describe('GraphiQL', () => {
   it('renders "GraphiQL" text', () => {
     render(<GraphiQL />);
 
-    const textElement = screen.getByText('GraphiQL');
+    const textElement = screen.getByRole('heading', { name: /GraphiQL/i });
     expect(textElement).toBeInTheDocument();
   });
 });
