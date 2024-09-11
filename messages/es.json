@@ -67,6 +67,7 @@
     "sign out": "DESCONECTAR"
   },
   "History": {
-  "title": "Historia"
-}
+  "title": "Historia",
+   "history requests": "solicitudes de historial"
+  }
 }

@@ -66,6 +66,7 @@
     "sign out": "SIGN OUT"
   },
   "History": {
-    "title": "History"
+    "title": "History",
+    "history requests": "history requests"
   }
 }

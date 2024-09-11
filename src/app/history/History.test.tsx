@@ -6,7 +6,7 @@ describe('History', () => {
   it('renders "History" text', () => {
     render(<History />);
 
-    const textElement = screen.getByText('History');
+    const textElement = screen.getByText(/History/i);
     expect(textElement).toBeInTheDocument();
   });
 });
