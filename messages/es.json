@@ -13,10 +13,16 @@
     "info": "No se pudo encontrar el recurso solicitado",
     "back": "Volver a la página de bienvenida"
   },
-  "RestClient": {
+  "Clients": {
     "restfull client": "RESTfull cliente",
     "send": "Enviar",
-    "add header": "+ Agregar encabezado"
+    "add header": "+ Agregar encabezado",
+    "enter endpoint URL": "Introduzca la URL del punto final",
+    "enter SDL endpoint URL": "Introduzca la URL del punto final de SDL",
+    "get documentation": "OBTENER DOCUMENTACIÓN",
+    "get data": "OBTENER DATOS",
+    "hidden documentation": "DOCUMENTACION OCULTA",
+    "show documentation": "DOCUNTACION MOSTRAR"
   },
   "Response": {
     "response info": "Información de la respuesta",

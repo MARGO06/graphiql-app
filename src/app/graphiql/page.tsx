@@ -1,7 +1,9 @@
-export default function GraphiQL() {
+import { GraphClient } from '@/components/graphClient/GraphClient';
+
+export default function GraphQl() {
   return (
-    <>
-      <p>GraphiQL</p>
-    </>
+    <main>
+      <GraphClient />
+    </main>
   );
 }
