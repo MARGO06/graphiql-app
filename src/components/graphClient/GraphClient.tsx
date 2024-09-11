@@ -34,7 +34,7 @@ export const GraphClient: React.FC = () => {
     <div className={style.wrapper}>
       <div className={style.container}>
         <div className={style.headerContainer}>
-          <h1>GraphQl</h1>
+          <h1>GraphiQl</h1>
         </div>
         <div className={style.buttons}>
           <button className={style.buttonSchema} onClick={fetchSchema}>

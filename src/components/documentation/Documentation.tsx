@@ -16,7 +16,7 @@ export const Documentation: React.FC<DocumentationProps> = ({ data }) => {
             {schema.fields.map((field, fieldIndex) => (
               <li key={fieldIndex}>
                 {field.name}
-                {field.type.name !== null ? `: ${field.type.name}` : ''}
+                {field.type.name ? `: ${field.type.name}` : ''}
               </li>
             ))}
           </ul>
