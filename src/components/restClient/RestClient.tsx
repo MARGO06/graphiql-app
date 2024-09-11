@@ -36,7 +36,7 @@ export default function RestClient({ method, currentURL }: RestClientProps) {
     }
   }, [method, initialMethod]);
 
-  const t = useTranslations('RestClient');
+  const t = useTranslations('Clients');
 
   const onChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectMethod(e.target.value);
