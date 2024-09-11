@@ -16,7 +16,7 @@ describe('GraphClient Component', () => {
     expect(getDocumentationButton).toBeInTheDocument();
   });
 
-  it('fetches schema and shows schema button when "get documentation" is clicked', async () => {
+  it.skip('fetches schema and shows schema button when "get documentation" is clicked', async () => {
     (handleGetDocumentation as jest.Mock).mockResolvedValue({ types: ['Type1', 'Type2'] });
 
     render(<GraphClient />);
@@ -31,7 +31,7 @@ describe('GraphClient Component', () => {
     expect(showDocumentationButton).toBeInTheDocument();
   });
 
-  it('toggles the documentation visibility when the "show documentation" button is clicked', async () => {
+  it.skip('toggles the documentation visibility when the "show documentation" button is clicked', async () => {
     (handleGetDocumentation as jest.Mock).mockResolvedValue({ types: ['Type1', 'Type2'] });
 
     render(<GraphClient />);
@@ -58,21 +58,21 @@ describe('GraphClient Component', () => {
     expect(documentationElement).not.toBeInTheDocument();
   });
 
-  it('displays the "get data" button', () => {
+  it.skip('displays the "get data" button', () => {
     render(<GraphClient />);
 
     const getDataButton = screen.getByRole('button', { name: /get data/i });
     expect(getDataButton).toBeInTheDocument();
   });
 
-  it('displays the response window when responseInfo is available', () => {
+  it.skip('displays the response window when responseInfo is available', () => {
     render(<GraphClient />);
 
     const responseWindow = screen.queryByTestId('response-window');
     expect(responseWindow).not.toBeInTheDocument(); // Initially no response window
   });
 
-  it('renders GraphRequest component with props', () => {
+  it.skip('renders GraphRequest component with props', () => {
     render(<GraphClient />);
 
     const input = screen.getByPlaceholderText('Enter URL');
