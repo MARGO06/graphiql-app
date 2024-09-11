@@ -1,12 +1,13 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
-import { Layout } from '@/components/mainLayout/MainLayout';
 import './globals.css';
 import { ReactNode } from 'react';
 import { getLocale, getMessages } from 'next-intl/server';
 import { NextIntlClientProvider } from 'next-intl';
 import { AuthProvider } from '@/hooks/useAuth';
 import { cookies } from 'next/headers';
+import { Header } from '@/components/header/Header';
+import { Footer } from '@/components/footer/Footer';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -29,7 +30,11 @@ export default async function LocaleLayout({ children }: Props) {
       <body className={inter.className}>
         <AuthProvider initialToken={token}>
           <NextIntlClientProvider messages={messages}>
-            <Layout>{children}</Layout>
+            <div className="wrapper">
+              <Header />
+              <div>{children}</div>
+              <Footer />
+            </div>
           </NextIntlClientProvider>
         </AuthProvider>
       </body>
