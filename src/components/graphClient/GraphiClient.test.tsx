@@ -3,7 +3,6 @@ import { GraphClient } from './GraphClient';
 import { render } from '@/utils/CustomeRenderTest';
 import { handleGetDocumentation } from '@/utils/getDocumentation';
 
-// Mock handleGetDocumentation utility
 jest.mock('../../utils/getDocumentation', () => ({
   handleGetDocumentation: jest.fn(),
 }));
@@ -16,14 +15,18 @@ describe('GraphClient Component', () => {
     expect(getDocumentationButton).toBeInTheDocument();
   });
 
-  it.skip('fetches schema and shows schema button when "get documentation" is clicked', async () => {
-    (handleGetDocumentation as jest.Mock).mockResolvedValue({ types: ['Type1', 'Type2'] });
+  it('fetches schema and shows schema button when "get documentation" is clicked', async () => {
+    (handleGetDocumentation as jest.Mock).mockResolvedValue([
+      { name: 'Type1', fields: [{ name: 'field1', type: { name: 'String' } }] },
+      { name: 'Type2', fields: [{ name: 'field2', type: { name: 'Int' } }] },
+    ]);
 
     render(<GraphClient />);
-
+    const urlInput = screen.getByPlaceholderText('Enter endpoint URL');
     const getDocumentationButton = screen.getByRole('button', { name: /get documentation/i });
 
     await act(async () => {
+      fireEvent.change(urlInput, { target: { value: 'https://countries.trevorblades.com/' } });
       fireEvent.click(getDocumentationButton);
     });
 
@@ -31,19 +34,21 @@ describe('GraphClient Component', () => {
     expect(showDocumentationButton).toBeInTheDocument();
   });
 
-  it.skip('toggles the documentation visibility when the "show documentation" button is clicked', async () => {
-    (handleGetDocumentation as jest.Mock).mockResolvedValue({ types: ['Type1', 'Type2'] });
-
+  it('toggles the documentation visibility when the "show documentation" button is clicked', async () => {
+    (handleGetDocumentation as jest.Mock).mockResolvedValue([
+      { name: 'Type1', fields: [{ name: 'field1', type: { name: 'String' } }] },
+      { name: 'Type2', fields: [{ name: 'field2', type: { name: 'Int' } }] },
+    ]);
     render(<GraphClient />);
-
+    const urlInput = screen.getByPlaceholderText('Enter endpoint URL');
     const getDocumentationButton = screen.getByRole('button', { name: /get documentation/i });
 
     await act(async () => {
+      fireEvent.change(urlInput, { target: { value: 'https://countries.trevorblades.com/' } });
       fireEvent.click(getDocumentationButton);
     });
 
     const showDocumentationButton = screen.getByRole('button', { name: /show documentation/i });
-
     await act(async () => {
       fireEvent.click(showDocumentationButton);
     });
@@ -58,24 +63,17 @@ describe('GraphClient Component', () => {
     expect(documentationElement).not.toBeInTheDocument();
   });
 
-  it.skip('displays the "get data" button', () => {
+  it('displays the "get data" button', () => {
     render(<GraphClient />);
-
     const getDataButton = screen.getByRole('button', { name: /get data/i });
+
     expect(getDataButton).toBeInTheDocument();
   });
 
-  it.skip('displays the response window when responseInfo is available', () => {
+  it('displays the response window when responseInfo is available', () => {
     render(<GraphClient />);
 
     const responseWindow = screen.queryByTestId('response-window');
-    expect(responseWindow).not.toBeInTheDocument(); // Initially no response window
-  });
-
-  it.skip('renders GraphRequest component with props', () => {
-    render(<GraphClient />);
-
-    const input = screen.getByPlaceholderText('Enter URL');
-    expect(input).toBeInTheDocument();
+    expect(responseWindow).not.toBeInTheDocument();
   });
 });
