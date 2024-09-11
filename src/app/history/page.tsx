@@ -10,8 +10,8 @@ export default function History() {
   const t = useTranslations('History');
 
   return (
-    <>
-      {requests && (
+    <section className={style.wrapper}>
+      {requests.length && (
         <>
           <h1>{t('history requests')}</h1>
           <div className={style.table}>
@@ -29,7 +29,7 @@ export default function History() {
           </div>
         </>
       )}
-      {!requests && (
+      {!requests.length && (
         <>
           <div className={style.norequest}>
             <p>{`You haven't executed any requests yet.`}</p>
@@ -45,6 +45,6 @@ export default function History() {
           </div>
         </>
       )}
-    </>
+    </section>
   );
 }

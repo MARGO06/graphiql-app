@@ -3,10 +3,10 @@ import History from './page';
 import { render } from '@/utils/CustomeRenderTest';
 
 describe('History', () => {
-  it('renders "History" text', () => {
+  it('renders page without localstorage records', () => {
     render(<History />);
 
-    const textElement = screen.getByText(/History/i);
+    const textElement = screen.getByText(/You haven't executed any requests yet/i);
     expect(textElement).toBeInTheDocument();
   });
 });
