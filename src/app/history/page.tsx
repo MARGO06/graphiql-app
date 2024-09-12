@@ -22,7 +22,11 @@ export default function History() {
                     <div>{item.method}</div>
                     <div>Time</div>
                   </div>
-                  <div className={style.url}> {item.url}</div>
+                  <div className={style.url}>
+                    <Link href={`/${item.method}/${item.urlBase64}`} className={style.signIn}>
+                      {item.url}
+                    </Link>
+                  </div>
                 </div>
               </li>
             ))}
