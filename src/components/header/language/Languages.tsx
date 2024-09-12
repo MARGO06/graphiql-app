@@ -1,5 +1,5 @@
 import React, { startTransition } from 'react';
-import style from '@/components/language/Language.module.scss';
+import style from '@/components/header/language/Language.module.scss';
 import { Locale } from '@/config';
 import { setUserLocale } from '@/services/locale';
 

@@ -71,5 +71,9 @@
   },
   "Header": {
     "sign out": "DESCONECTAR"
+  },
+  "History": {
+  "title": "Historia",
+   "history requests": "solicitudes de historial"
   }
 }

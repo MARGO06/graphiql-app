@@ -32,7 +32,6 @@
   },
   "WelcomePage": {
     "welcome": "Welcome",
-    "history": "History",
     "signin": "SIGN IN",
     "signup": "SIGN UP",
     "frontend team": "We are a team of three junior frontend developers (React Course) from RSS School, working on our final project, APIQuest. You can find more information about us and the school in the site footer.",
@@ -72,5 +71,9 @@
   },
   "Header": {
     "sign out": "SIGN OUT"
+  },
+  "History": {
+    "title": "History",
+    "history requests": "history requests"
   }
 }
