@@ -1,7 +1,7 @@
 import { getCurrentUrlFromLocalStorage } from '@/services/baseURL';
 import { getUrl } from '@/services/createUrl';
 
-jest.mock('../services/baseURL', () => ({
+jest.mock('./baseURL', () => ({
   getCurrentUrlFromLocalStorage: jest.fn(),
 }));
 

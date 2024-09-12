@@ -6,7 +6,7 @@ export async function POST(req: NextRequest) {
     const { url, schema } = await req.json();
 
     if (!url || !schema) {
-      NextResponse.json({ error: 'URL is required', status: 400 });
+      return NextResponse.json({ error: 'URL is required', status: 400 });
     }
     const query = SCHEMA_QUERY;
 
