@@ -14,7 +14,7 @@ export const Languages: React.FC = () => {
 
   return (
     <div className={style.language}>
-      <select onChange={toggleLanguage} className={style.selectWrap}>
+      <select onChange={toggleLanguage} className={style.selectWrap} id="languageselect">
         <option value="en" data-testid="en-option">
           English
         </option>
