@@ -16,7 +16,11 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children, initialTok
   const [userName, setUserName] = useState<string | null>(null);
 
   const updateToken = (newToken: string) => {
-    setToken(newToken);
+    if (!newToken) {
+      setToken(null);
+    } else {
+      setToken(newToken);
+    }
   };
 
   const updateUserName = (newName: string) => {

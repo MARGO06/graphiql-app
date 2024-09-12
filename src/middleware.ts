@@ -11,7 +11,7 @@ export function middleware(req: NextRequest) {
     const isAllowed = allowedMethodsRegex.test(pathname);
 
     if (isAllowed) {
-      return NextResponse.redirect(new URL('/signIn', req.url));
+      return NextResponse.redirect(new URL('/signOut', req.url));
     }
   }
 
@@ -35,6 +35,7 @@ export const config = {
   matcher: [
     '/signIn',
     '/signUp',
+    '/signOut',
     '/GET/:path*',
     '/POST/:path*',
     '/PUT/:path*',
