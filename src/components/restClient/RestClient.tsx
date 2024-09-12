@@ -29,6 +29,9 @@ export default function RestClient({ method, currentURL }: RestClientProps) {
   const [responseInfo, setResponseInfo] = useState<ResponseInfo | null>(null);
   const router = useRouter();
 
+  const updatedBody = null;
+  const headerParams = '';
+
   useEffect(() => {
     if (method && initialMethod !== method) {
       setSelectMethod(method);
@@ -50,7 +53,7 @@ export default function RestClient({ method, currentURL }: RestClientProps) {
 
   const handleClick = async () => {
     const updatedUrl = inputRef.current?.value || '';
-    const createUrl = getUrl(selectMethod!, updatedUrl);
+    const createUrl = getUrl(selectMethod!, updatedUrl, updatedBody, headerParams);
     router.push(createUrl);
   };
 
