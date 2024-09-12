@@ -21,24 +21,16 @@ export function decodeBase64(encoded: string): string {
   }
 }
 
-export function getUrl(method: string, currentUrl: string, body = null, headers = {}) {
+export function getUrl(method: string, currentUrl: string, body = null, headerParams: string) {
   const baseUrl = getCurrentUrlFromLocalStorage();
   const encodedUrl = encodeBase64(currentUrl);
   let url = `${baseUrl}/${method}/${encodedUrl}`;
 
-  saveToHistory(method, currentUrl, encodedUrl);
+  saveToHistory(method, currentUrl, encodedUrl, headerParams);
 
   if (body) {
     const encodedBody = encodeBase64(JSON.stringify(body));
     url += `/${encodedBody}`;
-  }
-
-  const queryParams = Object.entries(headers)
-    .map(([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(String(value))}`)
-    .join('&');
-
-  if (queryParams) {
-    url += `?${queryParams}`;
   }
 
   return url;
