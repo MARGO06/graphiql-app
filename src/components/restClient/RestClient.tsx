@@ -46,6 +46,7 @@ export default function RestClient({
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
   const [inputValue, setInputValue] = useState(currentURL);
+  const [isHeaderUpdated, setIsHeaderUpdated] = useState(false);
 
   useEffect(() => {
     if (method && initialMethod !== method) {
@@ -129,6 +130,7 @@ export default function RestClient({
   const handleRemoveHeader = (id: string) => {
     const updatedHeaders = headers.filter((header) => header.id !== String(id));
     setHeaders(updatedHeaders);
+    setIsHeaderUpdated(true);
   };
 
   const handleAddVariable = () => {
@@ -158,6 +160,13 @@ export default function RestClient({
 
     window.history.replaceState(null, '', createUrl);
   }, [body, headers, inputValue, selectMethod, variables]);
+
+  useEffect(() => {
+    if (isHeaderUpdated) {
+      updateUrlWithoutRedirect();
+      setIsHeaderUpdated(false);
+    }
+  }, [headers, isHeaderUpdated, updateUrlWithoutRedirect]);
 
   return (
     <div className={style.wrapper}>
