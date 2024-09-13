@@ -14,11 +14,16 @@ export const handleGetDocumentation = async (
       body: JSON.stringify({ url, schema }),
     });
     const documentation = await response.json();
-    if (documentation.success === true) {
-      const types = getTypes(documentation);
-      return types;
+
+    if (!response.ok || !documentation.success) {
+      const errorMessage = documentation.error || 'Failed to fetch documentation';
+      throw new Error(errorMessage);
     }
+
+    const types = getTypes(documentation);
+    return types;
   } catch (error) {
-    //TODO
+    const err = error as { status: number; message: string };
+    throw new Error(err.message || 'Failed to fetch documentation');
   }
 };

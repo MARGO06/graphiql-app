@@ -19,10 +19,19 @@ export async function POST(req: NextRequest) {
       body: JSON.stringify({ query }),
     });
 
+    if (response.status !== 200) {
+      const errorData = await response.json();
+      return NextResponse.json({
+        success: false,
+        error: errorData.message || 'Failed to fetch from external API',
+        status: response.status,
+      });
+    }
+
     const data = await response.json();
     return NextResponse.json({ success: true, data });
   } catch (error) {
-    const err = error as { status?: number; message?: string };
+    const err = error as { status: number; message: string };
     return NextResponse.json({ success: false, error: err.message, status: err.status || 500 });
   }
 }

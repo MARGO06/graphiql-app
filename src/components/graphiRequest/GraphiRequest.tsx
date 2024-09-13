@@ -16,34 +16,50 @@ export const GraphRequest: React.FC<GraphRequestProps> = ({
   const previousSdlRef = useRef(currentSdl);
   const previousURLRef = useRef(currentUrl);
 
+  const resetUrl = () => {
+    if (currentUrl === '' && currentSdl === '') {
+      setCurrentUrl('');
+      setCurrentSdl('');
+      updateUrl('');
+    }
+  };
+
   const handleUrlBlur = () => {
-    if (currentUrl !== previousURLRef.current) {
+    if (currentUrl !== previousURLRef.current && currentUrl !== '') {
       setCurrentUrl(currentUrl);
       const newUrl = updateSdlUrl(currentSdl, currentUrl);
       updateUrl(newUrl);
     }
+    resetUrl();
   };
 
   const handleSdlBlur = () => {
     if (currentSdl !== previousSdlRef.current) {
-      setCurrentSdl(currentSdl);
-      const newUrl = updateSdlUrl(currentSdl, currentUrl);
-      updateUrl(newUrl);
+      if (currentSdl !== previousSdlRef.current && currentSdl !== '') {
+        setCurrentSdl(currentSdl);
+        const newUrl = updateSdlUrl(currentSdl, currentUrl);
+        updateUrl(newUrl);
+      }
     }
+    resetUrl();
   };
 
   const handleUrlChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newURL = e.target.value;
     setCurrentUrl(newURL);
-    if (!newURL.includes('graphiql')) {
+    if (newURL === '') {
+      setCurrentSdl('');
+    } else if (!newURL.includes('graphiql')) {
       setCurrentSdl(`${newURL}?sdl`);
-    } else {
-      setCurrentSdl(currentSdl);
     }
   };
 
   const handleSdlChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setCurrentSdl(e.target.value);
+    const newSdl = e.target.value;
+    setCurrentSdl(newSdl);
+    if (newSdl === '') {
+      setCurrentUrl('');
+    }
   };
 
   useEffect(() => {

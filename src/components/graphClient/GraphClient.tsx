@@ -13,16 +13,26 @@ export const GraphClient: React.FC = () => {
   const [responseInfo /*, setResponseInfo*/] = useState<ResponseInfo | null>(null);
   const [currentUrl, setCurrentUrl] = useState<string>('');
   const [currentSdl, setCurrentSdl] = useState<string>('');
+  const [error, setError] = useState<string | null>(null);
   const [showSchemaButton, setShowSchemaButton] = useState(false);
   const [documentation, setDocumentation] = useState<Schema | null>(null);
   const [visible, setVisible] = useState(false);
   const t = useTranslations('Clients');
 
   const fetchSchema = async () => {
-    const types = await handleGetDocumentation(currentUrl, currentSdl.slice(currentUrl.length));
-    if (types) {
-      setShowSchemaButton(true);
-      setDocumentation(types);
+    try {
+      if (!currentUrl || !currentSdl) {
+        throw new Error('URL and SDL are required');
+      }
+      const types = await handleGetDocumentation(currentUrl, currentSdl.slice(currentUrl.length));
+      if (types) {
+        setShowSchemaButton(true);
+        setDocumentation(types);
+        setError(null);
+      }
+    } catch (error) {
+      const err = error as { status: number; message: string };
+      setError(err.message || 'Failed to fetch documentation');
     }
   };
 
@@ -41,10 +51,12 @@ export const GraphClient: React.FC = () => {
             {t('get documentation')}
           </button>
           <button className={style.button_send}>{t('get data')}</button>
-          {showSchemaButton && (
+          {showSchemaButton && !error ? (
             <button className={style.button_send} onClick={handleShowDocumentation}>
               {visible ? t('hidden documentation') : t('show documentation')}
             </button>
+          ) : (
+            error && <p className={style.error}>Error: {error}</p>
           )}
         </div>
         <div className={style.graphContainer}>
@@ -57,7 +69,7 @@ export const GraphClient: React.FC = () => {
           <div className={style.response}>
             {responseInfo && <ResponseWindow responseInfo={responseInfo} />}
           </div>
-          {documentation && visible && <Documentation data={documentation} />}
+          {documentation && visible && !error && <Documentation data={documentation} />}
         </div>
       </div>
     </div>
