@@ -212,6 +212,7 @@ export default function RestClient({
           handleKeyValueChange={(key, value, id) => handleKeyValueChange(key, value, id, 'header')}
           handleRemoveHeader={handleRemoveHeader}
           placeholder={'header'}
+          updateUrlWithoutRedirect={updateUrlWithoutRedirect}
         />
 
         <Editor
@@ -222,6 +223,7 @@ export default function RestClient({
           }
           handleRemoveHeader={handleRemoveVariable}
           placeholder={'variable'}
+          updateUrlWithoutRedirect={updateUrlWithoutRedirect}
         />
 
         <RequestWindow

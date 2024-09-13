@@ -17,6 +17,7 @@ interface EditorProps {
   handleKeyValueChange: (key: string, value: string, id: string) => void;
   handleRemoveHeader: (id: string) => void;
   placeholder: string;
+  updateUrlWithoutRedirect: () => void;
 }
 
 export const Editor: React.FC<EditorProps> = ({
@@ -25,6 +26,7 @@ export const Editor: React.FC<EditorProps> = ({
   handleKeyValueChange,
   handleRemoveHeader,
   placeholder,
+  updateUrlWithoutRedirect,
 }) => {
   const t = useTranslations('Clients');
 
@@ -39,6 +41,7 @@ export const Editor: React.FC<EditorProps> = ({
             value={header.value}
             placeholder={`key (${placeholder})`}
             onKeyValueChange={(key, value) => handleKeyValueChange(key, value, header.id)}
+            updateUrlWithoutRedirect={updateUrlWithoutRedirect}
           />
           <div className={style.imgContainer}>
             <Image

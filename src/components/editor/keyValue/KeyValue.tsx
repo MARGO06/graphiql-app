@@ -6,6 +6,7 @@ interface KeyValueProps {
   value: string;
   placeholder: string;
   onKeyValueChange: (key: string, value: string) => void;
+  updateUrlWithoutRedirect: () => void;
 }
 
 export const KeyValue: React.FC<KeyValueProps> = ({
@@ -13,6 +14,7 @@ export const KeyValue: React.FC<KeyValueProps> = ({
   value,
   placeholder,
   onKeyValueChange,
+  updateUrlWithoutRedirect,
 }) => {
   const [keyInput, setKeyInput] = useState<string>(keyValue);
   const [valueInput, setValueInput] = useState<string>(value);
@@ -32,10 +34,22 @@ export const KeyValue: React.FC<KeyValueProps> = ({
   return (
     <div className={style.container}>
       <label>
-        <input type="text" value={keyInput} onChange={handleKeyChange} placeholder={placeholder} />
+        <input
+          type="text"
+          value={keyInput}
+          onChange={handleKeyChange}
+          placeholder={placeholder}
+          onBlur={updateUrlWithoutRedirect}
+        />
       </label>
       <label>
-        <input type="text" value={valueInput} onChange={handleValueChange} placeholder="value" />
+        <input
+          type="text"
+          value={valueInput}
+          onChange={handleValueChange}
+          placeholder="value"
+          onBlur={updateUrlWithoutRedirect}
+        />
       </label>
     </div>
   );
