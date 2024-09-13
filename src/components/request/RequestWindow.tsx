@@ -3,6 +3,7 @@ import Image from 'next/image';
 import magicImage from 'public/magic.png';
 import style from './RequestWindow.module.scss';
 import { ErrorMessage } from '../errorMessage/ErrorMessage';
+import { useTranslations } from 'next-intl';
 
 interface RequestWindowProps {
   currentBody: string;
@@ -19,10 +20,12 @@ export const RequestWindow: React.FC<RequestWindowProps> = ({
   const [error, setError] = useState<string | null>(null);
   const [formatSuccess, setFormatSuccess] = useState(false);
 
+  const t = useTranslations('Clients');
+
   const formatJson = () => {
     if (contentType === 'application/json') {
       if (currentBody.trim() === '') {
-        setError('Field is empty');
+        setError(t('empty field'));
         setFormatSuccess(false);
         return;
       }
@@ -37,7 +40,7 @@ export const RequestWindow: React.FC<RequestWindowProps> = ({
         setFormatSuccess(true);
         setTimeout(() => setFormatSuccess(false), 1000);
       } catch (error) {
-        setError('Syntax does not match JSON');
+        setError(t('syntax err'));
         setFormatSuccess(false);
       }
     }

@@ -89,7 +89,7 @@ export default function RestClient({
         headers,
       );
     } else {
-      setError('URL is empty');
+      setError(t('url empty'));
     }
   };
 
@@ -189,7 +189,7 @@ export default function RestClient({
             <input
               type="text"
               id="endpoint"
-              placeholder="Enter endpoint URL"
+              placeholder={t('enter endpoint URL')}
               value={inputValue}
               ref={inputRef}
               onChange={handleChange}
@@ -220,7 +220,7 @@ export default function RestClient({
           handleAddHeader={handleAddHeader}
           handleKeyValueChange={(key, value, id) => handleKeyValueChange(key, value, id, 'header')}
           handleRemoveHeader={handleRemoveHeader}
-          placeholder={'header'}
+          placeholder={t('header')}
           updateUrlWithoutRedirect={updateUrlWithoutRedirect}
         />
 
@@ -231,7 +231,7 @@ export default function RestClient({
             handleKeyValueChange(key, value, id, 'variable')
           }
           handleRemoveHeader={handleRemoveVariable}
-          placeholder={'variable'}
+          placeholder={t('variable')}
           updateUrlWithoutRedirect={updateUrlWithoutRedirect}
         />
 

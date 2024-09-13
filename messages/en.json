@@ -16,6 +16,8 @@
   "Clients": {
     "restfull client": "RESTfull client",
     "send": "Send",
+    "header": "header",
+    "variable": "variable",
     "add header": "Add Header",
     "add variable": "Add Variable",
     "enter endpoint URL": "Enter endpoint URL",
@@ -23,7 +25,11 @@
     "get documentation": "GET DOCUMENTATION",
     "get data": "GET DATA",
     "hidden documentation": "HIDDEN DOCUMENTATION",
-    "show documentation": "SHOW DOCUMENTATION"
+    "show documentation": "SHOW DOCUMENTATION",
+    "syntax err": "Syntax does not match JSON",
+    "empty field": "Field is empty",
+    "url empty": "URL is empty"
+
   },
   "Response": {
     "response info": "Response Info",
