@@ -1,5 +1,5 @@
 import { screen } from '@testing-library/react';
-import GraphiQL from './page';
+import GraphiQL from './[[...optionalCatchAllSegment]]/page';
 import { render } from '@/utils/CustomeRenderTest';
 
 describe('GraphiQL', () => {
