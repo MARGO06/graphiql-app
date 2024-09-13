@@ -7,7 +7,9 @@ import { useTranslations } from 'next-intl';
 import style from '@/components/graphClient/GraphClient.module.scss';
 import { Documentation } from '@/components/documentation/Documentation';
 import { Schema } from '@/types/graphQLSchema';
+import { usePathname, useSearchParams } from 'next/navigation';
 import { handleGetDocumentation } from '@/utils/getDocumentation';
+import { saveToHistory } from '@/services/saveToHistory';
 
 export const GraphClient: React.FC = () => {
   const [responseInfo /*, setResponseInfo*/] = useState<ResponseInfo | null>(null);
@@ -18,6 +20,10 @@ export const GraphClient: React.FC = () => {
   const [documentation, setDocumentation] = useState<Schema | null>(null);
   const [visible, setVisible] = useState(false);
   const t = useTranslations('Clients');
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
+  const fullUrl = `${pathname}?${searchParams.toString()}`;
 
   const fetchSchema = async () => {
     try {
@@ -29,6 +35,7 @@ export const GraphClient: React.FC = () => {
         setShowSchemaButton(true);
         setDocumentation(types);
         setError(null);
+        saveToHistory('POST', currentSdl, fullUrl);
       }
     } catch (error) {
       const err = error as { status: number; message: string };
