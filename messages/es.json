@@ -16,7 +16,8 @@
   "Clients": {
     "restfull client": "RESTfull cliente",
     "send": "Enviar",
-    "add header": "+ Agregar encabezado",
+    "add header": "Agregar Encabezado",
+    "add variable": "Agregar Variable",
     "enter endpoint URL": "Introduzca la URL del punto final",
     "enter SDL endpoint URL": "Introduzca la URL del punto final de SDL",
     "get documentation": "OBTENER DOCUMENTACIÓN",
@@ -73,7 +74,7 @@
     "sign out": "DESCONECTAR"
   },
   "History": {
-  "title": "Historia",
-   "history requests": "solicitudes de historial"
+    "title": "Historia",
+    "history requests": "solicitudes de historial"
   }
 }

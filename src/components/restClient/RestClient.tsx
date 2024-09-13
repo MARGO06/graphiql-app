@@ -1,6 +1,5 @@
 'use client';
-
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import style from './RestClient.module.scss';
 import { ResponseWindow } from '../response/ResponseWindow';
 import { fetchData } from '../../services/fetchData';
@@ -8,6 +7,11 @@ import { useTranslations } from 'next-intl';
 import { RequestWindow } from '../request/RequestWindow';
 import { getUrl } from '@/services/createUrl';
 import { useRouter } from 'next/navigation';
+import { Editor } from '../editor/Editor';
+import { ErrorMessage } from '../errorMessage/ErrorMessage';
+import { replaceVariables } from '@/services/replaceVariables';
+import { convertQueryParamsToHeaders } from '@/utils/convertQueryParamsToHeaders';
+import { getQueryStringFromHeaders } from '@/utils/getQueryStringFromHeaders';
 
 export interface ResponseInfo {
   status: number | string;
@@ -19,18 +23,29 @@ export interface ResponseInfo {
 interface RestClientProps {
   method?: string;
   currentURL?: string;
+  currentBody?: string;
+  queryParams?: Record<string, string>;
 }
 
-export default function RestClient({ method, currentURL }: RestClientProps) {
+export default function RestClient({
+  method,
+  currentURL,
+  currentBody,
+  queryParams,
+}: RestClientProps) {
   const [selectMethod, setSelectMethod] = useState(method);
   const [initialMethod, setInitialMethod] = useState(method);
-  const [currentUrl, setCurrentUrl] = useState(currentURL);
-  const inputRef = useRef<HTMLInputElement>(null);
   const [responseInfo, setResponseInfo] = useState<ResponseInfo | null>(null);
+  const [body, setBody] = useState(currentBody);
+  const [nextId, setNextId] = useState(1);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const [headers, setHeaders] = useState<{ key: string; value: string; id: string }[]>(
+    convertQueryParamsToHeaders(queryParams),
+  );
+  const [variables, setVariables] = useState<{ key: string; value: string; id: string }[]>([]);
+  const [error, setError] = useState<string | null>(null);
   const router = useRouter();
-
-  const updatedBody = null;
-  const headerParams = '';
+  const [inputValue, setInputValue] = useState(currentURL);
 
   useEffect(() => {
     if (method && initialMethod !== method) {
@@ -45,21 +60,104 @@ export default function RestClient({ method, currentURL }: RestClientProps) {
     setSelectMethod(e.target.value);
   };
 
+  const sendOneTime = useRef(false);
+
   useEffect(() => {
-    if (currentURL && initialMethod) {
-      fetchData(currentURL, initialMethod, setResponseInfo);
+    if (!sendOneTime.current && currentURL && initialMethod) {
+      fetchData(currentURL, initialMethod, setResponseInfo, currentBody, setError, headers);
+
+      sendOneTime.current = true;
     }
-  }, [currentURL, initialMethod]);
+  }, [currentURL, initialMethod, currentBody, headers]);
 
   const handleClick = async () => {
+    const isSend = true;
     const updatedUrl = inputRef.current?.value || '';
-    const createUrl = getUrl(selectMethod!, updatedUrl, updatedBody, headerParams);
-    router.push(createUrl);
+    const updatedBody = replaceVariables(body ?? '', variables);
+    const headerParams = getQueryStringFromHeaders(headers);
+    const createUrl = getUrl(selectMethod ?? '', updatedUrl, updatedBody, headerParams, isSend);
+
+    if (inputValue && initialMethod) {
+      router.push(createUrl);
+      fetchData(
+        inputValue ?? '',
+        initialMethod ?? 'GET',
+        setResponseInfo,
+        currentBody,
+        setError,
+        headers,
+      );
+    } else {
+      setError('URL is empty');
+    }
   };
 
   const handleApiClick = (apiUrl: string) => {
-    setCurrentUrl(apiUrl);
+    setInputValue(apiUrl);
+
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
   };
+
+  const handleKeyValueChange = (
+    key: string,
+    value: string,
+    id: string,
+    type: 'header' | 'variable',
+  ) => {
+    if (type === 'header') {
+      setHeaders((prevHeaders) =>
+        prevHeaders.map((header) =>
+          header.id === String(id) ? { ...header, key, value } : header,
+        ),
+      );
+    } else if (type === 'variable') {
+      setVariables((prevVariables) =>
+        prevVariables.map((variable) =>
+          variable.id === String(id) ? { ...variable, key, value } : variable,
+        ),
+      );
+    }
+  };
+
+  const handleAddHeader = () => {
+    setHeaders((prevHeaders) => [...prevHeaders, { key: '', value: '', id: String(nextId) }]);
+    setNextId((prevId) => prevId + 1);
+  };
+
+  const handleRemoveHeader = (id: string) => {
+    const updatedHeaders = headers.filter((header) => header.id !== String(id));
+    setHeaders(updatedHeaders);
+  };
+
+  const handleAddVariable = () => {
+    setVariables((prevVariables) => [...prevVariables, { key: '', value: '', id: String(nextId) }]);
+    setNextId((prevId) => prevId + 1);
+  };
+
+  const handleRemoveVariable = (id: string) => {
+    setVariables((prevVariables) => prevVariables.filter((variable) => variable.id !== String(id)));
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInputValue(e.target.value);
+  };
+
+  const updateUrlWithoutRedirect = useCallback(() => {
+    const isSend = false;
+    const updatedBody = replaceVariables(body ?? '', variables);
+    const headerParams = getQueryStringFromHeaders(headers);
+    const createUrl = getUrl(
+      selectMethod ?? 'GET',
+      inputValue ?? '',
+      updatedBody,
+      headerParams,
+      isSend,
+    );
+
+    window.history.replaceState(null, '', createUrl);
+  }, [body, headers, inputValue, selectMethod, variables]);
 
   return (
     <div className={style.wrapper}>
@@ -67,28 +165,12 @@ export default function RestClient({ method, currentURL }: RestClientProps) {
         <div className={style.headerContainer}>
           <h1>{t('restfull client')}</h1>
           <div className={style.apiContainer}>
-            <span>API:</span>
-            <a
-              href="#"
-              onClick={() => handleApiClick('https://jsonplaceholder.typicode.com/posts')}
-              rel="noopener noreferrer"
-            >
+            <h4>API:</h4>
+            <span onClick={() => handleApiClick('https://jsonplaceholder.typicode.com/posts')}>
               JSONPLACEHOLDER
-            </a>
-            <a
-              href="#"
-              onClick={() => handleApiClick('https://swapi.dev/api/')}
-              rel="noopener noreferrer"
-            >
-              SWAPI
-            </a>
-            <a
-              href="#"
-              onClick={() => handleApiClick('https://pokeapi.co/api/v2')}
-              rel="noopener noreferrer"
-            >
-              POKEAPI
-            </a>
+            </span>
+            <span onClick={() => handleApiClick('https://swapi.dev/api/')}>SWAPI</span>
+            <span onClick={() => handleApiClick('https://pokeapi.co/api/v2')}>POKEAPI</span>
           </div>
         </div>
 
@@ -99,14 +181,20 @@ export default function RestClient({ method, currentURL }: RestClientProps) {
               type="text"
               id="endpoint"
               placeholder="Enter endpoint URL"
-              value={currentUrl || ''}
+              value={inputValue}
               ref={inputRef}
-              onChange={(e) => setCurrentUrl(e.target.value)}
+              onChange={handleChange}
+              onBlur={updateUrlWithoutRedirect}
             />
           </div>
           <div className={style.selectContainer}>
             <label htmlFor="method"></label>
-            <select id="method" value={selectMethod} onChange={onChange}>
+            <select
+              id="method"
+              value={selectMethod}
+              onChange={onChange}
+              onBlur={updateUrlWithoutRedirect}
+            >
               <option value="GET">GET</option>
               <option value="POST">POST</option>
               <option value="OPTIONS">OPTIONS</option>
@@ -117,12 +205,34 @@ export default function RestClient({ method, currentURL }: RestClientProps) {
           </div>
           <button onClick={handleClick}>{t('send')}</button>
         </div>
-        <button>{t('add header')}</button>
 
-        <RequestWindow />
+        <Editor
+          headers={headers}
+          handleAddHeader={handleAddHeader}
+          handleKeyValueChange={(key, value, id) => handleKeyValueChange(key, value, id, 'header')}
+          handleRemoveHeader={handleRemoveHeader}
+          placeholder={'header'}
+        />
+
+        <Editor
+          headers={variables}
+          handleAddHeader={handleAddVariable}
+          handleKeyValueChange={(key, value, id) =>
+            handleKeyValueChange(key, value, id, 'variable')
+          }
+          handleRemoveHeader={handleRemoveVariable}
+          placeholder={'variable'}
+        />
+
+        <RequestWindow
+          currentBody={body ?? ''}
+          setBody={setBody}
+          updateUrlWithoutRedirect={updateUrlWithoutRedirect}
+        />
       </div>
 
       {responseInfo && <ResponseWindow responseInfo={responseInfo} />}
+      {error && <ErrorMessage message={error} errorReset={() => setError(null)} />}
     </div>
   );
 }

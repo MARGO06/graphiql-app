@@ -22,10 +22,24 @@ describe('fetchData', () => {
 
     const url = 'https://api.example.com/data';
     const method = 'GET';
+    const body = 'testBody';
+    const setError = (error: string) => {
+      error;
+    };
+    const headers = [
+      { key: 'Content-Type', value: 'application/json', id: '1' },
+      { key: 'Authorization', value: 'Bearer token', id: '2' },
+    ];
 
-    const data = await fetchData(url, method, mockSetResponseInfo);
+    const data = await fetchData(url, method, mockSetResponseInfo, body, setError, headers);
 
-    expect(fetch).toHaveBeenCalledWith(url, { method });
+    expect(fetch).toHaveBeenCalledWith(url, {
+      method,
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer token',
+      },
+    });
     expect(mockSetResponseInfo).toHaveBeenCalledWith({
       status: 200,
       statusText: 'OK',
@@ -39,7 +53,7 @@ describe('fetchData', () => {
     const mockResponse = {
       ok: false,
       status: 404,
-      statusText: 'Not Found',
+      statusText: 'HTTP error! status: 404',
       headers: new Headers({ 'content-type': 'application/json' }),
       json: jest.fn(),
     };
@@ -48,16 +62,32 @@ describe('fetchData', () => {
 
     const url = 'https://api.example.com/data';
     const method = 'GET';
+    const body = 'testBody';
+    const setError = (error: string) => {
+      error;
+    };
+    const headers = [
+      { key: 'Content-Type', value: 'application/json', id: '1' },
+      { key: 'Authorization', value: 'Bearer token', id: '2' },
+    ];
 
-    const data = await fetchData(url, method, mockSetResponseInfo);
+    const data = await fetchData(url, method, mockSetResponseInfo, body, setError, headers);
 
-    expect(fetch).toHaveBeenCalledWith(url, { method });
+    expect(fetch).toHaveBeenCalledWith(url, {
+      method,
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer token',
+      },
+    });
+
     expect(mockSetResponseInfo).toHaveBeenCalledWith({
       status: 'Error',
-      statusText: 'HTTP error! status: 404',
+      statusText: 'Resource not found (404)',
       contentType: 'N/A',
       data: null,
     });
+
     expect(data).toBeUndefined();
   });
 
@@ -66,10 +96,25 @@ describe('fetchData', () => {
 
     const url = 'https://api.example.com/data';
     const method = 'GET';
+    const body = 'testBody';
+    const setError = (error: string) => {
+      error;
+    };
+    const headers = [
+      { key: 'Content-Type', value: 'application/json', id: '1' },
+      { key: 'Authorization', value: 'Bearer token', id: '2' },
+    ];
 
-    const data = await fetchData(url, method, mockSetResponseInfo);
+    const data = await fetchData(url, method, mockSetResponseInfo, body, setError, headers);
 
-    expect(fetch).toHaveBeenCalledWith(url, { method });
+    expect(fetch).toHaveBeenCalledWith(url, {
+      method,
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer token',
+      },
+    });
+
     expect(mockSetResponseInfo).toHaveBeenCalledWith({
       status: 'Error',
       statusText: 'Network error',
