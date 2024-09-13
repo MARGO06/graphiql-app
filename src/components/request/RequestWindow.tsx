@@ -18,8 +18,15 @@ export const RequestWindow: React.FC<RequestWindowProps> = ({
   const [contentType, setContentType] = useState('application/json');
   const [error, setError] = useState<string | null>(null);
   const [formatSuccess, setFormatSuccess] = useState(false);
+
   const formatJson = () => {
     if (contentType === 'application/json') {
+      if (currentBody.trim() === '') {
+        setError('Field is empty');
+        setFormatSuccess(false);
+        return;
+      }
+
       try {
         const correctedBody = currentBody.replace(/'/g, '"');
         const parsed = JSON.parse(correctedBody);

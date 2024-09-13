@@ -56,13 +56,12 @@
 }
 
 .textareaError {
-  border: 1px solid colo red !important;
+  border: 1px solid colo red;
   animation: text-error 1.5s infinite;
 }
 
 .magic:active {
-  width: 15px;
-  height: 15px;
+  transform: scale(0.85);
   transition: all 0.1s ease;
 }
 
