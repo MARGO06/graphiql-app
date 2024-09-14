@@ -29,7 +29,6 @@
     "syntax err": "Syntax does not match JSON",
     "empty field": "Field is empty",
     "url empty": "URL is empty"
-
   },
   "Response": {
     "response info": "Response Info",

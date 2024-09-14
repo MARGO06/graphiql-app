@@ -1,6 +1,7 @@
 import { ResponseInfo } from '@/components/restClient/RestClient';
+
 export const fetchData = async (
-  url: string,
+  apiUrl: string,
   method: string,
   setResponseInfo: (info: ResponseInfo) => void,
   body: string | null = null,
@@ -8,11 +9,15 @@ export const fetchData = async (
   headers: { key: string; value: string; id: string }[],
 ) => {
   try {
-    const options: RequestInit = {
-      method,
+    const response = await fetch('/api/fetchData', {
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        ...headers.reduce(
+      },
+      body: JSON.stringify({
+        url: apiUrl,
+        method,
+        headers: headers.reduce(
           (acc, { key, value }) => {
             if (key && value) {
               acc[key] = value;
@@ -21,47 +26,27 @@ export const fetchData = async (
           },
           {} as Record<string, string>,
         ),
-      },
-    };
-
-    if (method === 'POST' || method === 'PUT') {
-      options.body = body;
-    }
-
-    const response = await fetch(url, options);
-    const contentType = response.headers.get('content-type');
-    const status = response.status;
-    const statusText = response.statusText;
-
-    if (status === 404) {
-      throw new Error('Resource not found (404)');
-    }
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
+        body,
+      }),
+    });
 
     const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(`(Request failed: ${response.status})`);
+    }
+
     setResponseInfo({
-      status,
-      statusText,
-      contentType,
-      data,
+      status: data.status,
+      statusText: data.statusText,
+      contentType: data.contentType,
+      data: data.data,
     });
 
     setError('');
-
     return data;
   } catch (error) {
-    let errorMessage = 'An unknown error occurred';
-    if (error instanceof Error) {
-      if (error.name === 'SyntaxError') {
-        errorMessage = error.name;
-      }
-      if (error.name === 'TypeError' || error.name === 'Error') {
-        errorMessage = error.message;
-      }
-    }
+    const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred';
 
     setResponseInfo({
       status: 'Error',
