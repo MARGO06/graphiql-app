@@ -16,7 +16,10 @@
   "Clients": {
     "restfull client": "RESTfull client",
     "send": "Send",
-    "add header": "+ Add Header",
+    "header": "header",
+    "variable": "variable",
+    "add header": "Add Header",
+    "add variable": "Add Variable",
     "enter endpoint URL": "Enter endpoint URL",
     "enter SDL endpoint URL": "Enter SDL endpoint URL",
     "get documentation": "GET DOCUMENTATION",
@@ -24,7 +27,10 @@
     "hidden documentation": "HIDDEN DOCUMENTATION",
     "show documentation": "SHOW DOCUMENTATION",
     "url and sdl are required": "URL and SDL are required",
-    "failed to fetch documentation": "Failed to fetch documentation"
+    "failed to fetch documentation": "Failed to fetch documentation",
+    "syntax err": "Syntax does not match JSON",
+    "empty field": "Field is empty",
+    "url empty": "URL is empty"
   },
   "Response": {
     "response info": "Response Info",
@@ -34,7 +40,6 @@
   },
   "WelcomePage": {
     "welcome": "Welcome",
-    "history": "History",
     "signin": "SIGN IN",
     "signup": "SIGN UP",
     "frontend team": "We are a team of three junior frontend developers (React Course) from RSS School, working on our final project, APIQuest. You can find more information about us and the school in the site footer.",
@@ -74,5 +79,9 @@
   },
   "Header": {
     "sign out": "SIGN OUT"
+  },
+  "History": {
+    "title": "History",
+    "history requests": "history requests"
   }
 }

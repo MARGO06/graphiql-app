@@ -14,6 +14,7 @@ export default function Home() {
   }, []);
 
   const t = useTranslations('WelcomePage');
+  const th = useTranslations('History');
 
   return (
     <main className={style.main}>
@@ -30,7 +31,7 @@ export default function Home() {
               GraphiQL
             </Link>
             <Link href={'/history'} className={style.signUp}>
-              {t('history')}
+              {th('title')}
             </Link>
           </div>
         </>

@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import style from '@/components/header/Header.module.scss';
 import Link from 'next/link';
-import { Languages } from '@/components/language/Languages';
+import { Languages } from '@/components/header/language/Languages';
 import { Registration } from '@/components/registration/Registration';
 import { usePathname, useRouter } from 'next/navigation';
 import Image from 'next/image';

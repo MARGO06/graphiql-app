@@ -16,7 +16,11 @@
   "Clients": {
     "restfull client": "RESTfull cliente",
     "send": "Enviar",
-    "add header": "+ Agregar encabezado",
+    "header": "encabezamiento",
+    "variable": "variable",
+    "add header": "Agregar Encabezado",
+    "add encabezamiento": "Agregar Encabezado",
+    "add variable": "Agregar Variable",
     "enter endpoint URL": "Introduzca la URL del punto final",
     "enter SDL endpoint URL": "Introduzca la URL del punto final de SDL",
     "get documentation": "OBTENER DOCUMENTACIÓN",
@@ -24,7 +28,10 @@
     "hidden documentation": "DOCUMENTACION OCULTA",
     "show documentation": "DOCUNTACION MOSTRAR",
     "url and sdl are required": "URL y SDL son obligatorios",
-    "failed to fetch documentation": "No se pudo recuperar la documentación"
+    "failed to fetch documentation": "No se pudo recuperar la documentación",
+    "syntax err": "La sintaxis no coincide con JSON",
+    "empty field": "El campo está vacío",
+    "url empty": "La URL está vacía"
   },
   "Response": {
     "response info": "Información de la respuesta",
@@ -73,5 +80,9 @@
   },
   "Header": {
     "sign out": "DESCONECTAR"
+  },
+  "History": {
+    "title": "Historia",
+    "history requests": "solicitudes de historial"
   }
 }

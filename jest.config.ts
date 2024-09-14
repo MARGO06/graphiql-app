@@ -12,6 +12,7 @@ const config = {
   collectCoverageFrom: [
     '**/*.{ts,tsx}',
     '!**/src/config.ts',
+    '!**/src/schemaQuery.ts',
     '!**/src/i18n.ts',
     '!**/src/middleware.ts',
     '!**/jest.config.ts',
@@ -22,7 +23,6 @@ const config = {
     '<rootDir>//node_modules',
     '<rootDir>/src/lib/',
     '<rootDir>/.next/',
-    '<rootDir>/src/services/',
     '<rootDir>/src/types/',
   ],
 
