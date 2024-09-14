@@ -8,8 +8,10 @@ jest.mock('../../utils/getDocumentation', () => ({
 }));
 
 describe('GraphClient Component', () => {
-  it('displays the "get documentation" button', () => {
-    render(<GraphClient />);
+  it('displays the "get documentation" button', async () => {
+    await act(async () => {
+      render(<GraphClient />);
+    });
 
     const getDocumentationButton = screen.getByRole('button', { name: /get documentation/i });
     expect(getDocumentationButton).toBeInTheDocument();
@@ -21,7 +23,10 @@ describe('GraphClient Component', () => {
       { name: 'Type2', fields: [{ name: 'field2', type: { name: 'Int' } }] },
     ]);
 
-    render(<GraphClient />);
+    await act(async () => {
+      render(<GraphClient />);
+    });
+
     const urlInput = screen.getByPlaceholderText('Enter endpoint URL');
     const getDocumentationButton = screen.getByRole('button', { name: /get documentation/i });
 
@@ -39,7 +44,11 @@ describe('GraphClient Component', () => {
       { name: 'Type1', fields: [{ name: 'field1', type: { name: 'String' } }] },
       { name: 'Type2', fields: [{ name: 'field2', type: { name: 'Int' } }] },
     ]);
-    render(<GraphClient />);
+
+    await act(async () => {
+      render(<GraphClient />);
+    });
+
     const urlInput = screen.getByPlaceholderText('Enter endpoint URL');
     const getDocumentationButton = screen.getByRole('button', { name: /get documentation/i });
 
@@ -63,15 +72,19 @@ describe('GraphClient Component', () => {
     expect(documentationElement).not.toBeInTheDocument();
   });
 
-  it('displays the "get data" button', () => {
-    render(<GraphClient />);
+  it('displays the "get data" button', async () => {
+    await act(async () => {
+      render(<GraphClient />);
+    });
     const getDataButton = screen.getByRole('button', { name: /get data/i });
 
     expect(getDataButton).toBeInTheDocument();
   });
 
-  it('displays the response window when responseInfo is available', () => {
-    render(<GraphClient />);
+  it('displays the response window when responseInfo is available', async () => {
+    await act(async () => {
+      render(<GraphClient />);
+    });
 
     const responseWindow = screen.queryByTestId('response-window');
     expect(responseWindow).not.toBeInTheDocument();

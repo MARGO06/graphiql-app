@@ -1,4 +1,4 @@
-import { fireEvent, screen } from '@testing-library/react';
+import { act, fireEvent, screen } from '@testing-library/react';
 import RESTfull from './page';
 import { useParams } from 'next/navigation';
 import { render } from '@/utils/CustomeRenderTest';
@@ -11,49 +11,56 @@ jest.mock('next/navigation', () => ({
 }));
 
 describe('RESTfull Factory', () => {
-  it('renders RestClient with valid method and url', () => {
+  it('renders RestClient with valid method and url', async () => {
     (useParams as jest.Mock).mockReturnValue({
       method: 'GET',
       optionalCatchAllSegment: ['/aHR0cHM6Ly9wb2tlYXBpLmNvL2FwaS92Mg=='],
     });
-
-    render(<RESTfull />);
+    await act(async () => {
+      render(<RESTfull />);
+    });
 
     const header = screen.getByText('RESTfull client');
     expect(header).toBeInTheDocument();
   });
 
-  it('renders NotFound with invalid method', () => {
+  it('renders NotFound with invalid method', async () => {
     (useParams as jest.Mock).mockReturnValue({
       method: 'INVALID_METHOD',
       optionalCatchAllSegment: ['aHR0cHM6Ly9leGFtcGxlLmNvbQ=='],
     });
 
-    render(<RESTfull />);
+    await act(async () => {
+      render(<RESTfull />);
+    });
 
     const header = screen.getByText(/Not found/i);
     expect(header).toBeInTheDocument();
   });
 
-  it('correct handles empty optionalCatchAllSegment', () => {
+  it('correct handles empty optionalCatchAllSegment', async () => {
     (useParams as jest.Mock).mockReturnValue({
       method: 'GET',
       optionalCatchAllSegment: '',
     });
 
-    render(<RESTfull />);
+    await act(async () => {
+      render(<RESTfull />);
+    });
 
     const header = screen.getByText('RESTfull client');
     expect(header).toBeInTheDocument();
   });
 
-  it('renders RestClient with valid method and url', () => {
+  it('renders RestClient with valid method and url', async () => {
     (useParams as jest.Mock).mockReturnValue({
       method: 'GET',
       optionalCatchAllSegment: ['/aHR0cHM6Ly9wb2tlYXBpLmNvL2FwaS92Mg=='],
     });
 
-    render(<RESTfull />);
+    await act(async () => {
+      render(<RESTfull />);
+    });
 
     const addHeaderButton = screen.getByRole('button', { name: 'Add Header' });
 
