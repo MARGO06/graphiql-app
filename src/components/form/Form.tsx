@@ -70,6 +70,7 @@ export const Form: React.FC<FormProps> = ({ handleFormSubmit }) => {
             type="text"
             className={style.inputForm}
             id="name"
+            autoComplete="given-name family-name"
           />
           <div className={style.errorContener}>
             <p className={`${style.error} ${errors.name ? style.visible : style.hidden}`}>
@@ -88,6 +89,7 @@ export const Form: React.FC<FormProps> = ({ handleFormSubmit }) => {
         type="email"
         className={style.inputForm}
         id="email"
+        autoComplete="on"
       />
       <div className={style.errorContener}>
         <p className={`${style.error} ${errors.email ? style.visible : style.hidden}`}>
@@ -114,7 +116,7 @@ export const Form: React.FC<FormProps> = ({ handleFormSubmit }) => {
           onChange={() => togglePasswordVisibility('password')}
           title="show"
         />
-        <label htmlFor="showConfirmPassword"></label>
+        <label htmlFor="showPassword"></label>
       </div>
 
       <div className={style.errorContener}>
