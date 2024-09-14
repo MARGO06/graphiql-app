@@ -44,7 +44,7 @@ export function getUrl(
   }
 
   if (isSend) {
-    saveToHistory(method, currentUrl, encodedUrl, headerParams);
+    saveToHistory(method, currentUrl, url);
   }
 
   return url;

@@ -1,51 +1,26 @@
-import React, { useState } from 'react';
-import Image from 'next/image';
-import magicImage from 'public/magic.png';
+import React from 'react';
 import style from './RequestWindow.module.scss';
 import { ErrorMessage } from '../errorMessage/ErrorMessage';
-import { useTranslations } from 'next-intl';
 
 interface RequestWindowProps {
   currentBody: string;
   setBody: (body: string) => void;
   updateUrlWithoutRedirect: () => void;
+  contentType: string;
+  setContentType: (contentType: string) => void;
+  error: string | null;
+  setError: (error: string | null) => void;
 }
 
 export const RequestWindow: React.FC<RequestWindowProps> = ({
   currentBody,
   setBody,
   updateUrlWithoutRedirect,
+  contentType,
+  setContentType,
+  error,
+  setError,
 }) => {
-  const [contentType, setContentType] = useState('application/json');
-  const [error, setError] = useState<string | null>(null);
-  const [formatSuccess, setFormatSuccess] = useState(false);
-
-  const t = useTranslations('Clients');
-
-  const formatJson = () => {
-    if (contentType === 'application/json') {
-      if (currentBody.trim() === '') {
-        setError(t('empty field'));
-        setFormatSuccess(false);
-        return;
-      }
-
-      try {
-        const correctedBody = currentBody.replace(/'/g, '"');
-        const parsed = JSON.parse(correctedBody);
-        const formatted = JSON.stringify(parsed, null, 2);
-
-        setBody(formatted);
-        setError(null);
-        setFormatSuccess(true);
-        setTimeout(() => setFormatSuccess(false), 1000);
-      } catch (error) {
-        setError(t('syntax err'));
-        setFormatSuccess(false);
-      }
-    }
-  };
-
   return (
     <>
       <div className={style.bodyControl}>
@@ -60,23 +35,11 @@ export const RequestWindow: React.FC<RequestWindowProps> = ({
             <option value="text/plain">TEXT (text/plain)</option>
           </select>
         </div>
-        {contentType === 'application/json' && (
-          <div className={style.magicContainer}>
-            <Image
-              src={magicImage}
-              alt="magic"
-              className={style.magic}
-              onClick={formatJson}
-              title="pretty"
-            />
-          </div>
-        )}
       </div>
 
       <div className={style.editorContainer}>
         <label htmlFor="requestBody"></label>
         <textarea
-          className={`${error ? style.textareaError : formatSuccess ? style.textareaMagic : ''}`}
           id="requestBody"
           rows={10}
           value={currentBody}

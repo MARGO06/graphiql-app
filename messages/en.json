@@ -29,7 +29,7 @@
     "url and sdl are required": "URL and SDL are required",
     "failed to fetch documentation": "Failed to fetch documentation",
     "syntax err": "Syntax does not match JSON",
-    "empty field": "Field is empty",
+    "body empty": "Body is empty",
     "url empty": "URL is empty"
   },
   "Response": {
