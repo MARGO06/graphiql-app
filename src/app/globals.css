@@ -75,6 +75,10 @@ label {
   color: #6f6f6f;
 }
 
+.actions > button {
+  margin-right: 20px;
+}
+
 @media (width <=1240px) {
   body {
     background-image: url('/background_tablet.png');
