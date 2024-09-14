@@ -1,81 +1,73 @@
 import { fetchData } from '@/services/fetchData';
+import fetchMock from 'jest-fetch-mock';
 
-global.fetch = jest.fn();
+fetchMock.enableMocks();
 
 describe('fetchData', () => {
-  const mockSetResponseInfo = jest.fn();
-
   beforeEach(() => {
-    jest.clearAllMocks();
+    fetchMock.resetMocks();
   });
 
-  it('should handle a successful fetch request', async () => {
+  it('should handle successful responses', async () => {
     const mockResponse = {
-      ok: true,
-      status: 200,
-      statusText: 'OK',
-      headers: new Headers({ 'content-type': 'application/json' }),
-      json: jest.fn().mockResolvedValue({ key: 'value' }),
-    };
-
-    (global.fetch as jest.Mock).mockResolvedValue(mockResponse);
-
-    const url = 'https://api.example.com/data';
-    const method = 'GET';
-
-    const data = await fetchData(url, method, mockSetResponseInfo);
-
-    expect(fetch).toHaveBeenCalledWith(url, { method });
-    expect(mockSetResponseInfo).toHaveBeenCalledWith({
       status: 200,
       statusText: 'OK',
       contentType: 'application/json',
       data: { key: 'value' },
-    });
-    expect(data).toEqual({ key: 'value' });
-  });
-
-  it('should handle a fetch request with an error response', async () => {
-    const mockResponse = {
-      ok: false,
-      status: 404,
-      statusText: 'Not Found',
-      headers: new Headers({ 'content-type': 'application/json' }),
-      json: jest.fn(),
     };
 
-    (global.fetch as jest.Mock).mockResolvedValue(mockResponse);
+    fetchMock.mockResponseOnce(JSON.stringify(mockResponse), { status: 200 });
 
-    const url = 'https://api.example.com/data';
-    const method = 'GET';
+    const setResponseInfo = jest.fn();
+    const setError = jest.fn();
 
-    const data = await fetchData(url, method, mockSetResponseInfo);
+    const result = await fetchData(
+      'https://example.com/api',
+      'GET',
+      setResponseInfo,
+      null,
+      setError,
+      [],
+    );
 
-    expect(fetch).toHaveBeenCalledWith(url, { method });
-    expect(mockSetResponseInfo).toHaveBeenCalledWith({
-      status: 'Error',
-      statusText: 'HTTP error! status: 404',
-      contentType: 'N/A',
-      data: null,
-    });
-    expect(data).toBeUndefined();
+    expect(fetchMock).toHaveBeenCalledWith('/api/fetchData', expect.any(Object));
+    expect(setResponseInfo).toHaveBeenCalledWith(mockResponse);
+    expect(setError).toHaveBeenCalledWith('');
+    expect(result).toEqual(mockResponse);
   });
 
-  it('should handle a fetch request with a network error', async () => {
-    (global.fetch as jest.Mock).mockRejectedValue(new Error('Network error'));
+  it('should handle errors', async () => {
+    fetchMock.mockRejectOnce(new Error('Network error'));
 
-    const url = 'https://api.example.com/data';
-    const method = 'GET';
+    const setResponseInfo = jest.fn();
+    const setError = jest.fn();
 
-    const data = await fetchData(url, method, mockSetResponseInfo);
+    await fetchData('https://example.com/api', 'GET', setResponseInfo, null, setError, []);
 
-    expect(fetch).toHaveBeenCalledWith(url, { method });
-    expect(mockSetResponseInfo).toHaveBeenCalledWith({
+    expect(setResponseInfo).toHaveBeenCalledWith({
       status: 'Error',
       statusText: 'Network error',
       contentType: 'N/A',
       data: null,
     });
-    expect(data).toBeUndefined();
+  });
+
+  it('should handle non-OK HTTP responses', async () => {
+    fetchMock.mockResponseOnce(
+      JSON.stringify({ status: 500, statusText: 'Internal Server Error' }),
+      { status: 500 },
+    );
+
+    const setResponseInfo = jest.fn();
+    const setError = jest.fn();
+
+    await fetchData('https://example.com/api', 'GET', setResponseInfo, null, setError, []);
+
+    expect(setResponseInfo).toHaveBeenCalledWith({
+      status: 'Error',
+      statusText: '(Request failed: 500)',
+      contentType: 'N/A',
+      data: null,
+    });
   });
 });

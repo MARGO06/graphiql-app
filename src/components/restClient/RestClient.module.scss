@@ -36,18 +36,19 @@
   border-top-right-radius: 5px;
 }
 
-.apiContainer span {
+.apiContainer h4 {
+  margin: 0;
   font-weight: bold;
   color: #6f6f6f;
 }
 
-.apiContainer a {
-  text-decoration: none;
+.apiContainer span {
+  cursor: pointer;
   color: #6f6f6f;
   transition: color 0.3s ease;
 }
 
-.apiContainer a:hover {
+.apiContainer span:hover {
   color: #ffab67;
   transition: color 0.3s ease;
 }

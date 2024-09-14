@@ -11,7 +11,7 @@
   border: 1px solid #cdcdcd;
   background-color: #f5f5f5b5;
 
-  >h1 {
+  > h1 {
     text-transform: uppercase;
   }
 
@@ -21,7 +21,7 @@
     overflow-y: scroll;
     padding: 20px;
 
-    >li {
+    > li {
       list-style-type: none;
     }
 
@@ -46,14 +46,14 @@
         font-size: 0.8rem;
       }
 
-      >div {
+      > div {
         display: inline-flex;
         justify-content: space-between;
         background-color: #cdcdcd;
         border-radius: 10px;
         padding: 5px 10px;
 
-        >div:nth-child(1) {
+        > div:nth-child(1) {
           color: red;
           text-transform: uppercase;
         }
@@ -69,7 +69,7 @@
       }
     }
 
-    .body>ul>li:nth-child(even) {
+    .body > ul > li:nth-child(even) {
       background-color: white;
     }
   }

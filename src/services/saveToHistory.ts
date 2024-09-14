@@ -2,7 +2,7 @@ export interface HistoryItem {
   method: string;
   url: string;
   urlBase64: string;
-  date: Date;
+  date: string;
   headerParams: string;
 }
 
@@ -17,7 +17,7 @@ export const saveToHistory = (
     const historyArray: HistoryItem[] = existingHistory ? JSON.parse(existingHistory) : [];
 
     const newEntry: HistoryItem = {
-      date: new Date(),
+      date: new Date().toISOString(),
       method,
       url,
       urlBase64,
