@@ -6,12 +6,12 @@ import { fetchData } from '../../services/fetchData';
 import { useTranslations } from 'next-intl';
 import { RequestWindow } from '../request/RequestWindow';
 import { getUrl } from '@/services/createUrl';
-import { useRouter } from 'next/navigation';
 import { Editor } from '../editor/Editor';
 import { ErrorMessage } from '../errorMessage/ErrorMessage';
 import { replaceVariables } from '@/services/replaceVariables';
 import { convertQueryParamsToHeaders } from '@/utils/convertQueryParamsToHeaders';
 import { getQueryStringFromHeaders } from '@/utils/getQueryStringFromHeaders';
+import { formatJson } from '@/utils/formatJson';
 
 export interface ResponseInfo {
   status: number | string;
@@ -44,9 +44,9 @@ export default function RestClient({
   );
   const [variables, setVariables] = useState<{ key: string; value: string; id: string }[]>([]);
   const [error, setError] = useState<string | null>(null);
-  const router = useRouter();
   const [inputValue, setInputValue] = useState(currentURL);
   const [isHeaderUpdated, setIsHeaderUpdated] = useState(false);
+  const [contentType, setContentType] = useState('application/json');
 
   useEffect(() => {
     if (method && initialMethod !== method) {
@@ -72,22 +72,26 @@ export default function RestClient({
   }, [currentURL, initialMethod, currentBody, headers]);
 
   const handleClick = async () => {
-    const isSend = true;
-    const updatedUrl = inputRef.current?.value || '';
     const updatedBody = replaceVariables(body ?? '', variables);
-    const headerParams = getQueryStringFromHeaders(headers);
-    const createUrl = getUrl(selectMethod ?? '', updatedUrl, updatedBody, headerParams, isSend);
 
     if (inputValue && initialMethod) {
-      router.push(createUrl);
-      fetchData(
-        inputValue ?? '',
-        initialMethod ?? 'GET',
-        setResponseInfo,
-        currentBody,
-        setError,
-        headers,
-      );
+      const isFormatSuccessful = formatJson(body, selectMethod, setBody, setError, t, contentType);
+
+      if (isFormatSuccessful) {
+        const isSend = true;
+        const updatedUrl = inputRef.current?.value || '';
+        const headerParams = getQueryStringFromHeaders(headers);
+        getUrl(selectMethod ?? '', updatedUrl, updatedBody, headerParams, isSend);
+
+        fetchData(
+          inputValue ?? '',
+          selectMethod ?? 'GET',
+          setResponseInfo,
+          updatedBody,
+          setError,
+          headers,
+        );
+      }
     } else {
       setError(t('url empty'));
     }
@@ -239,6 +243,10 @@ export default function RestClient({
           currentBody={body ?? ''}
           setBody={setBody}
           updateUrlWithoutRedirect={updateUrlWithoutRedirect}
+          contentType={contentType}
+          setContentType={setContentType}
+          error={error}
+          setError={setError}
         />
       </div>
 
