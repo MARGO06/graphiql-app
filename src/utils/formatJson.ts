@@ -20,7 +20,7 @@ export function formatJson(
 
     if (selectMethod === 'POST') {
       if (!body || body.trim() === '') {
-        setError(t('empty field'));
+        setError(t('body empty'));
         return false;
       }
     }
