@@ -13,6 +13,7 @@ describe('handleGetDocumentation', () => {
 
   it('should fetch documentation and return types on success', async () => {
     (fetch as jest.Mock).mockResolvedValue({
+      ok: true,
       json: jest.fn().mockResolvedValue({
         success: true,
         data: { types: ['Type1', 'Type2'] },
@@ -43,28 +44,17 @@ describe('handleGetDocumentation', () => {
     (fetch as jest.Mock).mockResolvedValue({
       json: jest.fn().mockResolvedValue({
         success: false,
+        error: 'Fetch error',
       }),
+      ok: false,
     });
 
-    const result = await handleGetDocumentation(mockUrl, mockSchema);
-
-    expect(result).toBeUndefined();
+    await expect(handleGetDocumentation(mockUrl, mockSchema)).rejects.toThrow('Fetch error');
   });
 
   it('should handle fetch errors gracefully', async () => {
-    (fetch as jest.Mock).mockRejectedValue(
-      new Error('Documentation fetch failed or success flag is false'),
-    );
+    (fetch as jest.Mock).mockRejectedValue(new Error('Network error'));
 
-    const result = await handleGetDocumentation(mockUrl, mockSchema);
-
-    expect(result).toBeUndefined();
-    expect(fetch).toHaveBeenCalledWith('/api/fetchDocumentation', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ url: mockUrl, schema: mockSchema }),
-    });
+    await expect(handleGetDocumentation(mockUrl, mockSchema)).rejects.toThrow('Network error');
   });
 });
