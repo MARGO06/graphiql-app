@@ -7,7 +7,7 @@ import { useTranslations } from 'next-intl';
 import style from '@/components/graphClient/GraphClient.module.scss';
 import { Documentation } from '@/components/documentation/Documentation';
 import { Schema } from '@/types/graphQLSchema';
-import { usePathname, useSearchParams } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import { handleGetDocumentation } from '@/utils/getDocumentation';
 import { saveToHistory } from '@/services/saveToHistory';
 import { decodeUrlFromBase64 } from '@/utils/fromBase64';
@@ -23,9 +23,8 @@ export const GraphClient: React.FC = () => {
   const [visible, setVisible] = useState(false);
   const t = useTranslations('Clients');
   const pathname = usePathname();
-  const searchParams = useSearchParams();
 
-  const fullUrl = `${pathname}?${searchParams.toString()}`;
+  const fullUrl = `${pathname}`;
   const url = pathname.split('/')[2];
 
   useEffect(() => {
