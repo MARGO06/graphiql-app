@@ -49,9 +49,16 @@ export const Editor: React.FC<EditorProps> = ({
               alt="remove"
               className={style.img}
               onClick={() => handleRemoveHeader(header.id)}
+              data-testid="remove-key"
             />
 
-            <Image src={add} alt="add" className={style.img} onClick={handleAddHeader} />
+            <Image
+              src={add}
+              alt="add"
+              className={style.img}
+              onClick={handleAddHeader}
+              data-testid="add-key"
+            />
           </div>
         </div>
       ))}
