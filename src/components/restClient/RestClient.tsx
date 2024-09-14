@@ -194,7 +194,7 @@ export default function RestClient({
               type="text"
               id="endpoint"
               placeholder={t('enter endpoint URL')}
-              value={inputValue}
+              value={inputValue || ''}
               ref={inputRef}
               onChange={handleChange}
               onBlur={updateUrlWithoutRedirect}
