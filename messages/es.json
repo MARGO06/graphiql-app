@@ -22,7 +22,9 @@
     "get documentation": "OBTENER DOCUMENTACIÓN",
     "get data": "OBTENER DATOS",
     "hidden documentation": "DOCUMENTACION OCULTA",
-    "show documentation": "DOCUNTACION MOSTRAR"
+    "show documentation": "DOCUNTACION MOSTRAR",
+    "url and sdl are required": "URL y SDL son obligatorios",
+    "failed to fetch documentation": "No se pudo recuperar la documentación"
   },
   "Response": {
     "response info": "Información de la respuesta",

@@ -22,7 +22,9 @@
     "get documentation": "GET DOCUMENTATION",
     "get data": "GET DATA",
     "hidden documentation": "HIDDEN DOCUMENTATION",
-    "show documentation": "SHOW DOCUMENTATION"
+    "show documentation": "SHOW DOCUMENTATION",
+    "url and sdl are required": "URL and SDL are required",
+    "failed to fetch documentation": "Failed to fetch documentation"
   },
   "Response": {
     "response info": "Response Info",

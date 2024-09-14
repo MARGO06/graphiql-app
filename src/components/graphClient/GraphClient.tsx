@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ResponseWindow } from '@/components/response/ResponseWindow';
 import { ResponseInfo } from '@/components/restClient/RestClient';
 import { GraphRequest } from '@/components/graphiRequest/GraphiRequest';
@@ -10,6 +10,8 @@ import { Schema } from '@/types/graphQLSchema';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { handleGetDocumentation } from '@/utils/getDocumentation';
 import { saveToHistory } from '@/services/saveToHistory';
+import { decodeUrlFromBase64 } from '@/utils/fromBase64';
+import { getURL } from '@/utils/getURL';
 
 export const GraphClient: React.FC = () => {
   const [responseInfo /*, setResponseInfo*/] = useState<ResponseInfo | null>(null);
@@ -24,22 +26,34 @@ export const GraphClient: React.FC = () => {
   const searchParams = useSearchParams();
 
   const fullUrl = `${pathname}?${searchParams.toString()}`;
+  const url = pathname.split('/')[2];
+
+  useEffect(() => {
+    if (url) {
+      const { sdlParam, urlNew } = getURL(url);
+      setCurrentUrl(urlNew);
+      if (sdlParam) {
+        const sdl = decodeUrlFromBase64(sdlParam);
+        setCurrentSdl(urlNew + sdl);
+      }
+    }
+  }, [url]);
 
   const fetchSchema = async () => {
     try {
       if (!currentUrl || !currentSdl) {
-        throw new Error('URL and SDL are required');
+        throw new Error(t('url and sdl are required'));
       }
       const types = await handleGetDocumentation(currentUrl, currentSdl.slice(currentUrl.length));
       if (types) {
         setShowSchemaButton(true);
         setDocumentation(types);
         setError(null);
-        saveToHistory('POST', currentSdl, fullUrl);
+        saveToHistory('graphiql', currentSdl, fullUrl);
       }
     } catch (error) {
       const err = error as { status: number; message: string };
-      setError(err.message || 'Failed to fetch documentation');
+      setError(err.message || t('failed to fetch documentation'));
     }
   };
 
