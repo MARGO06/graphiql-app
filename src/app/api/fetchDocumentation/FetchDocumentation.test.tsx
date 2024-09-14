@@ -46,7 +46,7 @@ describe('POST function', () => {
 
     const response = await POST(req);
     expect(response).toEqual({
-      error: 'URL is required',
+      error: 'URL and SDL is required',
       status: 400,
     });
   });

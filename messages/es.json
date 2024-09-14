@@ -27,6 +27,8 @@
     "get data": "OBTENER DATOS",
     "hidden documentation": "DOCUMENTACION OCULTA",
     "show documentation": "DOCUNTACION MOSTRAR",
+    "url and sdl are required": "URL y SDL son obligatorios",
+    "failed to fetch documentation": "No se pudo recuperar la documentación",
     "syntax err": "La sintaxis no coincide con JSON",
     "empty field": "El campo está vacío",
     "url empty": "La URL está vacía"

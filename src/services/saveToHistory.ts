@@ -3,14 +3,14 @@ export interface HistoryItem {
   url: string;
   urlBase64: string;
   date: string;
-  headerParams: string;
+  headerParams?: string;
 }
 
 export const saveToHistory = (
   method: string,
   url: string,
   urlBase64: string,
-  headerParams: string,
+  headerParams?: string,
 ) => {
   if (typeof window !== 'undefined') {
     const existingHistory = localStorage.getItem('history');
