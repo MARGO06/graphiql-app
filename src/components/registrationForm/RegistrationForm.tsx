@@ -12,7 +12,7 @@ import { useTranslations } from 'next-intl';
 
 export const RegistrationForm: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
-  const { updateToken, updateUserName } = useAuth();
+  const { updateToken } = useAuth();
   const router = useRouter();
   const t = useTranslations('errors');
 
@@ -37,7 +37,7 @@ export const RegistrationForm: React.FC = () => {
         updateToken(user.token);
         if (name) writeUserData(user.uid, name, email);
         const userData = await readUserData(user.uid);
-        updateUserName(userData.username);
+        localStorage.setItem('userName', userData.username);
         router.replace('/');
       } else {
         setError(user.error);
