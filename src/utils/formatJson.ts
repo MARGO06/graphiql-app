@@ -39,6 +39,8 @@ export function formatJson(
       setError(t('syntax err'));
       return false;
     }
+  } else {
+    return true;
   }
   return false;
 }
