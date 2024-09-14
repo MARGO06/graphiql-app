@@ -30,7 +30,7 @@ export default function History() {
                     </div>
                   </div>
                   <div className={style.url}>
-                    <Link href={`/${item.method}/${item.urlBase64}`} className={style.signIn}>
+                    <Link href={item.urlBase64} className={style.signIn}>
                       {item.url}
                     </Link>
                   </div>
