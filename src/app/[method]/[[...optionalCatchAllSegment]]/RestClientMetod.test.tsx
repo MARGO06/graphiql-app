@@ -3,8 +3,15 @@ import RESTfull from './page';
 import { useParams } from 'next/navigation';
 import { render } from '@/utils/CustomeRenderTest';
 
+jest.mock('next/navigation', () => ({
+  useSearchParams: jest.fn(() => []),
+  useRouter: jest.fn(),
+  usePathname: jest.fn(),
+  useParams: jest.fn(),
+}));
+
 describe('RESTfull Factory', () => {
-  it.skip('renders RestClient with valid method and url', () => {
+  it('renders RestClient with valid method and url', () => {
     (useParams as jest.Mock).mockReturnValue({
       method: 'GET',
       optionalCatchAllSegment: ['/aHR0cHM6Ly9wb2tlYXBpLmNvL2FwaS92Mg=='],
@@ -16,7 +23,7 @@ describe('RESTfull Factory', () => {
     expect(header).toBeInTheDocument();
   });
 
-  it.skip('renders NotFound with invalid method', () => {
+  it('renders NotFound with invalid method', () => {
     (useParams as jest.Mock).mockReturnValue({
       method: 'INVALID_METHOD',
       optionalCatchAllSegment: ['aHR0cHM6Ly9leGFtcGxlLmNvbQ=='],
@@ -28,7 +35,7 @@ describe('RESTfull Factory', () => {
     expect(header).toBeInTheDocument();
   });
 
-  it.skip('correct handles empty optionalCatchAllSegment', () => {
+  it('correct handles empty optionalCatchAllSegment', () => {
     (useParams as jest.Mock).mockReturnValue({
       method: 'GET',
       optionalCatchAllSegment: '',

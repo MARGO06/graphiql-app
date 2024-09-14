@@ -9,6 +9,7 @@ jest.mock('next/navigation', () => ({
   usePathname: jest.fn(),
   push: jest.fn(),
   useParams: jest.fn(),
+  useSearchParams: jest.fn(() => []),
 }));
 
 jest.mock('next/headers', () => ({
