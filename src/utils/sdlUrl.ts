@@ -6,3 +6,8 @@ export const updateSdlUrl = (sdl: string, url: string) => {
   const newUrl = `${url}?sdl=${encodeURIComponent(encodedSdl)}`;
   return newUrl;
 };
+
+export const updateQuery = (query: string) => {
+  const encodedSdl = encodeUrlToBase64(query);
+  return encodedSdl;
+};

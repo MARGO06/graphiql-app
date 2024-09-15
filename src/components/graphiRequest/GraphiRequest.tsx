@@ -3,7 +3,7 @@ import { GraphRequestProps } from '@/types/graphRequest';
 import style from '@/components/graphiRequest/GraphiRequest.module.scss';
 import { useTranslations } from 'next-intl';
 import { updateUrl } from '@/utils/updateURL';
-import { updateSdlUrl } from '@/utils/sdlUrl';
+import { updateQuery, updateSdlUrl } from '@/utils/sdlUrl';
 
 export const GraphRequest: React.FC<GraphRequestProps> = ({
   currentSdl,
@@ -17,7 +17,7 @@ export const GraphRequest: React.FC<GraphRequestProps> = ({
 
   const previousSdlRef = useRef(currentSdl);
   const previousURLRef = useRef(currentUrl);
-  //const previousQueryRef = useRef(currentQuery);
+  const previousQueryRef = useRef(currentQuery);
 
   const resetUrl = () => {
     if (currentUrl === '' && currentSdl === '') {
@@ -47,6 +47,18 @@ export const GraphRequest: React.FC<GraphRequestProps> = ({
     resetUrl();
   };
 
+  const handleQueryBlur = () => {
+    if (currentQuery !== previousQueryRef.current) {
+      if (currentQuery !== previousQueryRef.current && currentSdl !== '') {
+        setCurrentQuery(currentQuery);
+        const newUrl = updateSdlUrl(currentSdl, currentUrl);
+        const query = updateQuery(currentQuery);
+        updateUrl(`${newUrl}/${query}`);
+      }
+    }
+    resetUrl();
+  };
+
   const handleUrlChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newURL = e.target.value;
     setCurrentUrl(newURL);
@@ -68,12 +80,16 @@ export const GraphRequest: React.FC<GraphRequestProps> = ({
   const handleQueryChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const newQuery = e.target.value;
     setCurrentQuery(newQuery);
+    if (newQuery === '') {
+      setCurrentUrl('');
+    }
   };
 
   useEffect(() => {
     setCurrentUrl(currentUrl);
     setCurrentSdl(currentSdl);
-  }, [currentUrl, currentSdl, setCurrentSdl, setCurrentUrl]);
+    setCurrentQuery(currentQuery);
+  }, [currentUrl, currentSdl, setCurrentSdl, setCurrentUrl, setCurrentQuery, currentQuery]);
 
   return (
     <div className={style.wrapper}>
@@ -109,7 +125,7 @@ export const GraphRequest: React.FC<GraphRequestProps> = ({
               rows={10}
               value={currentQuery}
               onChange={handleQueryChange}
-              //onBlur={updateUrlWithoutRedirect}
+              onBlur={handleQueryBlur}
             />
           </div>
         </div>
