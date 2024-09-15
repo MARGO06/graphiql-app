@@ -30,10 +30,12 @@ export const GraphClient: React.FC = () => {
   useEffect(() => {
     if (url) {
       const { sdlParam, urlNew } = getURL(url);
-      setCurrentUrl(urlNew);
-      if (sdlParam) {
-        const sdl = decodeUrlFromBase64(sdlParam);
-        setCurrentSdl(urlNew + sdl);
+      if (sdlParam && urlNew) {
+        setCurrentUrl(urlNew);
+        if (sdlParam) {
+          const sdl = decodeUrlFromBase64(sdlParam);
+          setCurrentSdl(urlNew + sdl);
+        }
       }
     }
   }, [url]);
@@ -65,7 +67,7 @@ export const GraphClient: React.FC = () => {
     <div className={style.wrapper}>
       <div className={style.container}>
         <div className={style.headerContainer}>
-          <h1>GraphiQl</h1>
+          <h1>GraphiQL</h1>
         </div>
         <div className={style.buttons}>
           <button className={style.buttonSchema} onClick={fetchSchema}>
