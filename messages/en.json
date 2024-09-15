@@ -30,7 +30,8 @@
     "failed to fetch documentation": "Failed to fetch documentation",
     "syntax err": "Syntax does not match JSON",
     "body empty": "Body is empty",
-    "url empty": "URL is empty"
+    "url empty": "URL is empty",
+    "url and query are required": "url and query are required"
   },
   "Response": {
     "response info": "Response Info",

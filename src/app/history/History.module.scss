@@ -13,6 +13,8 @@
 
   > h1 {
     text-transform: uppercase;
+    color: #6f6f6f;
+    font-size: 1.8rem;
   }
 
   .table {
@@ -53,8 +55,8 @@
       > div {
         display: inline-flex;
         justify-content: space-between;
-        background-color: #cdcdcd;
-        border-radius: 10px;
+        background-color: #cdcdcddc;
+        border-radius: 5px;
         padding: 5px 10px;
 
         > div:nth-child(1) {
@@ -64,12 +66,17 @@
       }
 
       .url {
-        background-color: white;
+        background-color: rgb(255 255 255 / 42.5%);
         cursor: pointer;
       }
 
-      .url:hover {
-        font-weight: 700;
+      .url a {
+        transition: 0.3s ease;
+      }
+
+      .url a:hover {
+        transition: 0.3s ease;
+        color: #ffab67;
       }
     }
 
@@ -82,4 +89,10 @@
 .norequest {
   font-size: 2rem;
   gap: 20px;
+}
+
+@media (width <=500px) {
+  .wrapper {
+    width: auto;
+  }
 }

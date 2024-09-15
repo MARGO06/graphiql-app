@@ -66,6 +66,10 @@ input::placeholder {
   color: #cfcfcf;
 }
 
+textarea::placeholder {
+  color: #cfcfcf;
+}
+
 input:focus {
   outline: none;
   border: 1px solid #ffab67;
