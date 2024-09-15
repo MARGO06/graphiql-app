@@ -21,7 +21,6 @@ const config = {
   modulePathIgnorePatterns: [
     '<rootDir>/build/',
     '<rootDir>//node_modules',
-    '<rootDir>/src/lib/',
     '<rootDir>/.next/',
     '<rootDir>/src/types/',
   ],
