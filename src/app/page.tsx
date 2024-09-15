@@ -5,10 +5,19 @@ import { AboutUs } from '@/components/aboutUS/AboutUs';
 import { useTranslations } from 'next-intl';
 import { useAuth } from '@/hooks/useAuth';
 import { saveCurrentUrlToLocalStorage } from '@/services/baseURL';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function Home() {
-  const { token, userName } = useAuth();
+  const { token } = useAuth();
+  const [userName, setUserName] = useState('');
+
+  useEffect(() => {
+    const name = localStorage.getItem('userName');
+    if (name) {
+      setUserName(name);
+    }
+  }, []);
+
   useEffect(() => {
     saveCurrentUrlToLocalStorage();
   }, []);

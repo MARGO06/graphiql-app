@@ -26,7 +26,6 @@ export const GraphClient: React.FC = () => {
   const pathname = usePathname();
 
   const fullUrl = `${pathname}`;
-  const partUrl = fullUrl.split('/').splice(2).join('');
   const url = pathname.split('/')[2];
 
   useEffect(() => {
@@ -50,12 +49,12 @@ export const GraphClient: React.FC = () => {
         setShowSchemaButton(true);
         setDocumentation(types);
         setError(null);
-        saveToHistory('graphiql', currentSdl, partUrl);
+        saveToHistory('graphiql', currentSdl, fullUrl);
       }
     } catch (error) {
       const err = error as { status: number; message: string };
       setError(err.message || t('failed to fetch documentation'));
-      saveToHistory('graphiql', currentSdl, partUrl);
+      saveToHistory('graphiql', currentSdl, fullUrl);
     }
   };
 

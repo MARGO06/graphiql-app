@@ -2,16 +2,21 @@
 import Link from 'next/link';
 import style from './History.module.scss';
 import styleLink from '../../app/page.module.css';
-import { useHistory } from '@/hooks/useHistory';
+import { HistoryItem, useHistory } from '@/hooks/useHistory';
 import { useTranslations } from 'next-intl';
+import { dateToUnixEpoch } from '@/utils/ConvertStringsDates';
 
 export default function History() {
   const { requests } = useHistory();
   const t = useTranslations('History');
 
+  const request = requests.sort(
+    (a: HistoryItem, b: HistoryItem) => dateToUnixEpoch(b.date) - dateToUnixEpoch(a.date),
+  );
+
   return (
     <section className={style.wrapper}>
-      {requests.length && (
+      {request.length && (
         <>
           <h1>{t('history requests')}</h1>
           <div className={style.table}>
@@ -20,10 +25,12 @@ export default function History() {
                 <div className={style.row}>
                   <div>
                     <div>{item.method}</div>
-                    <div>Time</div>
+                    <div className={style.dateformat}>
+                      {item.date.toLocaleString('en-GB').slice(0, -5)}
+                    </div>
                   </div>
                   <div className={style.url}>
-                    <Link href={`/${item.method}/${item.urlBase64}`} className={style.signIn}>
+                    <Link href={item.urlBase64} className={style.signIn}>
                       {item.url}
                     </Link>
                   </div>

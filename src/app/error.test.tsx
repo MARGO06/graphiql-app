@@ -2,13 +2,14 @@ import '@testing-library/jest-dom';
 import { useRouter } from 'next/navigation';
 import { customRender } from '@/utils/CustomeRenderTest';
 import ErrorBoundary from './error';
-import { screen, fireEvent } from '@testing-library/react';
+import { screen, fireEvent, act } from '@testing-library/react';
 
 describe('ErrorBoundary Page', () => {
-  it('renders page', () => {
+  it('renders page', async () => {
     const mockError = new Error('Test error message');
-
-    customRender(<ErrorBoundary error={mockError} reset={jest.fn()} />);
+    await act(async () => {
+      customRender(<ErrorBoundary error={mockError} reset={jest.fn()} />);
+    });
 
     const heading = screen.getByRole('heading', { level: 2, name: /Something went wrong/i });
     expect(heading).toBeInTheDocument();

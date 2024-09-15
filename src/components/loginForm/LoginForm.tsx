@@ -12,7 +12,7 @@ import { readUserData } from '@/utils/getDataInFirebase';
 export const LoginForm: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
-  const { updateToken, updateUserName } = useAuth();
+  const { updateToken } = useAuth();
   const t = useTranslations('errors');
 
   const handleErrorReset = () => {
@@ -32,9 +32,9 @@ export const LoginForm: React.FC = () => {
       const user = await response.json();
       if (user.token) {
         updateToken(user.token);
-        router.replace('/');
         const userData = await readUserData(user.uid);
-        updateUserName(userData.username);
+        localStorage.setItem('userName', userData.username);
+        router.replace('/');
       } else {
         setError(user.error);
       }

@@ -9,6 +9,7 @@ jest.mock('next/navigation', () => ({
   usePathname: jest.fn(),
   push: jest.fn(),
   useParams: jest.fn(),
+  useSearchParams: jest.fn(() => []),
 }));
 
 jest.mock('next/headers', () => ({
@@ -16,3 +17,11 @@ jest.mock('next/headers', () => ({
     get: jest.fn(() => ({ value: 'mockedJWTToken' })),
   })),
 }));
+
+beforeEach(() => {
+  global.fetch = jest.fn(() =>
+    Promise.resolve({
+      json: () => Promise.resolve({ token: 'test-token' }),
+    }),
+  );
+});

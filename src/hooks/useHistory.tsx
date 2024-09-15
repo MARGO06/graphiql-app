@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
 
-interface HistoryItem {
+export interface HistoryItem {
   method: string;
   url: string;
   urlBase64: string;
+  date: Date;
 }
 
 export const useHistory = () => {
@@ -11,7 +12,7 @@ export const useHistory = () => {
 
   useEffect(() => {
     const storedHistory = localStorage.getItem('history');
-    if (storedHistory) {
+    if (storedHistory?.length) {
       try {
         setHistory(JSON.parse(storedHistory));
       } catch (error) {
