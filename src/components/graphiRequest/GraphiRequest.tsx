@@ -3,7 +3,7 @@ import { GraphRequestProps } from '@/types/graphRequest';
 import style from '@/components/graphiRequest/GraphiRequest.module.scss';
 import { useTranslations } from 'next-intl';
 import { updateUrl } from '@/utils/updateURL';
-import { updateQuery, updateSdlUrl } from '@/utils/sdlUrl';
+import { updateSdlUrl } from '@/utils/sdlUrl';
 
 export const GraphRequest: React.FC<GraphRequestProps> = ({
   currentSdl,
@@ -20,9 +20,10 @@ export const GraphRequest: React.FC<GraphRequestProps> = ({
   const previousQueryRef = useRef(currentQuery);
 
   const resetUrl = () => {
-    if (currentUrl === '' && currentSdl === '') {
+    if (currentUrl === '' && currentSdl === '' && currentQuery === '') {
       setCurrentUrl('');
       setCurrentSdl('');
+      setCurrentQuery('');
       updateUrl('');
     }
   };
@@ -51,9 +52,8 @@ export const GraphRequest: React.FC<GraphRequestProps> = ({
     if (currentQuery !== previousQueryRef.current) {
       if (currentQuery !== previousQueryRef.current && currentSdl !== '') {
         setCurrentQuery(currentQuery);
-        const newUrl = updateSdlUrl(currentSdl, currentUrl);
-        const query = updateQuery(currentQuery);
-        updateUrl(`${newUrl}/${query}`);
+        const newUrl = updateSdlUrl(currentSdl, currentUrl, currentQuery);
+        updateUrl(newUrl);
       }
     }
     resetUrl();
@@ -80,9 +80,6 @@ export const GraphRequest: React.FC<GraphRequestProps> = ({
   const handleQueryChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const newQuery = e.target.value;
     setCurrentQuery(newQuery);
-    if (newQuery === '') {
-      setCurrentUrl('');
-    }
   };
 
   useEffect(() => {
@@ -123,6 +120,7 @@ export const GraphRequest: React.FC<GraphRequestProps> = ({
               className={style.queryEditor}
               id="queryEditor"
               rows={10}
+              placeholder={'{countries{name, code}}'}
               value={currentQuery}
               onChange={handleQueryChange}
               onBlur={handleQueryBlur}

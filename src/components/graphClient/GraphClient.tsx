@@ -30,11 +30,15 @@ export const GraphClient: React.FC = () => {
 
   useEffect(() => {
     if (url) {
-      const { sdlParam, urlNew } = getURL(url);
+      const { sdlParam, urlNew, queryParam } = getURL(url);
       setCurrentUrl(urlNew);
       if (sdlParam) {
         const sdl = decodeUrlFromBase64(sdlParam);
         setCurrentSdl(urlNew + sdl);
+      }
+      if (queryParam) {
+        const query = decodeUrlFromBase64(queryParam);
+        setCurrentQuery(query);
       }
     }
   }, [url]);
@@ -65,10 +69,10 @@ export const GraphClient: React.FC = () => {
       }
       const data = await handleGetData(currentUrl, currentQuery);
       setResponseInfo(data);
-
-      //saveToHistory('graphiql', currentSdl, partUrl);
+      saveToHistory('graphiql', currentSdl, fullUrl);
     } catch (error) {
       const err = error as { status: number; message: string };
+      saveToHistory('graphiql', currentSdl, fullUrl);
       setResponseInfo({
         status: err.status,
         data: 'Error',
