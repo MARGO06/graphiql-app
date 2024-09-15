@@ -1,20 +1,37 @@
-import React, { startTransition } from 'react';
 import style from '@/components/header/language/Language.module.scss';
-import { Locale } from '@/config';
+import React, { startTransition, useEffect, useState } from 'react';
+import Cookies from 'js-cookie';
 import { setUserLocale } from '@/services/locale';
+import { Locale } from '@/config';
 
 export const Languages: React.FC = () => {
-  const toggleLanguage = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const locale = e.currentTarget.value as Locale;
+  const [selectedLanguage, setSelectedLanguage] = useState<string>('en');
+
+  const toggleLanguage = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const newLanguage = event.currentTarget.value as Locale;
 
     startTransition(() => {
-      setUserLocale(locale);
+      setUserLocale(newLanguage);
     });
+    setSelectedLanguage(newLanguage);
+    Cookies.set('NEXT_LOCALE', newLanguage);
   };
+
+  useEffect(() => {
+    const savedLanguage = Cookies.get('NEXT_LOCALE');
+    if (savedLanguage) {
+      setSelectedLanguage(savedLanguage);
+    }
+  }, []);
 
   return (
     <div className={style.language}>
-      <select onChange={toggleLanguage} className={style.selectWrap} id="languageselect">
+      <select
+        value={selectedLanguage}
+        onChange={toggleLanguage}
+        className={style.selectWrap}
+        id="languageselect"
+      >
         <option value="en" data-testid="en-option">
           English
         </option>
