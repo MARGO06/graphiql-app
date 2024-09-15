@@ -8,13 +8,16 @@ import { updateSdlUrl } from '@/utils/sdlUrl';
 export const GraphRequest: React.FC<GraphRequestProps> = ({
   currentSdl,
   currentUrl,
+  currentQuery,
   setCurrentSdl,
   setCurrentUrl,
+  setCurrentQuery,
 }) => {
   const t = useTranslations('Clients');
 
   const previousSdlRef = useRef(currentSdl);
   const previousURLRef = useRef(currentUrl);
+  //const previousQueryRef = useRef(currentQuery);
 
   const resetUrl = () => {
     if (currentUrl === '' && currentSdl === '') {
@@ -62,6 +65,11 @@ export const GraphRequest: React.FC<GraphRequestProps> = ({
     }
   };
 
+  const handleQueryChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const newQuery = e.target.value;
+    setCurrentQuery(newQuery);
+  };
+
   useEffect(() => {
     setCurrentUrl(currentUrl);
     setCurrentSdl(currentSdl);
@@ -91,6 +99,17 @@ export const GraphRequest: React.FC<GraphRequestProps> = ({
               value={currentSdl}
               onChange={handleSdlChange}
               onBlur={handleSdlBlur}
+            />
+          </div>
+          <div className={style.editorContainer}>
+            <label htmlFor="queryEditor">Query</label>
+            <textarea
+              className={style.queryEditor}
+              id="queryEditor"
+              rows={10}
+              value={currentQuery}
+              onChange={handleQueryChange}
+              //onBlur={updateUrlWithoutRedirect}
             />
           </div>
         </div>
