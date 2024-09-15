@@ -31,7 +31,8 @@
     "failed to fetch documentation": "No se pudo recuperar la documentación",
     "syntax err": "La sintaxis no coincide con JSON",
     "body empty": "El cuerpo está vacío",
-    "url empty": "La URL está vacía"
+    "url empty": "La URL está vacía",
+    "url and query are required": "La URL y la consulta son obligatorias"
   },
   "Response": {
     "response info": "Información de la respuesta",
