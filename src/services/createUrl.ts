@@ -1,8 +1,8 @@
 import { getCurrentUrlFromLocalStorage } from './baseURL';
 import { saveToHistory } from './saveToHistory';
 
-function encodeBase64(data: string) {
-  return btoa(unescape(encodeURIComponent(data)));
+export function encodeBase64(data: string) {
+  return btoa(encodeURIComponent(data));
 }
 
 export function decodeBase64(encoded: string): string {

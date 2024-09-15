@@ -1,4 +1,4 @@
-import { encodeUrlToBase64 } from '@/utils/base64';
+import { encodeUrlToBase64 } from './base64';
 
 export const updateSdlUrl = (sdl: string, url: string, query?: string) => {
   const newSdl = sdl.slice(url.length);

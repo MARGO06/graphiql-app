@@ -14,7 +14,7 @@ it('get encoded url without params', () => {
 it('get encoded url without params', () => {
   const url = 'aHR0cHM6Ly9wb2tlYXBpLmNvL2FwaS92Mg==';
   const { sdlParam, urlNew } = getURL(url);
-  expect(sdlParam).toEqual(null);
+  expect(sdlParam).toEqual(undefined);
   expect(urlNew).toEqual('https://pokeapi.co/api/v2');
 });
 

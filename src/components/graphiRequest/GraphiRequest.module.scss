@@ -1,30 +1,31 @@
 .wrapper {
-  width: auto;
-  flex-grow: 0.5;
+  width: 50%;
+
+  @media (width < 1100px) {
+    width: 100%;
+  }
 }
 
 .inputContainer {
+  width: 90%;
   display: flex;
   gap: 20px;
   flex-direction: column;
+
+  @media (width < 1100px) {
+    align-items: center;
+  }
 }
 
 .urlInput,
-.sdlInput,
-.editorContainer {
+.sdlInput {
   display: flex;
   flex-direction: column;
   gap: 5px;
   font-size: 1.6rem;
 
-  @media (width<450px) {
-    font-size: 1.1rem;
-  }
-
-  > input {
-    @media (width<450px) {
-      font-size: 1.1rem;
-    }
+  @media (width < 1100px) {
+    width: 80%;
   }
 }
 
