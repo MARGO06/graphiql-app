@@ -7,7 +7,7 @@ it('get encoded url without params', () => {
   const url = 'https://pokeapi.co/api/v2';
   updateUrl(url);
   expect(window.location.pathname).toEqual(
-    '/graphiql/aHR0cHMlM0ElMkYlMkZwb2tlYXBpLmNvJTJGYXBpJTJGdjI=',
+    '/null/graphiql/aHR0cHMlM0ElMkYlMkZwb2tlYXBpLmNvJTJGYXBpJTJGdjI=',
   );
 });
 
