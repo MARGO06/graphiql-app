@@ -28,7 +28,6 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
-    "@reduxjs/toolkit": "^2.2.7",
     "firebase": "^10.13.0",
     "js-cookie": "^3.0.5",
     "next": "14.2.5",
@@ -37,7 +36,6 @@
     "react-dom": "^18",
     "react-hook-form": "^7.53.0",
     "react-json-pretty": "^2.2.0",
-    "react-redux": "^9.1.2",
     "sass": "^1.77.8",
     "sharp": "^0.33.5",
     "yup": "^1.4.0"
