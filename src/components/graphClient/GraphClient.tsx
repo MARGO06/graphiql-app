@@ -1,7 +1,5 @@
 'use client';
 import React, { useState, useEffect } from 'react';
-import { ResponseWindow } from '@/components/response/ResponseWindow';
-import { ResponseInfo } from '@/components/restClient/RestClient';
 import { GraphRequest } from '@/components/graphiRequest/GraphiRequest';
 import { useTranslations } from 'next-intl';
 import style from '@/components/graphClient/GraphClient.module.scss';
@@ -9,14 +7,17 @@ import { Documentation } from '@/components/documentation/Documentation';
 import { Schema } from '@/types/graphQLSchema';
 import { usePathname } from 'next/navigation';
 import { handleGetDocumentation } from '@/utils/getDocumentation';
+import { handleGetData } from '@/utils/getDataGraphiQl';
 import { saveToHistory } from '@/services/saveToHistory';
 import { decodeUrlFromBase64 } from '@/utils/fromBase64';
 import { getURL } from '@/utils/getURL';
+import { ResponseGraph, ResponseInfoGraph } from '@/components/graphiResponse/GraphiResponse';
 
 export const GraphClient: React.FC = () => {
-  const [responseInfo /*, setResponseInfo*/] = useState<ResponseInfo | null>(null);
+  const [responseInfo, setResponseInfo] = useState<ResponseInfoGraph | null>(null);
   const [currentUrl, setCurrentUrl] = useState<string>('');
   const [currentSdl, setCurrentSdl] = useState<string>('');
+  const [currentQuery, setCurrentQuery] = useState<string>('');
   const [error, setError] = useState<string | null>(null);
   const [showSchemaButton, setShowSchemaButton] = useState(false);
   const [documentation, setDocumentation] = useState<Schema | null>(null);
@@ -29,13 +30,17 @@ export const GraphClient: React.FC = () => {
 
   useEffect(() => {
     if (url) {
-      const { sdlParam, urlNew } = getURL(url);
+      const { sdlParam, urlNew, queryParam } = getURL(url);
       if (sdlParam && urlNew) {
         setCurrentUrl(urlNew);
         if (sdlParam) {
           const sdl = decodeUrlFromBase64(sdlParam);
           setCurrentSdl(urlNew + sdl);
         }
+      }
+      if (queryParam) {
+        const query = decodeUrlFromBase64(queryParam);
+        setCurrentQuery(query);
       }
     }
   }, [url]);
@@ -59,6 +64,24 @@ export const GraphClient: React.FC = () => {
     }
   };
 
+  const fetchQuery = async () => {
+    try {
+      if (!currentUrl || !currentQuery) {
+        throw new Error(t('url and query are required'));
+      }
+      const data = await handleGetData(currentUrl, currentQuery);
+      setResponseInfo(data);
+      saveToHistory('graphiql', currentSdl, fullUrl);
+    } catch (error) {
+      const err = error as { status: number; message: string };
+      saveToHistory('graphiql', currentSdl, fullUrl);
+      setResponseInfo({
+        status: err.status,
+        data: 'Error',
+      });
+    }
+  };
+
   const handleShowDocumentation = () => {
     setVisible((prev) => !prev);
   };
@@ -73,7 +96,9 @@ export const GraphClient: React.FC = () => {
           <button className={style.buttonSchema} onClick={fetchSchema}>
             {t('get documentation')}
           </button>
-          <button className={style.button_send}>{t('get data')}</button>
+          <button className={style.button_send} onClick={fetchQuery}>
+            {t('get data')}
+          </button>
           {showSchemaButton && !error ? (
             <button className={style.button_send} onClick={handleShowDocumentation}>
               {visible ? t('hidden documentation') : t('show documentation')}
@@ -88,9 +113,11 @@ export const GraphClient: React.FC = () => {
             currentSdl={currentSdl}
             setCurrentUrl={setCurrentUrl}
             setCurrentSdl={setCurrentSdl}
+            currentQuery={currentQuery}
+            setCurrentQuery={setCurrentQuery}
           />
           <div className={style.response}>
-            {responseInfo && <ResponseWindow responseInfo={responseInfo} />}
+            {responseInfo && <ResponseGraph responseInfo={responseInfo} />}
           </div>
           {documentation && visible && !error && <Documentation data={documentation} />}
         </div>

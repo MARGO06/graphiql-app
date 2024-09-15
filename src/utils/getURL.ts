@@ -6,9 +6,11 @@ export const getURL = (url: string) => {
     const urlUTF8 = decodeUrlFromBase64(url);
     const urlObj = new URL(urlUTF8);
     const searchParams = new URLSearchParams(urlObj.search);
-    const sdlParam = searchParams.get('sdl');
+    const sdlQueryParam = searchParams.get('sdl');
+    const sdlParam = sdlQueryParam?.split('/')[0];
     const urlNew = urlUTF8.split('?sdl')[0];
-    return { sdlParam, urlNew, err };
+    const queryParam = sdlQueryParam?.split('/?query=')[1];
+    return { sdlParam, urlNew, queryParam };
   } catch (error) {
     err = 'Invalid URL, check data';
     return { err };

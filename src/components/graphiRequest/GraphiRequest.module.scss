@@ -1,14 +1,20 @@
 .wrapper {
-  width: auto;
-  flex-grow: 0.5;
+  width: 50%;
+
+  @media (width < 1100px) {
+    width: 100%;
+  }
 }
 
 .inputContainer {
+  width: 90%;
   display: flex;
   gap: 20px;
   flex-direction: column;
 
-
+  @media (width < 1100px) {
+    align-items: center;
+  }
 }
 
 .urlInput,
@@ -18,14 +24,19 @@
   gap: 5px;
   font-size: 1.6rem;
 
-  @media(width<450px) {
-    font-size: 1.1rem;
+  @media (width < 1100px) {
+    width: 80%;
   }
+}
 
-  >input {
-    @media(width<450px) {
-      font-size: 1.1rem;
-    }
-  }
-
+.editorContainer textarea {
+  width: 98%;
+  max-width: 1000px;
+  max-height: 440px;
+  border: 1px solid #cdcdcd;
+  border-radius: 5px;
+  margin: 5px 0;
+  resize: none;
+  font-size: 14px;
+  padding: 8px;
 }

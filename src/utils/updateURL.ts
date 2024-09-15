@@ -1,5 +1,5 @@
 import { getCurrentUrlFromLocalStorage } from '@/services/baseURL';
-import { encodeUrlToBase64 } from '@/utils/base64';
+import { encodeUrlToBase64 } from './base64';
 
 export const updateUrl = (newSlug: string) => {
   const baseUrl = getCurrentUrlFromLocalStorage();

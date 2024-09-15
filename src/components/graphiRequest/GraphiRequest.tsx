@@ -8,18 +8,22 @@ import { updateSdlUrl } from '@/utils/sdlUrl';
 export const GraphRequest: React.FC<GraphRequestProps> = ({
   currentSdl,
   currentUrl,
+  currentQuery,
   setCurrentSdl,
   setCurrentUrl,
+  setCurrentQuery,
 }) => {
   const t = useTranslations('Clients');
 
   const previousSdlRef = useRef(currentSdl);
   const previousURLRef = useRef(currentUrl);
+  const previousQueryRef = useRef(currentQuery);
 
   const resetUrl = () => {
-    if (currentUrl === '' && currentSdl === '') {
+    if (currentUrl === '' && currentSdl === '' && currentQuery === '') {
       setCurrentUrl('');
       setCurrentSdl('');
+      setCurrentQuery('');
       updateUrl('');
     }
   };
@@ -44,6 +48,17 @@ export const GraphRequest: React.FC<GraphRequestProps> = ({
     resetUrl();
   };
 
+  const handleQueryBlur = () => {
+    if (currentQuery !== previousQueryRef.current) {
+      if (currentQuery !== previousQueryRef.current && currentSdl !== '') {
+        setCurrentQuery(currentQuery);
+        const newUrl = updateSdlUrl(currentSdl, currentUrl, currentQuery);
+        updateUrl(newUrl);
+      }
+    }
+    resetUrl();
+  };
+
   const handleUrlChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newURL = e.target.value;
     setCurrentUrl(newURL);
@@ -62,10 +77,16 @@ export const GraphRequest: React.FC<GraphRequestProps> = ({
     }
   };
 
+  const handleQueryChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const newQuery = e.target.value;
+    setCurrentQuery(newQuery);
+  };
+
   useEffect(() => {
     setCurrentUrl(currentUrl);
     setCurrentSdl(currentSdl);
-  }, [currentUrl, currentSdl, setCurrentSdl, setCurrentUrl]);
+    setCurrentQuery(currentQuery);
+  }, [currentUrl, currentSdl, setCurrentSdl, setCurrentUrl, setCurrentQuery, currentQuery]);
 
   return (
     <div className={style.wrapper}>
@@ -91,6 +112,18 @@ export const GraphRequest: React.FC<GraphRequestProps> = ({
               value={currentSdl}
               onChange={handleSdlChange}
               onBlur={handleSdlBlur}
+            />
+          </div>
+          <div className={style.editorContainer}>
+            <label htmlFor="queryEditor">Query</label>
+            <textarea
+              className={style.queryEditor}
+              id="queryEditor"
+              rows={10}
+              placeholder={'{countries{name, code}}'}
+              value={currentQuery}
+              onChange={handleQueryChange}
+              onBlur={handleQueryBlur}
             />
           </div>
         </div>
