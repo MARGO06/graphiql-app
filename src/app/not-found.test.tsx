@@ -1,12 +1,14 @@
 import '@testing-library/jest-dom';
-import { fireEvent, screen } from '@testing-library/react';
+import { act, fireEvent, screen } from '@testing-library/react';
 import NotFound from './not-found';
 import { useRouter } from 'next/navigation';
 import { customRender } from '@/utils/CustomeRenderTest';
 
 describe('NotFound Page', () => {
-  it('renders page', () => {
-    customRender(<NotFound />);
+  it('renders page', async () => {
+    await act(async () => {
+      customRender(<NotFound />);
+    });
 
     const heading = screen.getByRole('heading', { level: 2, name: /Not Found/i });
     expect(heading).toBeInTheDocument();

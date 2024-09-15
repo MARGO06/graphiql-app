@@ -17,3 +17,11 @@ jest.mock('next/headers', () => ({
     get: jest.fn(() => ({ value: 'mockedJWTToken' })),
   })),
 }));
+
+beforeEach(() => {
+  global.fetch = jest.fn(() =>
+    Promise.resolve({
+      json: () => Promise.resolve({ token: 'test-token' }),
+    }),
+  );
+});
