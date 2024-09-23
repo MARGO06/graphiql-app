@@ -16,7 +16,7 @@ export default function History() {
 
   return (
     <section className={style.wrapper}>
-      {request.length && (
+      {request.length > 0 && (
         <>
           <h1>{t('history requests')}</h1>
           <div className={style.table}>
@@ -40,7 +40,7 @@ export default function History() {
           </div>
         </>
       )}
-      {!requests.length && (
+      {requests.length === 0 && (
         <>
           <div className={style.norequest}>
             <p>{`You haven't executed any requests yet.`}</p>
