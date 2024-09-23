@@ -38,6 +38,15 @@ export const Languages: React.FC = () => {
         <option value="es" data-testid="es-option">
           Español
         </option>
+        <option value="pl" data-testid="pl-option">
+          Polish
+        </option>
+        <option value="fr" data-testid="fr-option">
+          French
+        </option>
+        <option value="it" data-testid="it-option">
+          Italian
+        </option>
       </select>
     </div>
   );

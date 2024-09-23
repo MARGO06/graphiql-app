@@ -18,7 +18,6 @@
     "send": "Enviar",
     "header": "encabezamiento",
     "variable": "variable",
-    "add header": "Agregar Encabezado",
     "add encabezamiento": "Agregar Encabezado",
     "add variable": "Agregar Variable",
     "enter endpoint URL": "Introduzca la URL del punto final",
