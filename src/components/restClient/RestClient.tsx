@@ -228,6 +228,8 @@ export default function RestClient({
           updateUrlWithoutRedirect={updateUrlWithoutRedirect}
         />
 
+        <div className={style.line}></div>
+
         <Editor
           headers={variables}
           handleAddHeader={handleAddVariable}
