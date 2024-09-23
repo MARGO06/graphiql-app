@@ -78,6 +78,13 @@
   outline: none;
 }
 
+.line {
+  border-bottom: 1px dashed #cdcdcd;
+  width: 100%;
+  height: auto;
+  margin: 1px;
+}
+
 @media (width <=500px) {
   .container {
     width: auto;

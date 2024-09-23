@@ -14,12 +14,12 @@
     "back": "Torna alla pagina di benvenuto"
   },
   "Clients": {
-    "restfull client": "Client RESTful",
+    "restfull client": "RESTfull client",
     "send": "Invia",
     "header": "intestazione",
     "variable": "variabile",
-    "add intestazione": "Aggiungi intestazione",
-    "add variabile": "Aggiungi variabile",
+    "add intestazione": "Aggiungi Intestazione",
+    "add variabile": "Aggiungi Variabile",
     "enter endpoint URL": "Inserisci l'URL del punto di accesso",
     "enter SDL endpoint URL": "Inserisci l'URL del punto di accesso SDL",
     "get documentation": "OTTENERE DOCUMENTAZIONE",

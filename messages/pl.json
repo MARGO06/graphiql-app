@@ -14,13 +14,12 @@
     "back": "Powrót do strony powitalnej"
   },
   "Clients": {
-    "restfull client": "Klient RESTful",
+    "restfull client": "RESTfull klient",
     "send": "Wyślij",
     "header": "nagłówek",
     "variable": "zmienna",
-    "add header": "Dodaj nagłówek",
-    "add nagłówek": "Dodaj nagłówek",
-    "add zmienna": "Dodaj zmienną",
+    "add nagłówek": "Dodaj Nagłówek",
+    "add zmienna": "Dodaj Zmienną",
     "enter endpoint URL": "Wprowadź URL punktu końcowego",
     "enter SDL endpoint URL": "Wprowadź URL punktu końcowego SDL",
     "get documentation": "POBIERZ DOKUMENTACJĘ",

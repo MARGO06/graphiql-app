@@ -14,12 +14,12 @@
     "back": "Retour à la page d'accueil"
   },
   "Clients": {
-    "restfull client": "Client RESTful",
+    "restfull client": "RESTfull client",
     "send": "Envoyer",
     "header": "en-tête",
     "variable": "variable",
-    "add en-tête": "Ajouter un en-tête",
-    "add variable": "Ajouter une variable",
+    "add en-tête": "Ajouter En-tête",
+    "add variable": "Ajouter Variable",
     "enter endpoint URL": "Saisir l'URL du point de terminaison",
     "enter SDL endpoint URL": "Saisir l'URL du point de terminaison SDL",
     "get documentation": "OBTENIR LA DOCUMENTATION",
