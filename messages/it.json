@@ -1,0 +1,88 @@
+{
+  "Registration": {
+    "signin": "ACCEDI",
+    "signup": "REGISTRATI"
+  },
+  "Error": {
+    "welcome": "Qualcosa è andato storto",
+    "tryagain": "Riprova",
+    "back": "Torna alla pagina principale"
+  },
+  "NotFound": {
+    "welcome": "Non trovato: ",
+    "info": "Impossibile trovare la risorsa richiesta",
+    "back": "Torna alla pagina di benvenuto"
+  },
+  "Clients": {
+    "restfull client": "Client RESTful",
+    "send": "Invia",
+    "header": "intestazione",
+    "variable": "variabile",
+    "add intestazione": "Aggiungi intestazione",
+    "add variabile": "Aggiungi variabile",
+    "enter endpoint URL": "Inserisci l'URL del punto di accesso",
+    "enter SDL endpoint URL": "Inserisci l'URL del punto di accesso SDL",
+    "get documentation": "OTTENERE DOCUMENTAZIONE",
+    "get data": "OTTENERE DATI",
+    "hidden documentation": "DOCUMENTAZIONE NASCOSTA",
+    "show documentation": "MOSTRA DOCUMENTAZIONE",
+    "url and sdl are required": "URL e SDL sono obbligatori",
+    "failed to fetch documentation": "Recupero della documentazione fallito",
+    "syntax err": "La sintassi non corrisponde a JSON",
+    "body empty": "Il corpo è vuoto",
+    "url empty": "L'URL è vuoto",
+    "url and query are required": "URL e query sono obbligatori"
+  },
+  "Response": {
+    "response info": "Informazioni sulla risposta",
+    "status": "Stato",
+    "content-type": "Tipo di contenuto",
+    "enter endpoint URL": "Inserisci l'URL del punto di accesso"
+  },
+  "WelcomePage": {
+    "welcome": "Benvenuto",
+    "signin": "ACCEDI",
+    "signup": "REGISTRATI",
+    "frontend team": "Siamo un team di tre sviluppatori frontend junior (corso React) della RSS School, impegnati nel nostro progetto finale, APIQuest. Puoi trovare ulteriori informazioni su di noi e sulla scuola nel footer del sito.",
+    "scrum process": "Seguiamo la metodologia Scrum, utilizzando Jira per la gestione dei progetti e Confluence per la documentazione. I nostri stand-up giornalieri sono alle 10:00 UTC+2. La nostra documentazione di progetto completa include descrizioni dei ruoli, architettura del progetto, verbali delle riunioni (MoM) e altre informazioni essenziali. Il principale canale di comunicazione è il server Discord/DreamTeam.",
+    "team collaboration": "Siamo impegnati a creare un prodotto funzionale e di alta qualità, sfruttando l'esperienza acquisita durante la nostra formazione. Collaboriamo attivamente, condividiamo idee e risolviamo problemi insieme, il che ci aiuta a migliorare le nostre competenze e a crescere come professionisti."
+  },
+  "SignIn/SignUp": {
+    "name": "Nome",
+    "enter your name": "Inserisci il tuo nome",
+    "email": "Email",
+    "enter your email": "Inserisci la tua email",
+    "password": "Password",
+    "enter your password": "Inserisci la tua password",
+    "confirm password": "Conferma password",
+    "submit": "Invia",
+    "email is required": "L'email è obbligatoria",
+    "please enter a valid email address": "Per favore, inserisci un indirizzo email valido",
+    "password is required": "La password è obbligatoria",
+    "name is required": "Il nome è obbligatorio",
+    "first letter must be uppercase": "La prima lettera deve essere maiuscola",
+    "email should not contain dots at the beginning @": "L'email non dovrebbe contenere punti all'inizio @",
+    "password must be at least 8 characters": "La password deve contenere almeno 8 caratteri",
+    "password should contain at least 1 letter": "La password deve contenere almeno 1 lettera",
+    "password should contain at least 1 digit": "La password deve contenere almeno 1 cifra",
+    "password must contain at least 1 special character": "La password deve contenere almeno 1 carattere speciale",
+    "confirm password is required": "La conferma della password è obbligatoria",
+    "passwords must match": "Le password devono corrispondere"
+  },
+  "errors": {
+    "auth/wrong-password": "Autenticazione fallita",
+    "auth/user-not-found": "Autenticazione fallita",
+    "auth/too-many-requests": "Troppi tentativi. Riprova più tardi",
+    "auth/invalid-credential": "Email o password non validi",
+    "auth/email-already-in-use": "L'email è già in uso. Per favore usa un indirizzo email diverso.",
+    "internal server error": "Si è verificato un errore interno del server. Riprova più tardi",
+    "an unexpected error": "Si è verificato un errore imprevisto. Riprova più tardi."
+  },
+  "Header": {
+    "sign out": "DISCONNETTITI"
+  },
+  "History": {
+    "title": "Storia",
+    "history requests": "richieste di storia"
+  }
+}
