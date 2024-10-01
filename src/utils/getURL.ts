@@ -1,4 +1,5 @@
-import { decodeUrlFromBase64 } from '@/utils/fromBase64';
+import { decodeUrlFromBase64, encodeUrlToBase64 } from '@/utils/base64';
+import { getCurrentUrlFromLocalStorage } from '@/services/baseURL';
 
 export const getURL = (url: string) => {
   let err = '';
@@ -15,4 +16,26 @@ export const getURL = (url: string) => {
     err = 'Invalid URL, check data';
     return { err };
   }
+};
+
+export const updateUrl = (newSlug: string) => {
+  const baseUrl = getCurrentUrlFromLocalStorage();
+  const encodedUrl = encodeUrlToBase64(newSlug);
+  const newPath = `${baseUrl}/graphiql/${encodedUrl}`;
+
+  if (window.location.pathname !== newPath) {
+    window.history.pushState(null, '', newPath);
+  }
+};
+
+export const updateSdlUrl = (sdl: string, url: string, query?: string) => {
+  const newSdl = sdl.slice(url.length);
+  const encodedSdl = encodeUrlToBase64(newSdl);
+  const newUrl = `${url}?sdl=${encodeURIComponent(encodedSdl)}`;
+  if (query) {
+    const encodedQuery = encodeUrlToBase64(query);
+    const newUrlQuery = `${newUrl}/?query=${encodeURIComponent(encodedQuery)}`;
+    return newUrlQuery;
+  }
+  return newUrl;
 };

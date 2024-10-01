@@ -9,7 +9,7 @@ import { usePathname } from 'next/navigation';
 import { handleGetDocumentation } from '@/utils/getDocumentation';
 import { handleGetData } from '@/utils/getDataGraphiQl';
 import { saveToHistory } from '@/services/saveToHistory';
-import { decodeUrlFromBase64 } from '@/utils/fromBase64';
+import { decodeUrlFromBase64 } from '@/utils/base64';
 import { getURL } from '@/utils/getURL';
 import { ResponseGraph, ResponseInfoGraph } from '@/components/graphiResponse/GraphiResponse';
 

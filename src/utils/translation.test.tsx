@@ -1,6 +1,6 @@
 import { loadTranslations } from '@/utils/translation';
 
-describe.skip('loadTranslations', () => {
+describe('loadTranslations', () => {
   test('should load English translations correctly', () => {
     const translations = loadTranslations('en');
     if (translations) {

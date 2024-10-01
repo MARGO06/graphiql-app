@@ -2,8 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { GraphRequestProps } from '@/types/graphRequest';
 import style from '@/components/graphiRequest/GraphiRequest.module.scss';
 import { useTranslations } from 'next-intl';
-import { updateUrl } from '@/utils/updateURL';
-import { updateSdlUrl } from '@/utils/sdlUrl';
+import { updateUrl, updateSdlUrl } from '@/utils/getURL';
 
 export const GraphRequest: React.FC<GraphRequestProps> = ({
   currentSdl,
