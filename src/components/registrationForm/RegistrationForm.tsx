@@ -3,8 +3,7 @@
 import React, { useState } from 'react';
 import { Form } from '@/components/form/Form';
 import { useRouter } from 'next/navigation';
-import { writeUserData } from '@/utils/saveDataInFirebase';
-import { readUserData } from '@/utils/getDataInFirebase';
+import { readUserData, writeUserData } from '@/utils/getDataInFirebase';
 import { useAuth } from '@/hooks/useAuth';
 import { ErrorMessage } from '@/components/errorMessage/ErrorMessage';
 import { getUserLocale } from '@/services/locale';

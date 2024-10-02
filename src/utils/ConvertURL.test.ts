@@ -1,7 +1,6 @@
-import { updateSdlUrl } from './sdlUrl';
-import { decodeUrlFromBase64 } from './fromBase64';
+import { decodeUrlFromBase64 } from './base64';
 import { getURL } from './getURL';
-import { updateUrl } from './updateURL';
+import { updateUrl, updateSdlUrl } from './getURL';
 
 it('get encoded url without params', () => {
   const url = 'https://pokeapi.co/api/v2';

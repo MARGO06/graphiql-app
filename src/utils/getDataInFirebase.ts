@@ -1,4 +1,5 @@
-import { getDatabase, ref, child, get } from 'firebase/database';
+import { getDatabase, ref, child, get, set } from 'firebase/database';
+import { db } from '@/firebase';
 
 export const readUserData = async (userId: string) => {
   try {
@@ -13,4 +14,11 @@ export const readUserData = async (userId: string) => {
   } catch (error) {
     return null;
   }
+};
+
+export const writeUserData = (userId: string, name: string, email: string) => {
+  set(ref(db, 'users/' + userId), {
+    username: name,
+    email: email,
+  });
 };

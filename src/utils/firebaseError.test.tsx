@@ -1,4 +1,4 @@
-import { handleFirebaseError } from '@/utils/firebaseError';
+import { handleFirebaseError } from '@/utils/aunthenticate';
 
 interface CustomError extends Error {
   status: number;
