@@ -1,0 +1,167 @@
+.header {
+  position: sticky;
+  display: flex;
+  background-color: rgb(19 18 18 / 78.1%);
+  top: 0;
+}
+
+.logo {
+  padding-left: 5px;
+  animation-play-state: paused;
+}
+
+.logo:hover {
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.1);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.burger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 20px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.burger span {
+  display: block;
+  height: 3px;
+  background-color: #a5a5a5;
+  transition: all 0.3s ease;
+}
+
+.burgerOpen {
+  background-color: transparent;
+}
+
+.burgerOpen:nth-child(1) {
+  transform: rotate(45deg);
+  position: relative;
+  top: 9px;
+}
+
+.burgerOpen:nth-child(2) {
+  opacity: 0;
+}
+
+.burgerOpen:nth-child(3) {
+  transform: rotate(-45deg);
+  position: relative;
+  top: -7px;
+}
+
+.burger:hover {
+  span {
+    background-color: #ffae68;
+  }
+
+  .burgerOpen:nth-child(1),
+  .burgerOpen:nth-child(3) {
+    background-color: #ffae68;
+  }
+}
+
+.menu {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.menuOpen {
+  animation: slide-down 0.5s forwards;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  padding-bottom: 0;
+  z-index: 2;
+}
+
+@keyframes slide-down {
+  from {
+    max-height: 0;
+    opacity: 0;
+  }
+
+  to {
+    max-height: 300px;
+    opacity: 1;
+  }
+}
+
+.signOut {
+  font-weight: 500;
+  color: #fff;
+  text-decoration: inherit;
+  transition: color 0.3s ease;
+  align-self: center;
+  font-size: 1.6rem;
+  border: none;
+  background: none;
+  padding: 15px;
+  cursor: pointer;
+
+  &:hover {
+    color: rgb(233 150 26);
+  }
+}
+
+@media (width <= 500px) {
+  .burger {
+    display: flex;
+  }
+
+  .menu {
+    display: none;
+  }
+
+  .menuOpen {
+    display: flex;
+    background: linear-gradient(180deg, rgb(19 18 18 / 78.1%), rgb(136 75 5 / 83.6%));
+    padding-bottom: 45px;
+  }
+}
+
+@media (width >= 501px) {
+  .menu {
+    display: flex;
+    flex-direction: row;
+    position: static;
+    width: auto;
+    background-color: transparent;
+  }
+
+  .menuOpen {
+    animation: none;
+  }
+
+  .burger {
+    display: none;
+  }
+}

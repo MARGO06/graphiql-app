@@ -1,0 +1,44 @@
+.selectContainer select {
+  height: 40px;
+  padding: 8px;
+  border: 1px solid #cdcdcd;
+  border-radius: 5px;
+  background-color: #fff;
+  color: #333;
+  font-size: 16px;
+  margin: 5px 0;
+}
+
+.selectContainer select:focus {
+  outline: none;
+}
+
+.editorContainer textarea {
+  width: 98%;
+  max-width: 1000px;
+  max-height: 440px;
+  border: 1px solid #cdcdcd;
+  border-radius: 5px;
+  margin: 5px 0;
+  resize: none;
+  font-size: 14px;
+  padding: 8px;
+}
+
+.editorContainer textarea:focus {
+  outline: none;
+  border: 1px solid #ffab67;
+}
+
+.bodyControl {
+  display: flex;
+  justify-content: space-between;
+}
+
+.magicContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 35px;
+  margin-right: 10px;
+}

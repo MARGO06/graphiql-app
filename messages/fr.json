@@ -1,0 +1,88 @@
+{
+  "Registration": {
+    "signin": "SE CONNECTER",
+    "signup": "S'INSCRIRE"
+  },
+  "Error": {
+    "welcome": "Quelque chose s'est mal passé",
+    "tryagain": "Réessayez",
+    "back": "Retour à la page principale"
+  },
+  "NotFound": {
+    "welcome": "Non trouvé : ",
+    "info": "Impossible de trouver la ressource demandée",
+    "back": "Retour à la page d'accueil"
+  },
+  "Clients": {
+    "restfull client": "RESTfull client",
+    "send": "Envoyer",
+    "header": "en-tête",
+    "variable": "variable",
+    "add en-tête": "Ajouter En-tête",
+    "add variable": "Ajouter Variable",
+    "enter endpoint URL": "Saisir l'URL du point de terminaison",
+    "enter SDL endpoint URL": "Saisir l'URL du point de terminaison SDL",
+    "get documentation": "OBTENIR LA DOCUMENTATION",
+    "get data": "OBTENIR DES DONNÉES",
+    "hidden documentation": "DOCUMENTATION CACHÉE",
+    "show documentation": "MONTRER LA DOCUMENTATION",
+    "url and sdl are required": "URL et SDL sont requis",
+    "failed to fetch documentation": "Échec de la récupération de la documentation",
+    "syntax err": "La syntaxe ne correspond pas au JSON",
+    "body empty": "Le corps est vide",
+    "url empty": "L'URL est vide",
+    "url and query are required": "URL et requête sont requis"
+  },
+  "Response": {
+    "response info": "Informations sur la réponse",
+    "status": "Statut",
+    "content-type": "Type de contenu",
+    "enter endpoint URL": "Saisir l'URL du point de terminaison"
+  },
+  "WelcomePage": {
+    "welcome": "Bienvenue",
+    "signin": "SE CONNECTER",
+    "signup": "S'INSCRIRE",
+    "frontend team": "Nous sommes une équipe de trois développeurs front-end juniors (cours React) de l'école RSS, travaillant sur notre projet final, APIQuest. Vous pouvez trouver plus d'informations sur nous et l'école dans le pied de page du site.",
+    "scrum process": "Nous suivons la méthodologie Scrum, utilisant Jira pour la gestion de projet et Confluence pour la documentation. Nos réunions quotidiennes se tiennent à 10h00 UTC+2. Notre documentation complète de projet comprend des descriptions de rôles, l'architecture du projet, les comptes-rendus de réunion (MoM) et d'autres informations essentielles. Le principal canal de communication est le serveur Discord/DreamTeam.",
+    "team collaboration": "Nous nous engageons à créer un produit fonctionnel et de haute qualité, en tirant parti de l'expérience que nous avons acquise au cours de notre formation. Nous collaborons activement, partageons des idées et résolvons des problèmes ensemble, ce qui nous aide à améliorer nos compétences et à grandir en tant que professionnels."
+  },
+  "SignIn/SignUp": {
+    "name": "Nom",
+    "enter your name": "Entrez votre nom",
+    "email": "E-mail",
+    "enter your email": "Entrez votre e-mail",
+    "password": "Mot de passe",
+    "enter your password": "Entrez votre mot de passe",
+    "confirm password": "Confirmez le mot de passe",
+    "submit": "Soumettre",
+    "email is required": "L'e-mail est requis",
+    "please enter a valid email address": "Veuillez entrer une adresse e-mail valide",
+    "password is required": "Le mot de passe est requis",
+    "name is required": "Le nom est requis",
+    "first letter must be uppercase": "La première lettre doit être en majuscule",
+    "email should not contain dots at the beginning @": "L'e-mail ne doit pas contenir de points au début de @",
+    "password must be at least 8 characters": "Le mot de passe doit comporter au moins 8 caractères",
+    "password should contain at least 1 letter": "Le mot de passe doit contenir au moins 1 lettre",
+    "password should contain at least 1 digit": "Le mot de passe doit contenir au moins 1 chiffre",
+    "password must contain at least 1 special character": "Le mot de passe doit contenir au moins 1 caractère spécial",
+    "confirm password is required": "La confirmation du mot de passe est requise",
+    "passwords must match": "Les mots de passe doivent correspondre"
+  },
+  "errors": {
+    "auth/wrong-password": "Échec de l'authentification",
+    "auth/user-not-found": "Échec de l'authentification",
+    "auth/too-many-requests": "Trop de demandes. Veuillez réessayer plus tard",
+    "auth/invalid-credential": "E-mail ou mot de passe invalide",
+    "auth/email-already-in-use": "L'e-mail est déjà utilisé. Veuillez utiliser une autre adresse e-mail.",
+    "internal server error": "Une erreur interne du serveur s'est produite. Veuillez réessayer plus tard",
+    "an unexpected error": "Une erreur inattendue est survenue. Veuillez réessayer plus tard."
+  },
+  "Header": {
+    "sign out": "SE DÉCONNECTER"
+  },
+  "History": {
+    "title": "Historique",
+    "history requests": "demandes historiques"
+  }
+}

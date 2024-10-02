@@ -1,0 +1,25 @@
+.language {
+  display: flex;
+  align-items: center;
+  width: auto;
+}
+
+.selectWrap {
+  cursor: pointer;
+  border: solid 1px white;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 5px;
+  background-color: white;
+  align-items: center;
+  font-size: 1.6rem;
+
+  > option {
+    font-size: 1.6rem;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: #64b3ff;
+    }
+  }
+}
