@@ -17,6 +17,7 @@ export const GraphClient: React.FC = () => {
   const [responseInfo, setResponseInfo] = useState<ResponseInfoGraph | null>(null);
   const [currentUrl, setCurrentUrl] = useState<string>('');
   const [currentSdl, setCurrentSdl] = useState<string>('');
+  const [currentVariables, setCurrentVariables] = useState<string>('');
   const [currentQuery, setCurrentQuery] = useState<string>('');
   const [error, setError] = useState<string | null>(null);
   const [showSchemaButton, setShowSchemaButton] = useState(false);
@@ -69,7 +70,8 @@ export const GraphClient: React.FC = () => {
       if (!currentUrl || !currentQuery) {
         throw new Error(t('url and query are required'));
       }
-      const data = await handleGetData(currentUrl, currentQuery);
+
+      const data = await handleGetData(currentUrl, currentQuery, currentVariables);
       setResponseInfo(data);
       saveToHistory('graphiql', currentSdl, fullUrl);
     } catch (error) {
@@ -115,6 +117,8 @@ export const GraphClient: React.FC = () => {
             setCurrentSdl={setCurrentSdl}
             currentQuery={currentQuery}
             setCurrentQuery={setCurrentQuery}
+            currentVariables={currentVariables}
+            setCurrentVariables={setCurrentVariables}
           />
           <div className={style.response}>
             {responseInfo && <ResponseGraph responseInfo={responseInfo} />}
