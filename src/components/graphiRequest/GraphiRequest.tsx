@@ -71,8 +71,8 @@ export const GraphRequest: React.FC<GraphRequestProps> = ({
     if (currentVariables !== previousVariableRef.current) {
       if (currentVariables !== previousVariableRef.current && currentSdl !== '') {
         setCurrentVariables(currentVariables);
-        //const newUrl = updateSdlUrl(currentSdl, currentUrl, currentQuery, currentVariables);
-        //updateUrl(newUrl);
+        const newUrl = updateSdlUrl(currentSdl, currentUrl, currentQuery, currentVariables);
+        updateUrl(newUrl);
       }
     }
     resetUrl();

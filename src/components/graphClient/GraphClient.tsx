@@ -31,7 +31,7 @@ export const GraphClient: React.FC = () => {
 
   useEffect(() => {
     if (url) {
-      const { sdlParam, urlNew, queryParam } = getURL(url);
+      const { sdlParam, urlNew, queryParam, variableParam } = getURL(url);
       if (sdlParam && urlNew) {
         setCurrentUrl(urlNew);
         if (sdlParam) {
@@ -42,6 +42,10 @@ export const GraphClient: React.FC = () => {
       if (queryParam) {
         const query = decodeUrlFromBase64(queryParam);
         setCurrentQuery(query);
+      }
+      if (variableParam) {
+        const variable = decodeUrlFromBase64(variableParam);
+        setCurrentVariables(variable);
       }
     }
   }, [url]);
