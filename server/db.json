@@ -1,0 +1,60 @@
+{
+  "users": [
+    {
+      "user_id": "583c3ac3f38e84297c002546",
+      "email": "adam@gmail.com",
+      "name": "Adam",
+      "surname": "Allford",
+      "nickname": "adam3000",
+      "last_ip": "94.121.163.63",
+      "logins_count": 15,
+      "created_at": "2024-09-10T14:10:11.338Z",
+      "updated_at": "2024-09-10T01:17:29.310Z",
+      "last_login": "2024-09-10T01:17:29.310Z",
+      "email_verified": true,
+      "id": "086e"
+    },
+    {
+      "user_id": "123c3ac3f33e84297c002146",
+      "email": "ida@gmail.com",
+      "name": "Ida",
+      "surname": "Kendal",
+      "nickname": "idalike",
+      "last_ip": "94.121.122.41",
+      "logins_count": 9,
+      "created_at": "2024-09-049T14:10:11.338Z",
+      "updated_at": "2024-09-09T11:17:29.310Z",
+      "last_login": "2024-09-09T12:13:11.310Z",
+      "email_verified": true,
+      "id": "eee7"
+    },
+    {
+      "user_id": "421f7cc3f18e81207a012841",
+      "email": "wendy@gmail.com",
+      "name": "Wendy",
+      "surname": "Porter",
+      "nickname": "weeen",
+      "last_ip": "94.101.168.13",
+      "logins_count": 4,
+      "created_at": "2024-09-12T09:11:01.338Z",
+      "updated_at": "2024-09-12T11:15:11.310Z",
+      "last_login": "2024-09-13T10:07:19.310Z",
+      "email_verified": true,
+      "id": "f870"
+    },
+    {
+      "user_id": "511a9ff1c39a82391c015541",
+      "email": "john@gmail.com",
+      "name": "John",
+      "surname": "Fisher",
+      "nickname": "john25",
+      "last_ip": "94.131.111.41",
+      "logins_count": 11,
+      "created_at": "2024-09-09T10:10:34.338Z",
+      "updated_at": "2024-09-09T15:17:01.310Z",
+      "last_login": "2024-09-10T01:37:21.310Z",
+      "email_verified": true,
+      "id": "a49d"
+    }
+  ]
+}

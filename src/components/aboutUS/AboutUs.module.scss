@@ -1,0 +1,18 @@
+.aboutUs {
+  display: flex;
+  flex-direction: column;
+  font-style: italic;
+  font-size: 1.3rem;
+  line-height: 1.5;
+  box-shadow: 0 4px 8px rgb(0 0 0 / 10%);
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  white-space: pre-line;
+  color: rgb(121 121 121);
+  margin: 30px;
+
+  > span {
+    margin-bottom: 20px;
+  }
+}

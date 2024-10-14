@@ -1,0 +1,24 @@
+.registration {
+  display: flex;
+}
+
+.active {
+  color: #64b3ff !important;
+}
+
+.signIn,
+.signUp {
+  align-self: center;
+  font-size: 1.6rem;
+  padding: 13px;
+}
+
+.registration a {
+  font-weight: 500;
+  color: #ffffff;
+  text-decoration: inherit;
+  transition: color 0.3s ease;
+  &:hover {
+    color: rgb(233, 150, 26);
+  }
+}

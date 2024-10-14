@@ -1,0 +1,88 @@
+{
+  "Registration": {
+    "signin": "ZALOGUJ SIĘ",
+    "signup": "ZAREJESTRUJ SIĘ"
+  },
+  "Error": {
+    "welcome": "Coś poszło nie tak",
+    "tryagain": "Spróbuj ponownie",
+    "back": "Powrót do strony głównej"
+  },
+  "NotFound": {
+    "welcome": "Nie znaleziono: ",
+    "info": "Nie można znaleźć żądanego zasobu",
+    "back": "Powrót do strony powitalnej"
+  },
+  "Clients": {
+    "restfull client": "RESTfull klient",
+    "send": "Wyślij",
+    "header": "nagłówek",
+    "variable": "zmienna",
+    "add nagłówek": "Dodaj Nagłówek",
+    "add zmienna": "Dodaj Zmienną",
+    "enter endpoint URL": "Wprowadź URL punktu końcowego",
+    "enter SDL endpoint URL": "Wprowadź URL punktu końcowego SDL",
+    "get documentation": "POBIERZ DOKUMENTACJĘ",
+    "get data": "POBIERZ DANE",
+    "hidden documentation": "UKRYTA DOKUMENTACJA",
+    "show documentation": "POKAŻ DOKUMENTACJĘ",
+    "url and sdl are required": "URL i SDL są wymagane",
+    "failed to fetch documentation": "Nie udało się pobrać dokumentacji",
+    "syntax err": "Składnia nie odpowiada JSON",
+    "body empty": "Treść jest pusta",
+    "url empty": "URL jest pusty",
+    "url and query are required": "URL i zapytanie są wymagane"
+  },
+  "Response": {
+    "response info": "Informacje o odpowiedzi",
+    "status": "Status",
+    "content-type": "Typ zawartości",
+    "enter endpoint URL": "Wprowadź URL punktu końcowego"
+  },
+  "WelcomePage": {
+    "welcome": "Witamy",
+    "signin": "ZALOGUJ SIĘ",
+    "signup": "ZAREJESTRUJ SIĘ",
+    "frontend team": "Jesteśmy zespołem trzech junior frontend developerów (kurs React) z RSS School, pracujących nad naszym projektem końcowym, APIQuest. Więcej informacji o nas i szkole znajdziesz w stopce strony.",
+    "scrum process": "Stosujemy metodologię Scrum, korzystając z Jira do zarządzania projektami oraz Confluence do dokumentacji. Nasze codzienne spotkania stand-up odbywają się o 10:00 UTC+2. Nasza obszerna dokumentacja projektowa zawiera opisy ról, architekturę projektu, protokoły spotkań (MoM) i inne ważne informacje. Głównym kanałem komunikacji jest serwer Discord/DreamTeam.",
+    "team collaboration": "Jesteśmy zaangażowani w tworzenie funkcjonalnego i wysokiej jakości produktu, wykorzystując zdobyte przez nas doświadczenie. Aktywnie współpracujemy, dzielimy się pomysłami i wspólnie rozwiązujemy problemy, co pomaga nam doskonalić umiejętności i rozwijać się jako profesjonaliści."
+  },
+  "SignIn/SignUp": {
+    "name": "Imię",
+    "enter your name": "Wprowadź swoje imię",
+    "email": "Email",
+    "enter your email": "Wprowadź swój email",
+    "password": "Hasło",
+    "enter your password": "Wprowadź swoje hasło",
+    "confirm password": "Potwierdź hasło",
+    "submit": "Zatwierdź",
+    "email is required": "email jest wymagany",
+    "please enter a valid email address": "wprowadź poprawny adres email",
+    "password is required": "hasło jest wymagane",
+    "name is required": "imię jest wymagane",
+    "first letter must be uppercase": "pierwsza litera musi być wielka",
+    "email should not contain dots at the beginning @": "email nie powinien zawierać kropek na początku @",
+    "password must be at least 8 characters": "hasło musi mieć co najmniej 8 znaków",
+    "password should contain at least 1 letter": "hasło musi zawierać co najmniej 1 literę",
+    "password should contain at least 1 digit": "hasło musi zawierać co najmniej 1 cyfrę",
+    "password must contain at least 1 special character": "hasło musi zawierać co najmniej 1 znak specjalny",
+    "confirm password is required": "potwierdzenie hasła jest wymagane",
+    "passwords must match": "hasła muszą być zgodne"
+  },
+  "errors": {
+    "auth/wrong-password": "Błąd uwierzytelnienia",
+    "auth/user-not-found": "Błąd uwierzytelnienia",
+    "auth/too-many-requests": "Za dużo żądań. Spróbuj ponownie później",
+    "auth/invalid-credential": "Nieprawidłowy email lub hasło",
+    "auth/email-already-in-use": "Email jest już używany. Użyj innego adresu email.",
+    "internal server error": "Wystąpił wewnętrzny błąd serwera. Spróbuj ponownie później",
+    "an unexpected error": "Wystąpił nieoczekiwany błąd. Spróbuj ponownie później."
+  },
+  "Header": {
+    "sign out": "WYLOGUJ SIĘ"
+  },
+  "History": {
+    "title": "Historia",
+    "history requests": "historia żądań"
+  }
+}

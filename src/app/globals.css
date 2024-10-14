@@ -1,0 +1,96 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 12px;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  background-image: url('/background-main.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: 0.5s;
+}
+
+.wrapper {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: space-between;
+}
+
+aside {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  color: #6f6f6f;
+  font-size: 14px;
+}
+
+button {
+  height: 40px;
+  padding: 0 20px;
+  background-color: #5496ec;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 16px;
+  margin: 5px 0;
+}
+
+button:active {
+  background-color: #88cbff;
+}
+
+button:hover {
+  box-shadow: 0 0 10px 2px #88cbff inset;
+}
+
+input {
+  width: 100%;
+  max-width: 100%;
+  height: 40px;
+  padding: 8px;
+  border: 1px solid #cdcdcd;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+input::placeholder {
+  color: #cfcfcf;
+}
+
+textarea::placeholder {
+  color: #cfcfcf;
+}
+
+input:focus {
+  outline: none;
+  border: 1px solid #ffab67;
+}
+
+label {
+  color: #6f6f6f;
+}
+
+.actions > button {
+  margin-right: 20px;
+}
+
+@media (width <=1240px) {
+  body {
+    background-image: url('/background_tablet.png');
+  }
+}
+
+@media (width <=780px) {
+  body {
+    background-image: url('/background_mobile.png');
+  }
+}
