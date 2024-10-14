@@ -10,8 +10,9 @@ export const getURL = (url: string) => {
     const sdlQueryParam = searchParams.get('sdl');
     const sdlParam = sdlQueryParam?.split('/')[0];
     const urlNew = urlUTF8.split('?sdl')[0];
-    const queryParam = sdlQueryParam?.split('/?query=')[1];
-    return { sdlParam, urlNew, queryParam };
+    const queryParam = sdlQueryParam?.split('/?query=')[1]?.split('/?variable=')[0];
+    const variableParam = sdlQueryParam?.split('/?variable=')[1];
+    return { sdlParam, urlNew, queryParam, variableParam };
   } catch (error) {
     err = 'Invalid URL, check data';
     return { err };
@@ -28,14 +29,20 @@ export const updateUrl = (newSlug: string) => {
   }
 };
 
-export const updateSdlUrl = (sdl: string, url: string, query?: string) => {
+export const updateSdlUrl = (sdl: string, url: string, query?: string, variable?: string) => {
   const newSdl = sdl.slice(url.length);
   const encodedSdl = encodeUrlToBase64(newSdl);
   const newUrl = `${url}?sdl=${encodeURIComponent(encodedSdl)}`;
   if (query) {
     const encodedQuery = encodeUrlToBase64(query);
     const newUrlQuery = `${newUrl}/?query=${encodeURIComponent(encodedQuery)}`;
+    if (variable) {
+      const encodedVariable = encodeUrlToBase64(variable);
+      const newUrlVariable = `${newUrlQuery}/?variable=${encodeURIComponent(encodedVariable)}`;
+      return newUrlVariable;
+    }
     return newUrlQuery;
   }
+
   return newUrl;
 };

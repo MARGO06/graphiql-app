@@ -2,20 +2,19 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(req: NextRequest) {
   try {
-    const { url, queries } = await req.json();
+    const { url, queries, variables } = await req.json();
 
     if (!url || !queries) {
       return NextResponse.json({ error: 'URL and Query is required', status: 400 });
     }
 
-    const query = queries;
-
+    const requestBody = variables ? { query: queries, variables } : { query: queries };
     const response = await fetch(url, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ query }),
+      body: JSON.stringify(requestBody),
     });
 
     if (response.status !== 200) {

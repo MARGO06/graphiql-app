@@ -17,6 +17,7 @@ export const GraphClient: React.FC = () => {
   const [responseInfo, setResponseInfo] = useState<ResponseInfoGraph | null>(null);
   const [currentUrl, setCurrentUrl] = useState<string>('');
   const [currentSdl, setCurrentSdl] = useState<string>('');
+  const [currentVariables, setCurrentVariables] = useState<string>('');
   const [currentQuery, setCurrentQuery] = useState<string>('');
   const [error, setError] = useState<string | null>(null);
   const [showSchemaButton, setShowSchemaButton] = useState(false);
@@ -30,7 +31,7 @@ export const GraphClient: React.FC = () => {
 
   useEffect(() => {
     if (url) {
-      const { sdlParam, urlNew, queryParam } = getURL(url);
+      const { sdlParam, urlNew, queryParam, variableParam } = getURL(url);
       if (sdlParam && urlNew) {
         setCurrentUrl(urlNew);
         if (sdlParam) {
@@ -41,6 +42,10 @@ export const GraphClient: React.FC = () => {
       if (queryParam) {
         const query = decodeUrlFromBase64(queryParam);
         setCurrentQuery(query);
+      }
+      if (variableParam) {
+        const variable = decodeUrlFromBase64(variableParam);
+        setCurrentVariables(variable);
       }
     }
   }, [url]);
@@ -69,7 +74,8 @@ export const GraphClient: React.FC = () => {
       if (!currentUrl || !currentQuery) {
         throw new Error(t('url and query are required'));
       }
-      const data = await handleGetData(currentUrl, currentQuery);
+
+      const data = await handleGetData(currentUrl, currentQuery, currentVariables);
       setResponseInfo(data);
       saveToHistory('graphiql', currentSdl, fullUrl);
     } catch (error) {
@@ -115,6 +121,8 @@ export const GraphClient: React.FC = () => {
             setCurrentSdl={setCurrentSdl}
             currentQuery={currentQuery}
             setCurrentQuery={setCurrentQuery}
+            currentVariables={currentVariables}
+            setCurrentVariables={setCurrentVariables}
           />
           <div className={style.response}>
             {responseInfo && <ResponseGraph responseInfo={responseInfo} />}
