@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(req: NextRequest) {
   try {
-    const { url, queries, variables } = await req.json();
+    const { url, queries, variables, headers } = await req.json();
 
     if (!url || !queries) {
       return NextResponse.json({ error: 'URL and Query is required', status: 400 });
@@ -13,6 +13,7 @@ export async function POST(req: NextRequest) {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        ...headers,
       },
       body: JSON.stringify(requestBody),
     });

@@ -11,8 +11,9 @@ export const getURL = (url: string) => {
     const sdlParam = sdlQueryParam?.split('/')[0];
     const urlNew = urlUTF8.split('?sdl')[0];
     const queryParam = sdlQueryParam?.split('/?query=')[1]?.split('/?variable=')[0];
-    const variableParam = sdlQueryParam?.split('/?variable=')[1];
-    return { sdlParam, urlNew, queryParam, variableParam };
+    const variableParam = sdlQueryParam?.split('/?variable=')[1]?.split('/?headers=')[0];
+    const headersParam = sdlQueryParam?.split('/?headers=')[1];
+    return { sdlParam, urlNew, queryParam, variableParam, headersParam };
   } catch (error) {
     err = 'Invalid URL, check data';
     return { err };
@@ -29,7 +30,13 @@ export const updateUrl = (newSlug: string) => {
   }
 };
 
-export const updateSdlUrl = (sdl: string, url: string, query?: string, variable?: string) => {
+export const updateSdlUrl = (
+  sdl: string,
+  url: string,
+  query?: string,
+  variable?: string,
+  headers?: string,
+) => {
   const newSdl = sdl.slice(url.length);
   const encodedSdl = encodeUrlToBase64(newSdl);
   const newUrl = `${url}?sdl=${encodeURIComponent(encodedSdl)}`;
@@ -39,7 +46,17 @@ export const updateSdlUrl = (sdl: string, url: string, query?: string, variable?
     if (variable) {
       const encodedVariable = encodeUrlToBase64(variable);
       const newUrlVariable = `${newUrlQuery}/?variable=${encodeURIComponent(encodedVariable)}`;
+      if (headers) {
+        const encodedHeaders = encodeUrlToBase64(headers);
+        const newUrlHeaders = `${newUrlVariable}/?headers=${encodeURIComponent(encodedHeaders)}`;
+        return newUrlHeaders;
+      }
       return newUrlVariable;
+    }
+    if (headers) {
+      const encodedHeaders = encodeUrlToBase64(headers);
+      const newUrlHeaders = `${newUrlQuery}/?headers=${encodeURIComponent(encodedHeaders)}`;
+      return newUrlHeaders;
     }
     return newUrlQuery;
   }

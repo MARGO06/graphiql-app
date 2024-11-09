@@ -8,6 +8,7 @@ import { Schema } from '@/types/graphQLSchema';
 import { usePathname } from 'next/navigation';
 import { handleGetDocumentation } from '@/utils/getDocumentation';
 import { handleGetData } from '@/utils/getDataGraphiQl';
+import { Header } from '@/types/graphRequest';
 import { saveToHistory } from '@/services/saveToHistory';
 import { decodeUrlFromBase64 } from '@/utils/base64';
 import { getURL } from '@/utils/getURL';
@@ -19,6 +20,7 @@ export const GraphClient: React.FC = () => {
   const [currentSdl, setCurrentSdl] = useState<string>('');
   const [currentVariables, setCurrentVariables] = useState<string>('');
   const [currentQuery, setCurrentQuery] = useState<string>('');
+  const [headers, setHeaders] = useState<Header[]>([{ key: '', value: '', id: '0' }]);
   const [error, setError] = useState<string | null>(null);
   const [showSchemaButton, setShowSchemaButton] = useState(false);
   const [documentation, setDocumentation] = useState<Schema | null>(null);
@@ -31,7 +33,7 @@ export const GraphClient: React.FC = () => {
 
   useEffect(() => {
     if (url) {
-      const { sdlParam, urlNew, queryParam, variableParam } = getURL(url);
+      const { sdlParam, urlNew, queryParam, variableParam, headersParam } = getURL(url);
       if (sdlParam && urlNew) {
         setCurrentUrl(urlNew);
         if (sdlParam) {
@@ -46,6 +48,14 @@ export const GraphClient: React.FC = () => {
       if (variableParam) {
         const variable = decodeUrlFromBase64(variableParam);
         setCurrentVariables(variable);
+      }
+      if (headersParam) {
+        const headers = decodeUrlFromBase64(headersParam);
+        const headersArray = headers.split('&').map((header) => {
+          const [key, value] = header.split('=');
+          return { key, value, id: `${key}-${value}` };
+        });
+        setHeaders(headersArray);
       }
     }
   }, [url]);
@@ -123,6 +133,8 @@ export const GraphClient: React.FC = () => {
             setCurrentQuery={setCurrentQuery}
             currentVariables={currentVariables}
             setCurrentVariables={setCurrentVariables}
+            headers={headers}
+            setHeaders={setHeaders}
           />
           <div className={style.response}>
             {responseInfo && <ResponseGraph responseInfo={responseInfo} />}
