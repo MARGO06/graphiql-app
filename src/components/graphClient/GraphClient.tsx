@@ -53,7 +53,7 @@ export const GraphClient: React.FC = () => {
         const headers = decodeUrlFromBase64(headersParam);
         const headersArray = headers.split('&').map((header) => {
           const [key, value] = header.split('=');
-          return { key, value, id: `${key}-${value}` };
+          return { key, value: decodeURIComponent(value), id: `${key}-${value}` };
         });
         setHeaders(headersArray);
       }

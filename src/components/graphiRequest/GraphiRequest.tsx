@@ -225,7 +225,7 @@ export const GraphRequest: React.FC<GraphRequestProps> = ({
               onBlur={handleSdlBlur}
             />
           </div>
-          <button onClick={toggleHeaders}>Headers</button>
+          <button onClick={toggleHeaders}>{t('header')}</button>
           {headersContainer && (
             <div>
               {headers.map((header) => (
@@ -266,7 +266,7 @@ export const GraphRequest: React.FC<GraphRequestProps> = ({
               ))}
             </div>
           )}
-          <button onClick={toggleVariables}>Variables</button>
+          <button onClick={toggleVariables}>{t('variable')}</button>
           {variables && (
             <div className={style.editorContainer}>
               <label htmlFor="queryEditor" />

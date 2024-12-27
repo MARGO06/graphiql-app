@@ -7,12 +7,37 @@ export const getURL = (url: string) => {
     const urlUTF8 = decodeUrlFromBase64(url);
     const urlObj = new URL(urlUTF8);
     const searchParams = new URLSearchParams(urlObj.search);
+
     const sdlQueryParam = searchParams.get('sdl');
     const sdlParam = sdlQueryParam?.split('/')[0];
     const urlNew = urlUTF8.split('?sdl')[0];
-    const queryParam = sdlQueryParam?.split('/?query=')[1]?.split('/?variable=')[0];
-    const variableParam = sdlQueryParam?.split('/?variable=')[1]?.split('/?headers=')[0];
-    const headersParam = sdlQueryParam?.split('/?headers=')[1];
+
+    let queryParam = '';
+    let variableParam = '';
+    let headersParam = '';
+
+    if (sdlQueryParam) {
+      const queryPart = sdlQueryParam.split('/?query=')[1];
+
+      if (queryPart) {
+        const variablePart = queryPart.split('/?variable=')[1];
+
+        if (variablePart) {
+          queryParam = queryPart.split('/?variable=')[0] || '';
+          variableParam = variablePart.split('/?headers=')[0] || '';
+          headersParam = variablePart.split('/?headers=')[1] || '';
+        } else {
+          queryParam = queryPart.split('/?headers=')[0] || '';
+          headersParam = queryPart.split('/?headers=')[1] || '';
+        }
+      } else {
+        headersParam = sdlQueryParam.split('/?headers=')[1] || '';
+      }
+    }
+    if (headersParam) {
+      headersParam = decodeURIComponent(headersParam);
+    }
+
     return { sdlParam, urlNew, queryParam, variableParam, headersParam };
   } catch (error) {
     err = 'Invalid URL, check data';
@@ -40,26 +65,23 @@ export const updateSdlUrl = (
   const newSdl = sdl.slice(url.length);
   const encodedSdl = encodeUrlToBase64(newSdl);
   const newUrl = `${url}?sdl=${encodeURIComponent(encodedSdl)}`;
+
+  let finalUrl = newUrl;
+
   if (query) {
     const encodedQuery = encodeUrlToBase64(query);
-    const newUrlQuery = `${newUrl}/?query=${encodeURIComponent(encodedQuery)}`;
-    if (variable) {
-      const encodedVariable = encodeUrlToBase64(variable);
-      const newUrlVariable = `${newUrlQuery}/?variable=${encodeURIComponent(encodedVariable)}`;
-      if (headers) {
-        const encodedHeaders = encodeUrlToBase64(headers);
-        const newUrlHeaders = `${newUrlVariable}/?headers=${encodeURIComponent(encodedHeaders)}`;
-        return newUrlHeaders;
-      }
-      return newUrlVariable;
-    }
-    if (headers) {
-      const encodedHeaders = encodeUrlToBase64(headers);
-      const newUrlHeaders = `${newUrlQuery}/?headers=${encodeURIComponent(encodedHeaders)}`;
-      return newUrlHeaders;
-    }
-    return newUrlQuery;
+    finalUrl += `/?query=${encodeURIComponent(encodedQuery)}`;
   }
 
-  return newUrl;
+  if (variable) {
+    const encodedVariable = encodeUrlToBase64(variable);
+    finalUrl += `/?variable=${encodeURIComponent(encodedVariable)}`;
+  }
+
+  if (headers) {
+    const encodedHeaders = encodeUrlToBase64(headers);
+    finalUrl += `/?headers=${encodeURIComponent(encodedHeaders)}`;
+  }
+
+  return finalUrl;
 };
