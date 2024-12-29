@@ -3,22 +3,45 @@ import { GraphRequestProps } from '@/types/graphRequest';
 import style from '@/components/graphiRequest/GraphiRequest.module.scss';
 import { useTranslations } from 'next-intl';
 import { updateUrl, updateSdlUrl } from '@/utils/getURL';
+import { Header } from '@/types/graphRequest';
+import Image from 'next/image';
+import remove from 'public/remove.png';
+import add from 'public/add.png';
+import styles from 'src/components/editor/keyValue/KeyValue.module.scss';
+import stylesEditor from 'src/components/editor/Editor.module.scss';
 
 export const GraphRequest: React.FC<GraphRequestProps> = ({
   currentSdl,
   currentUrl,
   currentQuery,
   currentVariables,
+  headers,
   setCurrentSdl,
   setCurrentUrl,
   setCurrentQuery,
   setCurrentVariables,
+  setHeaders,
 }) => {
   const t = useTranslations('Clients');
   const [variables, setVariables] = useState(false);
+  const [headersContainer, setHeadersContainer] = useState(false);
+  const [nextId, setNextId] = useState(1);
 
   const toggleVariables = () => {
     setVariables((value) => !value);
+  };
+
+  const toggleHeaders = () => {
+    if (!headersContainer) {
+      if (
+        headers.length === 0 ||
+        (headers.length === 1 && headers[0].key === '' && headers[0].value === '')
+      ) {
+        setHeaders([{ key: '', value: '', id: String(nextId) }]);
+        setNextId((prevId) => prevId + 1);
+      }
+    }
+    setHeadersContainer((value) => !value);
   };
 
   const previousSdlRef = useRef(currentSdl);
@@ -106,11 +129,63 @@ export const GraphRequest: React.FC<GraphRequestProps> = ({
     setCurrentVariables(newVariables);
   };
 
+  const handleKeyChange = (e: React.ChangeEvent<HTMLInputElement>, id: string) => {
+    const newKey = e.target.value;
+    setHeaders((prevHeaders) =>
+      prevHeaders.map((header) => (header.id === id ? { ...header, key: newKey } : header)),
+    );
+  };
+
+  const handleValueChange = (e: React.ChangeEvent<HTMLInputElement>, id: string) => {
+    const newValue = e.target.value;
+    setHeaders((prevHeaders) =>
+      prevHeaders.map((header) => (header.id === id ? { ...header, value: newValue } : header)),
+    );
+  };
+
+  const updateUrlWithHeaders = (headers: Header[]) => {
+    const headersString = headers
+      .filter((header) => header.key && header.value)
+      .map((header) => `${encodeURIComponent(header.key)}=${encodeURIComponent(header.value)}`)
+      .join('&');
+
+    const newUrl = updateSdlUrl(
+      currentSdl,
+      currentUrl,
+      currentQuery,
+      currentVariables,
+      headersString,
+    );
+    updateUrl(newUrl);
+  };
+
+  const handleKeyBlur = () => {
+    updateUrlWithHeaders(headers);
+  };
+
+  const handleValueBlur = () => {
+    updateUrlWithHeaders(headers);
+  };
+
+  const handleAddHeader = () => {
+    setHeaders((prevHeaders) => [...prevHeaders, { key: '', value: '', id: String(nextId) }]);
+    setNextId((prevId) => prevId + 1);
+  };
+
+  const handleRemoveHeader = (id: string) => {
+    const updatedHeaders = headers.filter((header) => header.id !== String(id));
+    if (updatedHeaders.length === 0) {
+      setHeadersContainer(false);
+    }
+    setHeaders(updatedHeaders);
+  };
+
   useEffect(() => {
     setCurrentUrl(currentUrl);
     setCurrentSdl(currentSdl);
     setCurrentQuery(currentQuery);
     setCurrentVariables(currentVariables);
+    setHeaders(headers);
   }, [
     currentUrl,
     currentSdl,
@@ -120,6 +195,8 @@ export const GraphRequest: React.FC<GraphRequestProps> = ({
     currentQuery,
     currentVariables,
     setCurrentVariables,
+    headers,
+    setHeaders,
   ]);
 
   return (
@@ -148,7 +225,48 @@ export const GraphRequest: React.FC<GraphRequestProps> = ({
               onBlur={handleSdlBlur}
             />
           </div>
-          <button onClick={toggleVariables}>Variables</button>
+          <button onClick={toggleHeaders}>{t('header')}</button>
+          {headersContainer && (
+            <div>
+              {headers.map((header) => (
+                <div className={styles.container} key={header.id}>
+                  <label>
+                    <input
+                      type="text"
+                      value={header.key}
+                      onChange={(e) => handleKeyChange(e, header.id)}
+                      placeholder="key"
+                      onBlur={handleKeyBlur}
+                    />
+                  </label>
+                  <label>
+                    <input
+                      type="text"
+                      value={header.value}
+                      onChange={(e) => handleValueChange(e, header.id)}
+                      placeholder="value"
+                      onBlur={handleValueBlur}
+                    />
+                  </label>
+                  <div className={style.imgContainer}>
+                    <Image
+                      src={remove}
+                      alt="remove"
+                      className={stylesEditor.img}
+                      onClick={() => handleRemoveHeader(header.id)}
+                    />
+                    <Image
+                      src={add}
+                      alt="add"
+                      className={stylesEditor.img}
+                      onClick={handleAddHeader}
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+          <button onClick={toggleVariables}>{t('variable')}</button>
           {variables && (
             <div className={style.editorContainer}>
               <label htmlFor="queryEditor" />
